@@ -1,0 +1,12 @@
+part of {{view}};
+
+class {{_ViewAdaptive}} extends StatelessWidget {
+  const {{_ViewAdaptive}}(this.viewModel);
+
+  final {{ViewModel}} viewModel;
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}

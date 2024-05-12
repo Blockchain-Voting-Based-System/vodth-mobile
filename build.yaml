@@ -1,0 +1,10 @@
+targets:
+  $default:
+    builders:
+      auto_route_generator:auto_route_generator:
+        generate_for:
+          - lib/core/routes/helper_views/**_namespace_view.dart
+          - lib/views/**/**_view.dart
+      auto_route_generator:auto_router_generator:
+        generate_for:
+          - lib/core/routes/app_router.dart

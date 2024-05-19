@@ -12,12 +12,14 @@ class CandidateModel extends BaseModel {
   final int? id;
   final String? name;
   final String? info;
+  final String? avartarUrl;
   final EventModel? event;
 
   CandidateModel({
     this.id,
     this.name,
     this.info,
+    this.avartarUrl,
     this.event,
   });
 

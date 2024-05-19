@@ -7,6 +7,22 @@ class _CandidatesAdaptive extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: const Text(
+          'Candidates',
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 36,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        centerTitle: false,
+        backgroundColor: Colors.white,
+        elevation: 0,
+      ),
+      body: CandidatesGrid(candidates: viewModel.candidates),
+    );
   }
 }

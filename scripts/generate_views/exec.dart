@@ -23,6 +23,7 @@ void main() async {
     // 'candidates': 'candidates',
     // 'vote_result': 'vote_result',
     // 'setting': 'setting',
+    // 'candidates/candidate': 'candidate',
   };
 
   for (final view in views.entries) {

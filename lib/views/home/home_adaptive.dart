@@ -14,7 +14,7 @@ class _HomeAdaptive extends StatelessWidget {
           'Election',
           style: TextStyle(
             color: Colors.black,
-            fontSize: 30,
+            fontSize: 36,
             fontWeight: FontWeight.bold,
           ),
         ),

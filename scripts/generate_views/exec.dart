@@ -18,7 +18,11 @@ void main() async {
   // path, libary
   Map<String, String> views = {
     // 'home': 'Home',
-    'event': 'event',
+    // 'main_screen' : 'main_screen',
+    // 'events': 'events',
+    // 'candidates': 'candidates',
+    // 'vote_result': 'vote_result',
+    // 'setting': 'setting',
   };
 
   for (final view in views.entries) {

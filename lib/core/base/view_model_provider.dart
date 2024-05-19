@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vodth_mobile/core/base/base_view_model.dart';
 import 'package:vodth_mobile/core/base/page_title.dart';
-import 'package:vodth_mobile/core/themes/vodth_theme.dart';
+import 'package:vodth_mobile/themes/theme_constant.dart';
 
 class ViewModelProvider<T extends BaseViewModel> extends StatelessWidget {
   const ViewModelProvider({

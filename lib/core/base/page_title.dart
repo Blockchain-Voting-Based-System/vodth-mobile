@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:vodth_mobile/core/base/base_view_model.dart';
-import 'package:vodth_mobile/core/themes/vodth_theme.dart';
+import 'package:vodth_mobile/themes/theme_constant.dart';
 
 // One use case is to dynamically set page title on web.
 // Title() widget said that it also for "Creates a widget that describes this app to the Android operating system."

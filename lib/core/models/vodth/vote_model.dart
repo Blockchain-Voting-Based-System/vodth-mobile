@@ -10,6 +10,7 @@ part 'vote_model.g.dart';
 @CopyWith()
 @JsonSerializable()
 class VoteModel extends BaseModel {
+  @JsonKey(readValue: toInt)
   final int? id;
   final UserModel? user;
   final EventModel? event;

@@ -7,7 +7,7 @@ part of 'user_model.dart';
 // **************************************************************************
 
 abstract class _$UserModelCWProxy {
-  UserModel id(String? id);
+  UserModel id(int? id);
 
   UserModel firstName(String? firstName);
 
@@ -24,7 +24,7 @@ abstract class _$UserModelCWProxy {
   /// UserModel(...).copyWith(id: 12, name: "My name")
   /// ````
   UserModel call({
-    String? id,
+    int? id,
     String? firstName,
     String? lastName,
     String? email,
@@ -39,7 +39,7 @@ class _$UserModelCWProxyImpl implements _$UserModelCWProxy {
   final UserModel _value;
 
   @override
-  UserModel id(String? id) => this(id: id);
+  UserModel id(int? id) => this(id: id);
 
   @override
   UserModel firstName(String? firstName) => this(firstName: firstName);
@@ -72,7 +72,7 @@ class _$UserModelCWProxyImpl implements _$UserModelCWProxy {
       id: id == const $CopyWithPlaceholder()
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
-          : id as String?,
+          : id as int?,
       firstName: firstName == const $CopyWithPlaceholder()
           ? _value.firstName
           // ignore: cast_nullable_to_non_nullable
@@ -104,7 +104,7 @@ extension $UserModelCopyWith on UserModel {
 // **************************************************************************
 
 UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
-      id: json['id'] as String?,
+      id: (toInt(json, 'id') as num?)?.toInt(),
       firstName: json['firstName'] as String?,
       lastName: json['lastName'] as String?,
       email: json['email'] as String?,

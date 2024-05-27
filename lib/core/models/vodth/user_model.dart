@@ -8,7 +8,9 @@ part 'user_model.g.dart';
 @CopyWith()
 @JsonSerializable()
 class UserModel extends BaseModel {
-  final String? id;
+
+  @JsonKey(readValue: toInt)
+  final int? id;
   final String? firstName;
   final String? lastName;
   final String? email;

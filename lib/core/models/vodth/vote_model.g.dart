@@ -93,7 +93,7 @@ extension $VoteModelCopyWith on VoteModel {
 // **************************************************************************
 
 VoteModel _$VoteModelFromJson(Map<String, dynamic> json) => VoteModel(
-      id: (json['id'] as num?)?.toInt(),
+      id: (toInt(json, 'id') as num?)?.toInt(),
       user: json['user'] == null
           ? null
           : UserModel.fromJson(json['user'] as Map<String, dynamic>),

@@ -43,6 +43,7 @@ dependencies:
   # models
   copy_with_extension: ^5.0.4
   json_serializable: ^6.8.0
+  google_nav_bar: ^5.0.6
 
 
 dev_dependencies:

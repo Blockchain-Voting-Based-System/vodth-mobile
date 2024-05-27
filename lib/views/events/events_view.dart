@@ -1,22 +1,22 @@
-library event;
+library events;
 
 import 'package:vodth_mobile/core/routes/routes_export.dart';
 import 'package:vodth_mobile/core/base/view_model_provider.dart';
 import 'package:flutter/material.dart';
 
-import 'event_view_model.dart';
-part 'event_adaptive.dart';
+import 'events_view_model.dart';
+part 'events_adaptive.dart';
 
 @RoutePage()
-class EventView extends StatelessWidget {
-  const EventView({super.key});
+class EventsView extends StatelessWidget {
+  const EventsView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelProvider<EventViewModel>(
-      create: (context) => EventViewModel(),
+    return ViewModelProvider<EventsViewModel>(
+      create: (context) => EventsViewModel(),
       builder: (context, viewModel, child) {
-        return _EventAdaptive(viewModel);
+        return _EventsAdaptive(viewModel);
       },
     );
   }

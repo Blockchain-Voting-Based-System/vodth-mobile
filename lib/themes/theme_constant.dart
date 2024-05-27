@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ThemeConstant {
-  static const Color brandColor = Color(0xFF6444D8);
+  static const Color brandColor = Color(0xFF004AAD);
   static const String defaultFontFamily = 'Poppins';
   static const List<String> fontFamilyFallback = ['Poppins', 'KantumruyPro'];
 

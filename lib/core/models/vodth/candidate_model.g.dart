@@ -13,6 +13,8 @@ abstract class _$CandidateModelCWProxy {
 
   CandidateModel info(String? info);
 
+  CandidateModel avartarUrl(String? avartarUrl);
+
   CandidateModel event(EventModel? event);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CandidateModel(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
@@ -25,6 +27,7 @@ abstract class _$CandidateModelCWProxy {
     int? id,
     String? name,
     String? info,
+    String? avartarUrl,
     EventModel? event,
   });
 }
@@ -45,6 +48,9 @@ class _$CandidateModelCWProxyImpl implements _$CandidateModelCWProxy {
   CandidateModel info(String? info) => this(info: info);
 
   @override
+  CandidateModel avartarUrl(String? avartarUrl) => this(avartarUrl: avartarUrl);
+
+  @override
   CandidateModel event(EventModel? event) => this(event: event);
 
   @override
@@ -59,6 +65,7 @@ class _$CandidateModelCWProxyImpl implements _$CandidateModelCWProxy {
     Object? id = const $CopyWithPlaceholder(),
     Object? name = const $CopyWithPlaceholder(),
     Object? info = const $CopyWithPlaceholder(),
+    Object? avartarUrl = const $CopyWithPlaceholder(),
     Object? event = const $CopyWithPlaceholder(),
   }) {
     return CandidateModel(
@@ -74,6 +81,10 @@ class _$CandidateModelCWProxyImpl implements _$CandidateModelCWProxy {
           ? _value.info
           // ignore: cast_nullable_to_non_nullable
           : info as String?,
+      avartarUrl: avartarUrl == const $CopyWithPlaceholder()
+          ? _value.avartarUrl
+          // ignore: cast_nullable_to_non_nullable
+          : avartarUrl as String?,
       event: event == const $CopyWithPlaceholder()
           ? _value.event
           // ignore: cast_nullable_to_non_nullable
@@ -97,6 +108,7 @@ CandidateModel _$CandidateModelFromJson(Map<String, dynamic> json) =>
       id: (toInt(json, 'id') as num?)?.toInt(),
       name: json['name'] as String?,
       info: json['info'] as String?,
+      avartarUrl: json['avartarUrl'] as String?,
       event: json['event'] == null
           ? null
           : EventModel.fromJson(json['event'] as Map<String, dynamic>),
@@ -107,5 +119,6 @@ Map<String, dynamic> _$CandidateModelToJson(CandidateModel instance) =>
       'id': instance.id,
       'name': instance.name,
       'info': instance.info,
+      'avartarUrl': instance.avartarUrl,
       'event': instance.event,
     };

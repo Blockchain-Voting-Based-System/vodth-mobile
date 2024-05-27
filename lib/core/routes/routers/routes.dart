@@ -12,5 +12,5 @@ final routers = [
   ]),
 
   //Add new route here
-  
+  AutoRoute(page: CandidateRoute.page),
 ];

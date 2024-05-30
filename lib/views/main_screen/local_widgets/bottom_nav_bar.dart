@@ -15,47 +15,39 @@ class BottomNavBar extends StatefulWidget {
 class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            blurRadius: 20,
-            color: Colors.black.withOpacity(0.1),
+    return BottomNavigationBar(
+      elevation: 0.0,
+      selectedItemColor: ThemeConstant.brandColor,
+      unselectedItemColor: ThemeConstant.brandColor.withOpacity(0.5),
+      showUnselectedLabels: true,
+      type: BottomNavigationBarType.fixed,
+      iconSize: ConfigConstant.iconSize3,
+      currentIndex: widget.tabsRouter.activeIndex,
+      onTap: (value) => widget.tabsRouter.setActiveIndex(value),
+      items: const [
+        BottomNavigationBarItem(
+          icon: ImageIcon(
+            AssetImage('assets/icons/home_icon.png'),
           ),
-        ],
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(50),
-        child: BottomNavigationBar(
-          selectedItemColor: ThemeConstant.brandColor,
-          unselectedItemColor: ThemeConstant.brandColor.withOpacity(0.5),
-          backgroundColor: const Color(0xFFC2E1F3),
-          showUnselectedLabels: true,
-          type: BottomNavigationBarType.fixed,
-          iconSize: ConfigConstant.iconSize3,
-          currentIndex: widget.tabsRouter.activeIndex,
-          onTap: (value) => widget.tabsRouter.setActiveIndex(value),
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.groups_2_outlined),
-              label: 'Candidates',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.poll),
-              label: 'Result',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: 'Setting',
-            ),
-          ],
+          label: 'Home',
         ),
-      ),
+        BottomNavigationBarItem(
+          icon: ImageIcon(
+            AssetImage('assets/icons/private_icon.png'),
+          ),
+          label: 'Prvate Vote',
+        ),
+        BottomNavigationBarItem(
+          icon: ImageIcon(
+            AssetImage('assets/icons/history_icon.png'),
+          ),
+          label: 'History',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.person),
+          label: '',
+        ),
+      ],
     );
   }
 }

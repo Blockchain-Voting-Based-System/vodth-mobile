@@ -1,4 +1,4 @@
-part of account;
+part of 'account_view.dart';
 
 class _AccountAdaptive extends StatelessWidget {
   const _AccountAdaptive(this.viewModel);
@@ -8,53 +8,62 @@ class _AccountAdaptive extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildAppBar(),
-      body: _buildBody(),
+      appBar: MorphingAppBar(
+        title: Text(
+          'Account',
+          style: M3TextTheme.of(context).headlineSmall?.copyWith(
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).primaryColor,
+              ),
+        ),
+      ),
+      body: _buildBody(context),
     );
   }
 
-  _buildAppBar() {}
-
-  Widget _buildBody() {
+  Widget _buildBody(BuildContext context) {
     return ListView(
       children: [
-        _buildProfile(),
-        _buildMenu(),
+        _buildProfile(context),
+        _buildMenu(context),
       ],
     );
   }
 
-  Widget _buildProfile() {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      child: const Row(
+  Widget _buildProfile(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Row(
         children: [
-          CircleAvatar(
-            radius: 40,
-            backgroundImage: NetworkImage(
-              'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
+          Container(
+            width: 50,
+            height: 50,
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+              image: DecorationImage(
+                image: NetworkImage(
+                  'https://avatars.githubusercontent.com/u/109834020?v=4',
+                ),
+              ),
             ),
           ),
-          SizedBox(width: 16),
+          const SizedBox(width: 16),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'John Doe',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontFamily: ThemeConstant.defaultFontFamily,
-                  fontWeight: FontWeight.bold,
-                ),
+              Row(
+                children: [
+                  Text(
+                    'Account Address: ',
+                    style: M3TextTheme.of(context).titleSmall?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
+                  const VmSuiAddress(),
+                ],
               ),
-              SizedBox(height: 8),
-              Text(
-                ' [email protected]',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.grey,
-                ),
-              ),
+              Text('vaneath@gmail.com',
+                  style: M3TextTheme.of(context).labelMedium),
             ],
           ),
         ],
@@ -62,7 +71,7 @@ class _AccountAdaptive extends StatelessWidget {
     );
   }
 
-  Widget _buildMenu() {
+  Widget _buildMenu(BuildContext context) {
     return Column(
       children: [
         _buildMenuItem(
@@ -79,6 +88,7 @@ class _AccountAdaptive extends StatelessWidget {
           icon: Icons.logout,
           title: 'Logout',
           onTap: () {},
+          color: M3Color.of(context).error,
         ),
       ],
     );
@@ -88,10 +98,17 @@ class _AccountAdaptive extends StatelessWidget {
     required IconData icon,
     required String title,
     required VoidCallback onTap,
+    Color? color,
   }) {
     return ListTile(
-      leading: Icon(icon),
-      title: Text(title),
+      leading: Icon(
+        icon,
+        color: color,
+      ),
+      title: Text(
+        title,
+        style: TextStyle(color: color),
+      ),
       onTap: onTap,
     );
   }

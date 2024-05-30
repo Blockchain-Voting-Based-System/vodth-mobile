@@ -27,6 +27,7 @@ void main() async {
     // 'setting': 'setting',
     // 'candidates/candidate': 'candidate',
     'account': 'account',
+    'test': 'test',
   };
 
   for (final view in views.entries) {
@@ -67,7 +68,7 @@ Future<void> generateViewFor({
       .replaceAll('{{_ViewAdaptive}}', viewAdaptiveClassName);
 
   String newViewAdaptiveContents = viewAdaptiveContents
-      .replaceAll('{{view}}', viewLibraryName)
+      .replaceAll('{{view}}', '${viewLibraryName}_view.dart')
       .replaceAll('{{_ViewAdaptive}}', viewAdaptiveClassName)
       .replaceAll('{{ViewModel}}', viewModelClassName);
 

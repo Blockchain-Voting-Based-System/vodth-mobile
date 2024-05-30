@@ -1,4 +1,4 @@
-part of main_screen;
+part of 'main_screen_view.dart';
 
 class _MainScreenAdaptive extends StatelessWidget {
   const _MainScreenAdaptive(this.viewModel);

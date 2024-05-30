@@ -12,12 +12,11 @@ class _MainScreenAdaptive extends StatelessWidget {
         HomeRoute(),
         CandidatesRoute(),
         VoteResultRoute(),
-        SettingRoute(),
+        AccountRoute(),
       ],
       builder: (context, child) {
         final tabsRouter = AutoTabsRouter.of(context);
         return Scaffold(
-          backgroundColor: Colors.white,
           body: child,
           bottomNavigationBar: BottomNavBar(tabsRouter: tabsRouter),
         );

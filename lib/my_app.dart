@@ -1,22 +1,28 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:vodth_mobile/core/routes/app_router.dart';
+import 'package:vodth_mobile/core/theme/theme_config.dart';
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
+  final AppRouter router;
 
-  final _appRouter = AppRouter();
+  const MyApp({
+    super.key,
+    required this.router,
+  });
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      themeMode: ThemeMode.light,
+      theme: ThemeConfig.light().themeData,
       debugShowCheckedModeBanner: false,
-      routerConfig: _appRouter.config(),
+      routerConfig: router.config(),
     );
   }
 
   AutoRouterDelegate routerDelegate() {
-    return _appRouter.delegate(
+    return router.delegate(
       navigatorObservers: () => [
         ...AutoRouterDelegate.defaultNavigatorObserversBuilder(),
         AutoRouteObserver(),

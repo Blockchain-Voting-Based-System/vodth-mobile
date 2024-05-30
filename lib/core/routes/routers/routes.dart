@@ -8,9 +8,10 @@ final routers = [
     AutoRoute(page: HomeRoute.page),
     AutoRoute(page: CandidatesRoute.page),
     AutoRoute(page: VoteResultRoute.page),
-    AutoRoute(page: SettingRoute.page),
+    AutoRoute(page: AccountRoute.page),
   ]),
 
   //Add new route here
   AutoRoute(page: CandidateRoute.page),
+  AutoRoute(page: AccountRoute.page, path: '/account'),
 ];

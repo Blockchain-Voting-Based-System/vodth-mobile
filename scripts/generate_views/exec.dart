@@ -8,8 +8,10 @@ extension StringExtension on String {
 
 void main() async {
   String viewFilePath = 'scripts/generate_views/templates/view.dart.template';
-  String viewAdaptiveFilePath = 'scripts/generate_views/templates/view_adaptive.dart.template';
-  String viewModelFilePath = 'scripts/generate_views/templates/view_model.dart.template';
+  String viewAdaptiveFilePath =
+      'scripts/generate_views/templates/view_adaptive.dart.template';
+  String viewModelFilePath =
+      'scripts/generate_views/templates/view_model.dart.template';
 
   String viewContents = await File(viewFilePath).readAsString();
   String viewAdaptiveContents = await File(viewAdaptiveFilePath).readAsString();
@@ -24,6 +26,7 @@ void main() async {
     // 'vote_result': 'vote_result',
     // 'setting': 'setting',
     // 'candidates/candidate': 'candidate',
+    'account': 'account',
   };
 
   for (final view in views.entries) {
@@ -49,7 +52,8 @@ Future<void> generateViewFor({
   String viewAdaptivFileName = '${viewLibraryName.toLowerCase()}_adaptive.dart';
   String viewModelFileName = '${viewLibraryName.toLowerCase()}_view_model.dart';
 
-  String className = viewLibraryName.split('_').map((e) => e.capitalize()).join('');
+  String className =
+      viewLibraryName.split('_').map((e) => e.capitalize()).join('');
   String viewClassName = '${className}View';
   String viewModelClassName = '${className}ViewModel';
   String viewAdaptiveClassName = '_${className}Adaptive';
@@ -67,7 +71,8 @@ Future<void> generateViewFor({
       .replaceAll('{{_ViewAdaptive}}', viewAdaptiveClassName)
       .replaceAll('{{ViewModel}}', viewModelClassName);
 
-  String newViewModelContents = viewModelContents.replaceAll('{{ViewModel}}', viewModelClassName);
+  String newViewModelContents =
+      viewModelContents.replaceAll('{{ViewModel}}', viewModelClassName);
 
   final newViewFile = File('lib/views/$path/$viewFileName');
   final newViewAdaptiveFile = File('lib/views/$path/$viewAdaptivFileName');
@@ -75,9 +80,15 @@ Future<void> generateViewFor({
 
   if (await newViewFile.exists()) return;
 
-  if (!await newViewFile.parent.exists()) await newViewFile.parent.create(recursive: true);
-  if (!await newViewAdaptiveFile.parent.exists()) await newViewAdaptiveFile.parent.create(recursive: true);
-  if (!await newViewModelFile.parent.exists()) await newViewModelFile.parent.create(recursive: true);
+  if (!await newViewFile.parent.exists()) {
+    await newViewFile.parent.create(recursive: true);
+  }
+  if (!await newViewAdaptiveFile.parent.exists()) {
+    await newViewAdaptiveFile.parent.create(recursive: true);
+  }
+  if (!await newViewModelFile.parent.exists()) {
+    await newViewModelFile.parent.create(recursive: true);
+  }
 
   await newViewFile.writeAsString(newViewContents);
   await newViewAdaptiveFile.writeAsString(newViewAdaptiveContents);

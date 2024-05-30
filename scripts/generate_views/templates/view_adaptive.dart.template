@@ -1,4 +1,4 @@
-part of {{view}};
+part of '{{view}}';
 
 class {{_ViewAdaptive}} extends StatelessWidget {
   const {{_ViewAdaptive}}(this.viewModel);

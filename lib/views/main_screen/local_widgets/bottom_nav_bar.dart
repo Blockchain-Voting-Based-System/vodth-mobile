@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:vodth_mobile/constant/config_constant.dart';
 import 'package:vodth_mobile/themes/theme_constant.dart';
 
 class BottomNavBar extends StatefulWidget {
@@ -18,10 +17,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
     return BottomNavigationBar(
       elevation: 0.0,
       selectedItemColor: ThemeConstant.brandColor,
-      unselectedItemColor: ThemeConstant.brandColor.withOpacity(0.5),
       showUnselectedLabels: true,
       type: BottomNavigationBarType.fixed,
-      iconSize: ConfigConstant.iconSize3,
       currentIndex: widget.tabsRouter.activeIndex,
       onTap: (value) => widget.tabsRouter.setActiveIndex(value),
       items: const [
@@ -45,7 +42,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person),
-          label: '',
+          label: 'Account',
         ),
       ],
     );

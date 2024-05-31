@@ -15,4 +15,5 @@ final routers = [
   AutoRoute(page: CandidateRoute.page),
   AutoRoute(page: AccountRoute.page, path: '/account'),
   AutoRoute(page: LoginRoute.page),
+  AutoRoute(page: RegisterRoute.page),
 ];

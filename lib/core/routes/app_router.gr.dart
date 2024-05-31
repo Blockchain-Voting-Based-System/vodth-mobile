@@ -21,6 +21,7 @@ import 'package:vodth_mobile/views/main_screen/main_screen_view.dart' as _i6;
 import 'package:vodth_mobile/views/setting/setting_view.dart' as _i7;
 import 'package:vodth_mobile/views/vote_result/vote_result_view.dart' as _i8;
 import 'package:vodth_mobile/views/login/login_view.dart' as _i11;
+import 'package:vodth_mobile/views/register/register_view.dart' as _i12;
 
 abstract class $AppRouter extends _i9.RootStackRouter {
   $AppRouter({super.navigatorKey});
@@ -84,6 +85,12 @@ abstract class $AppRouter extends _i9.RootStackRouter {
       return _i9.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i11.LoginView(),
+      );
+    },
+    RegisterRoute.name: (routeData) {
+      return _i9.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i12.RegisterView(),
       );
     },
   };
@@ -235,6 +242,20 @@ class LoginRoute extends _i9.PageRouteInfo<void> {
         );
 
   static const String name = 'LoginRoute';
+
+  static const _i9.PageInfo<void> page = _i9.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i12.RegisterView]
+class RegisterRoute extends _i9.PageRouteInfo<void> {
+  const RegisterRoute({List<_i9.PageRouteInfo>? children})
+      : super(
+          RegisterRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'RegisterRoute';
 
   static const _i9.PageInfo<void> page = _i9.PageInfo<void>(name);
 }

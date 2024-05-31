@@ -28,6 +28,7 @@ void main() async {
     // 'candidates/candidate': 'candidate',
     'account': 'account',
     'test': 'test',
+    'about_us': 'about_us',
   };
 
   for (final view in views.entries) {

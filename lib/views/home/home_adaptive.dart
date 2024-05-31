@@ -27,35 +27,35 @@ class _HomeAdaptive extends StatelessWidget {
         centerTitle: false,
         backgroundColor: Colors.white,
         elevation: 0,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons
-                .notifications_outlined), // Add your notification icon here
-            onPressed: () {
-              // Add functionality for when the notification icon is pressed
-            },
-          ),
-        ],
+        // actions: [
+        //   IconButton(
+        //     icon: const Icon(Icons
+        //         .notifications_outlined), // Add your notification icon here
+        //     onPressed: () {
+        //       // Add functionality for when the notification icon is pressed
+        //     },
+        //   ),
+        // ],
       ),
       // body: _buildBody(),
       body: EventsList(viewModel: viewModel),
     );
   }
 
-  Widget _buildBody() {
-    return SizedBox(
-      child: ListView(
-        children: [
-          EventsList(viewModel: viewModel),
-          // Text(
-          //   'Current Balance: ${viewModel.balance}',
-          //   style: const TextStyle(fontWeight: FontWeight.bold),
-          // ),
-          // if (viewModel.ownedObject != null) _buildOwnedObjects(),
-        ],
-      ),
-    );
-  }
+  // Widget _buildBody() {
+  //   return SizedBox(
+  //     child: ListView(
+  //       children: [
+  //         EventsList(viewModel: viewModel),
+  //         Text(
+  //           'Current Balance: ${viewModel.balance}',
+  //           style: const TextStyle(fontWeight: FontWeight.bold),
+  //         ),
+  //         if (viewModel.ownedObject != null) _buildOwnedObjects(),
+  //       ],
+  //     ),
+  //   );
+  // }
 
   Column _buildOwnedObjects() {
     return Column(

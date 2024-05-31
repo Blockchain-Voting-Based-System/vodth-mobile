@@ -14,4 +14,5 @@ final routers = [
   //Add new route here
   AutoRoute(page: CandidateRoute.page),
   AutoRoute(page: AccountRoute.page, path: '/account'),
+  AutoRoute(page: IdCardUploadRoute.page),
 ];

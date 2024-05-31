@@ -8,107 +8,111 @@ class _AccountAdaptive extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MorphingAppBar(
-        title: Text(
-          'Account',
-          style: M3TextTheme.of(context).headlineSmall?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: Theme.of(context).primaryColor,
-              ),
-        ),
-      ),
       body: _buildBody(context),
     );
   }
 
   Widget _buildBody(BuildContext context) {
-    return ListView(
-      children: [
-        _buildProfile(context),
-        _buildMenu(context),
-      ],
-    );
-  }
-
-  Widget _buildProfile(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Row(
+      padding: const EdgeInsets.all(24.0),
+      child: ListView(
         children: [
-          Container(
-            width: 50,
-            height: 50,
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-              image: DecorationImage(
-                image: NetworkImage(
-                  'https://avatars.githubusercontent.com/u/109834020?v=4',
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(width: 16),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Text(
-                    'Account Address: ',
-                    style: M3TextTheme.of(context).titleSmall?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                  ),
-                  const VmSuiAddress(),
-                ],
-              ),
-              Text('vaneath@gmail.com',
-                  style: M3TextTheme.of(context).labelMedium),
-            ],
+          _buildProfile(context),
+          const SizedBox(height: 36),
+          const Text('Account Information',
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey)),
+          const SizedBox(height: 16),
+          _buildAccountItem(context, 'Edit Profile', Icons.person, () {
+            // Handle Edit Profile tap
+          }),
+          _buildAccountItem(context, 'Change Password', Icons.lock, () {
+            // Handle Change Password tap
+          }),
+          const SizedBox(height: 24),
+          const Text('Preferences',
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey)),
+          const SizedBox(height: 16),
+          _buildAccountItem(context, 'Language', Icons.language, () {
+            // Handle Notifications tap
+          }),
+          _buildAccountItem(context, 'Notifications', Icons.notifications, () {
+            // Handle Notifications tap
+          }),
+          _buildAccountItem(context, 'Themes', Icons.palette, () {
+            // Handle Themes tap
+          }),
+          const SizedBox(height: 16),
+          const Divider(),
+          const SizedBox(height: 16),
+          _buildAccountItem(context, 'About Us', Icons.info, () {
+            // Handle About Us tap
+          }),
+          _buildAccountItem(context, 'FAQs', Icons.question_mark, () {
+            // Handle About Us tap
+          }),
+          ListTile(
+            title: const Text('Logout', style: TextStyle(color: Colors.red)),
+            leading: const Icon(Icons.logout, color: Colors.red),
+            onTap: () {
+              // Handle Logout tap
+            },
           ),
         ],
       ),
     );
   }
 
-  Widget _buildMenu(BuildContext context) {
-    return Column(
+  Widget _buildProfile(BuildContext context) {
+    return Row(
       children: [
-        _buildMenuItem(
-          icon: Icons.person,
-          title: 'Profile',
-          onTap: () {},
+        Container(
+          width: 80,
+          height: 80,
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+            image: DecorationImage(
+              image: NetworkImage(
+                'https://avatars.githubusercontent.com/u/109834020?v=4',
+              ),
+            ),
+          ),
         ),
-        _buildMenuItem(
-          icon: Icons.settings,
-          title: 'Settings',
-          onTap: () {},
-        ),
-        _buildMenuItem(
-          icon: Icons.logout,
-          title: 'Logout',
-          onTap: () {},
-          color: M3Color.of(context).error,
+        const SizedBox(width: 16),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'vaneath@gmail.com',
+              style: M3TextTheme.of(context).titleLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+            ),
+            Row(
+              children: [
+                Text('Account Address: ',
+                    style: M3TextTheme.of(context).labelMedium),
+                const VmSuiAddress(),
+              ],
+            ),
+          ],
         ),
       ],
+      // ),
     );
   }
 
-  Widget _buildMenuItem({
-    required IconData icon,
-    required String title,
-    required VoidCallback onTap,
-    Color? color,
-  }) {
+  Widget _buildAccountItem(
+      BuildContext context, String title, IconData icon, VoidCallback onTap) {
     return ListTile(
-      leading: Icon(
-        icon,
-        color: color,
-      ),
-      title: Text(
-        title,
-        style: TextStyle(color: color),
-      ),
+      title: Text(title),
+      leading: Icon(icon, color: Colors.blue),
+      trailing: Icon(Icons.arrow_forward_ios, color: Colors.blue),
       onTap: onTap,
     );
   }

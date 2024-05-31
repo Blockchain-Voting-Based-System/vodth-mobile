@@ -8,18 +8,18 @@ class _HomeAdaptive extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          await viewModel.requestFaucet();
-        },
-        child: const Icon(Icons.add),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () async {
+      //     await viewModel.requestFaucet();
+      //   },
+      //   child: const Icon(Icons.add),
+      // ),
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text(
-          'Election',
+          'Vodth',
           style: TextStyle(
-            color: Colors.black,
+            color: Colors.blue,
             fontSize: 36,
             fontWeight: FontWeight.bold,
           ),
@@ -27,22 +27,34 @@ class _HomeAdaptive extends StatelessWidget {
         centerTitle: false,
         backgroundColor: Colors.white,
         elevation: 0,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons
+                .notifications_outlined), // Add your notification icon here
+            onPressed: () {
+              // Add functionality for when the notification icon is pressed
+            },
+          ),
+        ],
       ),
-      body: _buildBody(),
+      // body: _buildBody(),
+      body: EventsList(viewModel: viewModel),
     );
   }
 
   Widget _buildBody() {
     return SizedBox(
-        child: ListView(
-      children: [
-        Text(
-          'Current Balance: ${viewModel.balance}',
-          style: const TextStyle(fontWeight: FontWeight.bold),
-        ),
-        if (viewModel.ownedObject != null) _buildOwnedObjects(),
-      ],
-    ));
+      child: ListView(
+        children: [
+          EventsList(viewModel: viewModel),
+          // Text(
+          //   'Current Balance: ${viewModel.balance}',
+          //   style: const TextStyle(fontWeight: FontWeight.bold),
+          // ),
+          // if (viewModel.ownedObject != null) _buildOwnedObjects(),
+        ],
+      ),
+    );
   }
 
   Column _buildOwnedObjects() {

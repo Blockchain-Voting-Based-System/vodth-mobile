@@ -17,4 +17,5 @@ final routers = [
   AutoRoute(page: LoginRoute.page),
   AutoRoute(page: RegisterRoute.page),
   AutoRoute(page: AboutUsRoute.page),
+  AutoRoute(page: EditProfileRoute.page),
 ];

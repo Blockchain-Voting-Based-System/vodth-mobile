@@ -7,7 +7,7 @@ enum VodthTapEffectType {
 
 class VodthTapEffect extends StatefulWidget {
   const VodthTapEffect({
-    Key? key,
+    super.key,
     required this.child,
     required this.onTap,
     this.duration = const Duration(milliseconds: 100),
@@ -17,7 +17,7 @@ class VodthTapEffect extends StatefulWidget {
       VodthTapEffectType.touchableOpacity,
     ],
     this.onLongPressed,
-  }) : super(key: key);
+  });
 
   final Widget child;
   final List<VodthTapEffectType> effects;

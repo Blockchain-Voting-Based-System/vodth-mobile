@@ -16,7 +16,7 @@ class EventsList extends StatelessWidget {
         final EventModel event = viewModel.events[index];
         return VodthTapEffect(
           onTap: () {
-            print('Go to event detail page');
+            // ToDo - Go to event detail page
           },
           effects: const [
             VodthTapEffectType.scaleDown,

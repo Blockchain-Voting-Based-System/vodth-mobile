@@ -1,4 +1,4 @@
-part of vote_result;
+part of 'vote_result_view.dart';
 
 class _VoteResultAdaptive extends StatelessWidget {
   const _VoteResultAdaptive(this.viewModel);

@@ -1,4 +1,4 @@
-part of events;
+part of 'events_view.dart';
 
 class _EventsAdaptive extends StatelessWidget {
   const _EventsAdaptive(this.viewModel);

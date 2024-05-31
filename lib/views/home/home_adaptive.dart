@@ -1,4 +1,4 @@
-part of home;
+part of 'home_view.dart';
 
 class _HomeAdaptive extends StatelessWidget {
   const _HomeAdaptive(this.viewModel);
@@ -27,6 +27,14 @@ class _HomeAdaptive extends StatelessWidget {
         centerTitle: false,
         backgroundColor: Colors.white,
         elevation: 0,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () {
+              context.router.push(const IdCardUploadRoute());
+            },
+          ),
+        ],
       ),
       body: _buildBody(),
     );

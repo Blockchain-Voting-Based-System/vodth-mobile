@@ -1,4 +1,4 @@
-part of setting;
+part of 'setting_view.dart';
 
 class _SettingAdaptive extends StatelessWidget {
   const _SettingAdaptive(this.viewModel);

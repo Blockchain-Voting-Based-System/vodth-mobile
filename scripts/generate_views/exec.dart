@@ -30,7 +30,7 @@ void main() async {
     'test': 'test',
     'about_us': 'about_us',
     'edit_profile': 'edit_profile',
-    
+    'faqs': 'faqs',
   };
 
   for (final view in views.entries) {

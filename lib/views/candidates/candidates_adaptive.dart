@@ -1,4 +1,4 @@
-part of candidates;
+part of 'candidates_view.dart';
 
 class _CandidatesAdaptive extends StatelessWidget {
   const _CandidatesAdaptive(this.viewModel);

@@ -1,4 +1,4 @@
-part of home;
+part of 'home_view.dart';
 
 class _HomeAdaptive extends StatelessWidget {
   const _HomeAdaptive(this.viewModel);

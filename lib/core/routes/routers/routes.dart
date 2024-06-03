@@ -14,4 +14,9 @@ final routers = [
   //Add new route here
   AutoRoute(page: CandidateRoute.page),
   AutoRoute(page: AccountRoute.page, path: '/account'),
+  // Add new route here
+  AutoRoute(page: VoteOptionRoute.page),
+  AutoRoute(page: PrivateRoute.page),
+  AutoRoute(page: IdCardRoute.page),
+  AutoRoute(page: FaceScanRoute.page),
 ];

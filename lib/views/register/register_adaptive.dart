@@ -89,7 +89,7 @@ class _RegisterAdaptive extends StatelessWidget {
               const Text("Already has an account?"),
               TextButton(
                 onPressed: () {
-                  // Handle create account action
+                  context.router.push(LoginRoute());
                 },
                 child: const Text('Log in'),
               ),

@@ -16,6 +16,7 @@ final routers = [
   AutoRoute(page: AccountRoute.page, path: '/account'),
   AutoRoute(page: LoginRoute.page),
   AutoRoute(page: RegisterRoute.page),
+  AutoRoute(page: EventsRoute.page),
   AutoRoute(page: AboutUsRoute.page),
   AutoRoute(page: EditProfileRoute.page),
   AutoRoute(page: FaqsRoute.page),

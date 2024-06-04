@@ -22,7 +22,7 @@ class _EditProfileAdaptive extends StatelessWidget {
           CircleAvatar(
             radius: 50,
             backgroundImage: NetworkImage(
-                'https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcQ4PY8_jgCox-pKlqJ2qknBsFjvBXN8bRngScGUFoMiESM8n8c0PR35QhM1O9MuflnD4MNFstaZGOHfbxc'), // Placeholder image
+                'https://avatars.githubusercontent.com/u/109834020?v=4'), // Placeholder image
             child: Align(
               alignment: Alignment.bottomRight,
               child: IconButton(

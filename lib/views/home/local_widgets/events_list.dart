@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vodth_mobile/core/models/vodth/event_model.dart';
+import 'package:vodth_mobile/core/routes/app_router.gr.dart';
+import 'package:vodth_mobile/core/routes/routes_export.dart';
 import 'package:vodth_mobile/views/home/home_view_model.dart';
 import 'package:vodth_mobile/views/home/local_widgets/event_card.dart';
 import 'package:vodth_mobile/views/widgets/vodth_tap_effect.dart';
@@ -16,7 +18,7 @@ class EventsList extends StatelessWidget {
         final EventModel event = viewModel.events[index];
         return VodthTapEffect(
           onTap: () {
-            print('Go to event detail page');
+            context.router.push(EventsRoute());
           },
           effects: const [
             VodthTapEffectType.scaleDown,

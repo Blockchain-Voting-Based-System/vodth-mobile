@@ -79,7 +79,7 @@ class _LoginAdaptive extends StatelessWidget {
               minimumSize: const Size(double.infinity, 50),
             ),
             onPressed: () {
-              // Handle login action
+              context.router.push(HomeRoute());
             },
             child: const Center(
               child: Text(
@@ -133,7 +133,7 @@ class _LoginAdaptive extends StatelessWidget {
               const Text("Not yet have account?"),
               TextButton(
                 onPressed: () {
-                  // Handle create account action
+                  context.router.push(RegisterRoute());
                 },
                 child: const Text('Create account'),
               ),

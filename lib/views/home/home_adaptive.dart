@@ -8,18 +8,19 @@ class _HomeAdaptive extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          await viewModel.requestFaucet();
-        },
-        child: const Icon(Icons.add),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () async {
+      //     await viewModel.requestFaucet();
+      //   },
+      //   child: const Icon(Icons.add),
+      // ),
       backgroundColor: Colors.white,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text(
-          'Election',
+          'Vodth',
           style: TextStyle(
-            color: Colors.black,
+            color: Colors.blue,
             fontSize: 36,
             fontWeight: FontWeight.bold,
           ),
@@ -27,22 +28,55 @@ class _HomeAdaptive extends StatelessWidget {
         centerTitle: false,
         backgroundColor: Colors.white,
         elevation: 0,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16),
+            child: IconButton(
+              icon: const Icon(Icons
+                  .notifications_outlined), // Add your notification icon here
+              onPressed: () {
+                // Add functionality for when the notification icon is pressed
+              },
+            ),
+          ),
+        ],
       ),
-      body: _buildBody(),
+      // body: Container(
+
+      //   child: EventsList(viewModel: viewModel),
+      // )
+      body: _buildBody(context),
     );
   }
 
-  Widget _buildBody() {
-    return SizedBox(
-        child: ListView(
-      children: [
-        Text(
-          'Current Balance: ${viewModel.balance}',
-          style: const TextStyle(fontWeight: FontWeight.bold),
+  Widget _buildBody(context) {
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Welcome, vaneath!',
+              style: TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                  color: M3Color.of(context).primary),
+            ),
+            SizedBox(height: 16),
+            Text(
+              'Events',
+              style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black),
+            ),
+            SizedBox(height: 8),
+            EventsList(viewModel: viewModel),
+          ],
         ),
-        if (viewModel.ownedObject != null) _buildOwnedObjects(),
-      ],
-    ));
+      ),
+    );
   }
 
   Column _buildOwnedObjects() {

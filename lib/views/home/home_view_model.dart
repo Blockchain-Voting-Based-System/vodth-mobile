@@ -42,7 +42,7 @@ class HomeViewModel extends BaseViewModel {
       endDate: DateTime.now(),
       activate: true,
       bannerUrl:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSg3JEBrivo1oZRbeKNoiqhGLz2x5QmdLYXqjNRObkTEw&s',
+          'https://play-lh.googleusercontent.com/_h_HSmLskHxLcGbPRo47Pno6E-e9W3ViDHs2E-crsWl-JflPrh7UEozzPPVWCO981IE',
       candidates: [],
     ),
     EventModel(
@@ -53,7 +53,7 @@ class HomeViewModel extends BaseViewModel {
       endDate: DateTime.now(),
       activate: true,
       bannerUrl:
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSg3JEBrivo1oZRbeKNoiqhGLz2x5QmdLYXqjNRObkTEw&s',
+          'https://cambodiainvestmentreview.com/wp-content/uploads/2022/03/CADT-0-scaled.jpg',
       candidates: [],
     ),
   ];

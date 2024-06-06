@@ -1,4 +1,4 @@
-part of home;
+part of 'home_view.dart';
 
 class _HomeAdaptive extends StatelessWidget {
   const _HomeAdaptive(this.viewModel);
@@ -63,15 +63,15 @@ class _HomeAdaptive extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   color: M3Color.of(context).primary),
             ),
-            SizedBox(height: 16),
-            Text(
+            const SizedBox(height: 16),
+            const Text(
               'Events',
               style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.w500,
                   color: Colors.black),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             EventsList(viewModel: viewModel),
           ],
         ),

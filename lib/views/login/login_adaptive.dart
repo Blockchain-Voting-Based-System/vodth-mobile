@@ -1,4 +1,4 @@
-part of login;
+part of 'login_view.dart';
 
 class _LoginAdaptive extends StatelessWidget {
   const _LoginAdaptive(this.viewModel);

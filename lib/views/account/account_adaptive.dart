@@ -26,7 +26,7 @@ class _AccountAdaptive extends StatelessWidget {
                   color: Colors.grey)),
           const SizedBox(height: 16),
           _buildAccountItem(context, 'Edit Profile', Icons.person, () {
-            context.router.push(EditProfileRoute());
+            context.router.push(const EditProfileRoute());
           }),
           _buildAccountItem(context, 'Change Password', Icons.lock, () {
             // Handle Change Password tap
@@ -51,16 +51,16 @@ class _AccountAdaptive extends StatelessWidget {
           const Divider(),
           const SizedBox(height: 16),
           _buildAccountItem(context, 'About Us', Icons.info, () {
-            context.router.push(AboutUsRoute());
+            context.router.push(const AboutUsRoute());
           }),
           _buildAccountItem(context, 'FAQs', Icons.question_mark, () {
-            context.router.push(FaqsRoute());
+            context.router.push(const FaqsRoute());
           }),
           ListTile(
             title: const Text('Logout', style: TextStyle(color: Colors.red)),
             leading: const Icon(Icons.logout, color: Colors.red),
             onTap: () {
-              context.router.push(LoginRoute());
+              context.router.push(const LoginRoute());
             },
           ),
         ],
@@ -72,8 +72,8 @@ class _AccountAdaptive extends StatelessWidget {
     return Row(
       children: [
         Container(
-          width: 80,
-          height: 80,
+          width: 60,
+          height: 60,
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(10)),
             image: DecorationImage(
@@ -112,7 +112,7 @@ class _AccountAdaptive extends StatelessWidget {
     return ListTile(
       title: Text(title),
       leading: Icon(icon, color: Colors.blue),
-      trailing: Icon(Icons.arrow_forward_ios, color: Colors.blue),
+      trailing: const Icon(Icons.arrow_forward_ios, color: Colors.blue),
       onTap: onTap,
     );
   }

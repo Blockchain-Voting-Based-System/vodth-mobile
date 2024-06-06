@@ -72,8 +72,8 @@ class _AccountAdaptive extends StatelessWidget {
     return Row(
       children: [
         Container(
-          width: 80,
-          height: 80,
+          width: 60,
+          height: 60,
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(10)),
             image: DecorationImage(

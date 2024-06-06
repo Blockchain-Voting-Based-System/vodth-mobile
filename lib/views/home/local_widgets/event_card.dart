@@ -17,7 +17,7 @@ class EventCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
       width: MediaQuery.of(context).size.width,
       height: 180,
       decoration: BoxDecoration(

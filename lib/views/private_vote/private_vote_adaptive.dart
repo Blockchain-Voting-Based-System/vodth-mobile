@@ -7,21 +7,18 @@ class _PrivateVoteAdaptive extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<PrivateVoteViewModel>.value(
-      value: viewModel,
-      child: Scaffold(
-        appBar: MorphingAppBar(
-          title: Text(
-            'Private Vote',
-            style: M3TextTheme.of(context).titleLarge?.copyWith(
-                  color: M3Color.of(context).primary,
-                  fontWeight: FontWeight.bold,
-                ),
-          ),
+    return Scaffold(
+      appBar: MorphingAppBar(
+        title: Text(
+          'Private Vote',
+          style: M3TextTheme.of(context).titleLarge?.copyWith(
+                color: M3Color.of(context).primary,
+                fontWeight: FontWeight.bold,
+              ),
         ),
-        body: _buildBody(context),
-        floatingActionButton: _buildAddEventButton(context),
       ),
+      body: _buildBody(context),
+      floatingActionButton: _buildAddEventButton(context),
     );
   }
 
@@ -130,26 +127,34 @@ class _PrivateVoteAdaptive extends StatelessWidget {
     required String startDate,
     required String endDate,
   }) {
-    return Card(
-      color: Colors.white,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildEventImage(context: context, imageUrl: imageUrl),
-            const SizedBox(width: 16.0),
-            _buildEventInformation(
-              context: context,
-              title: title,
-              description: description,
-              startDate: startDate,
-              endDate: endDate,
-            ),
-          ],
+    return VmTapEffect(
+      effects: const [
+        VmTapEffectType.scaleDown,
+      ],
+      onTap: () {
+        context.pushRoute(const EventsRoute());
+      },
+      child: Card(
+        color: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildEventImage(context: context, imageUrl: imageUrl),
+              const SizedBox(width: 16.0),
+              _buildEventInformation(
+                context: context,
+                title: title,
+                description: description,
+                startDate: startDate,
+                endDate: endDate,
+              ),
+            ],
+          ),
         ),
       ),
     );

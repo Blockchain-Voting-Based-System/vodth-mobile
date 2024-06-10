@@ -8,68 +8,76 @@ class _HistoryAdaptive extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBody: true,
-      appBar: buildAppBar(context),
-      body: buildBody(),
-    );
-  }
-
-  PreferredSizeWidget buildAppBar(BuildContext context) {
-    return AppBar(
-      centerTitle: false,
-      title: Text(
-        'History',
-        style: TextStyle(
-            fontSize: 32,
-            fontWeight: FontWeight.bold,
-            color: M3Color.of(context).primary),
+      appBar: MorphingAppBar(
+        title: Text(
+          'Vote History',
+          style: M3TextTheme.of(context).titleLarge?.copyWith(
+                color: M3Color.of(context).primary,
+                fontWeight: FontWeight.bold,
+              ),
+        ),
       ),
+      body: _buildBody(context),
     );
   }
 
-  Widget buildBody() {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        children: [
-          buildTabs(),
-          ConfigConstant.sizedBoxH2,
-          buildPrivateVoteEvents(),
-        ],
-      ),
-    );
-  }
-
-  Widget buildTabs() {
-    return Row(
+  Widget _buildBody(BuildContext context) {
+    return ListView(
+      padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
       children: [
-        ElevatedButton(
-          onPressed: () {
-            print('nothing');
-          },
-          child: const Text('All'),
-        ),
-        ConfigConstant.sizedBoxW1,
-        ElevatedButton(
-          onPressed: () {
-            print('nothing');
-          },
-          child: const Text('My vote'),
-        ),
-        ConfigConstant.sizedBoxW1,
-        ElevatedButton(
-          onPressed: () {
-            print('nothing');
-          },
-          child: const Text('Result'),
-        ),
+        _buildChipOptions(context),
+        ConfigConstant.sizedBoxH2,
+        _buildPrivateVoteEvents(),
       ],
     );
   }
 
-  Widget buildPrivateVoteEvents() {
-    return Expanded(
-      child: EventsList(events: viewModel.events),
+  Widget _buildChipOptions(BuildContext context) {
+    return Wrap(
+      spacing: 8.0,
+      runSpacing: 8.0,
+      children: [
+        _buildChip(context, 'All'),
+        _buildChip(context, 'My Vote'),
+        _buildChip(context, 'Results'),
+      ],
     );
+  }
+
+  Widget _buildChip(BuildContext context, String label) {
+    return Consumer<HistoryViewModel>(
+      builder: (context, viewModel, child) {
+        final bool isSelected = viewModel.selectedChip == label;
+
+        return ChoiceChip(
+          checkmarkColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            side: BorderSide(
+              color: isSelected
+                  ? M3Color.of(context).primary
+                  : const Color(0xFFDADADA),
+              width: 1.0,
+            ),
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          label: Text(label),
+          selected: isSelected,
+          onSelected: (bool selected) {
+            if (selected) {
+              viewModel.selectChip(label);
+            }
+          },
+          backgroundColor: Colors.white,
+          selectedColor: M3Color.of(context).primary,
+          labelStyle: M3TextTheme.of(context).bodySmall?.copyWith(
+              color: isSelected ? Colors.white : const Color(0xFF404040),
+              fontWeight: FontWeight.bold),
+        );
+      },
+    );
+  }
+
+  Widget _buildPrivateVoteEvents() {
+    return EventsList(events: viewModel.events);
   }
 }

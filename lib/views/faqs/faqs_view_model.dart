@@ -20,11 +20,13 @@ class FaqsViewModel extends BaseViewModel {
     // setLoading(true);
 
     // Simulate a delay to mimic fetching data from an API or database
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 2), () {
       _faqs = [
         FaqItem(question: "Question 1?", answer: "Our return policy is..."),
-        FaqItem(question: "Question 2?", answer: "You can track your order by..."),
-        FaqItem(question: "Question 3?", answer: "Yes, we offer private voting..."),
+        FaqItem(
+            question: "Question 2?", answer: "You can track your order by..."),
+        FaqItem(
+            question: "Question 3?", answer: "Yes, we offer private voting..."),
       ];
 
       // setLoading(false);

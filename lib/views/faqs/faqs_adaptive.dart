@@ -11,7 +11,7 @@ class _FaqsAdaptive extends StatelessWidget {
         return ExpansionTile(
           title: Text(
             faq.question,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.black,
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -42,10 +42,10 @@ class _FaqsAdaptive extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'FAQs',
           style: TextStyle(
-            color: Colors.blue,
+            color: M3Color.of(context).primary,
             fontSize: 24,
             fontWeight: FontWeight.bold,
           ),
@@ -54,7 +54,7 @@ class _FaqsAdaptive extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.blue),
+          icon: Icon(Icons.arrow_back, color: M3Color.of(context).primary),
           onPressed: () {
             Navigator.of(context).pop();
           },

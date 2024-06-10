@@ -1,4 +1,4 @@
-part of register;
+part of 'register_view.dart';
 
 class _RegisterAdaptive extends StatelessWidget {
   const _RegisterAdaptive(this.viewModel);
@@ -89,7 +89,7 @@ class _RegisterAdaptive extends StatelessWidget {
               const Text("Already has an account?"),
               TextButton(
                 onPressed: () {
-                  context.router.push(LoginRoute());
+                  context.router.push(const LoginRoute());
                 },
                 child: const Text('Log in'),
               ),

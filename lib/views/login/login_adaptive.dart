@@ -48,9 +48,9 @@ class _LoginAdaptive extends StatelessWidget {
         children: [
           const SizedBox(height: 80),
           RichText(
-            text: const TextSpan(
+            text: TextSpan(
               children: [
-                TextSpan(
+                const TextSpan(
                   text: 'Login to ',
                   style: TextStyle(
                     color: Colors.black,
@@ -61,7 +61,7 @@ class _LoginAdaptive extends StatelessWidget {
                 TextSpan(
                   text: 'Vodth',
                   style: TextStyle(
-                    color: Colors.blue,
+                    color: M3Color.of(context).primary,
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                   ),
@@ -76,7 +76,7 @@ class _LoginAdaptive extends StatelessWidget {
           const SizedBox(height: 24),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blue,
+              backgroundColor: M3Color.of(context).primary,
               minimumSize: const Size(double.infinity, 50),
             ),
             onPressed: () {

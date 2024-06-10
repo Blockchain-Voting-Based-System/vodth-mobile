@@ -8,21 +8,10 @@ class _HomeAdaptive extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () async {
-      //     await viewModel.requestFaucet();
-      //   },
-      //   child: const Icon(Icons.add),
-      // ),
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: const Text(
-          'Vodth',
-          style: TextStyle(
-            color: Colors.blue,
-            fontSize: 36,
-            fontWeight: FontWeight.bold,
-          ),
+        title: Image.asset(
+          'assets/images/vodth_logo.png',
+          height: 40,
         ),
         centerTitle: false,
         backgroundColor: Colors.white,
@@ -40,10 +29,6 @@ class _HomeAdaptive extends StatelessWidget {
           ),
         ],
       ),
-      // body: Container(
-
-      //   child: EventsList(viewModel: viewModel),
-      // )
       body: _buildBody(context),
     );
   }
@@ -55,17 +40,18 @@ class _HomeAdaptive extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Welcome, vaneath!',
+            'Welcome, Vaneath!',
             style: TextStyle(
                 fontSize: 32,
                 fontWeight: FontWeight.bold,
                 color: M3Color.of(context).primary),
           ),
           const SizedBox(height: 16),
-          const Text(
+          Text(
             'Events',
-            style: TextStyle(
-                fontSize: 24, fontWeight: FontWeight.w500, color: Colors.black),
+            style: M3TextTheme.of(context).titleLarge?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
           ),
           const SizedBox(height: 8),
           Expanded(
@@ -76,6 +62,7 @@ class _HomeAdaptive extends StatelessWidget {
     );
   }
 
+  // ignore: unused_element
   Column _buildOwnedObjects() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

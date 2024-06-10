@@ -6,7 +6,7 @@ import 'package:vodth_mobile/core/routes/app_router.gr.dart';
 final routers = [
   AutoRoute(page: MainScreenRoute.page, initial: true, children: [
     AutoRoute(page: HomeRoute.page),
-    AutoRoute(page: CandidatesRoute.page),
+    AutoRoute(page: PrivateVoteRoute.page),
     AutoRoute(page: HistoryRoute.page),
     AutoRoute(page: AccountRoute.page),
   ]),

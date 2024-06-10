@@ -26,12 +26,13 @@ void main() async {
     // 'vote_result': 'vote_result',
     // 'setting': 'setting',
     // 'candidates/candidate': 'candidate',
-    'account': 'account',
-    'test': 'test',
-    'about_us': 'about_us',
-    'edit_profile': 'edit_profile',
-    'faqs': 'faqs',
-    'history': 'history',
+    // 'account': 'account',
+    // 'test': 'test',
+    // 'about_us': 'about_us',
+    // 'edit_profile': 'edit_profile',
+    // 'faqs': 'faqs',
+    // 'history': 'history',
+    // 'private_vote': 'private_vote',
   };
 
   for (final view in views.entries) {

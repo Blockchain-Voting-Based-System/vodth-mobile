@@ -84,23 +84,25 @@ class _AccountAdaptive extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 16),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'vaneath@gmail.com',
-              style: M3TextTheme.of(context).titleLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-            ),
-            Row(
-              children: [
-                Text('Account Address: ',
-                    style: M3TextTheme.of(context).labelMedium),
-                const VmSuiAddress(),
-              ],
-            ),
-          ],
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'vaneath@gmail.com',
+                style: M3TextTheme.of(context).titleLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
+              Row(
+                children: [
+                  Text('Account Address: ',
+                      style: M3TextTheme.of(context).labelMedium),
+                  const VmSuiAddress(),
+                ],
+              ),
+            ],
+          ),
         ),
       ],
       // ),

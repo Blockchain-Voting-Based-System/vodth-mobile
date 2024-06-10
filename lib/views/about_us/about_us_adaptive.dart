@@ -22,7 +22,7 @@ class _AboutUsAdaptive extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.blue),
+          icon: const Icon(Icons.arrow_back, color: Colors.blue),
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -36,25 +36,25 @@ class _AboutUsAdaptive extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(24.0),
       child: ListView(
-        children: [
+        children: const [
           // const SizedBox(height: 16),
-          const Text('Vodth',
+          Text('Vodth',
               style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                   color: Colors.grey)),
-          const SizedBox(height: 16),
-          const Text(
+          SizedBox(height: 16),
+          Text(
               'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it',
               style: TextStyle(fontSize: 16)),
-          const SizedBox(height: 24),
-          const Text('Our Mission',
+          SizedBox(height: 24),
+          Text('Our Mission',
               style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                   color: Colors.grey)),
-          const SizedBox(height: 16),
-          const Text(
+          SizedBox(height: 16),
+          Text(
               'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it',
               style: TextStyle(fontSize: 16)),
         ],

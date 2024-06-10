@@ -1,13 +1,14 @@
-part of 'candidates_view.dart';
+part of 'history_view.dart';
 
-class _CandidatesAdaptive extends StatelessWidget {
-  const _CandidatesAdaptive(this.viewModel);
+class _HistoryAdaptive extends StatelessWidget {
+  const _HistoryAdaptive(this.viewModel);
 
-  final CandidatesViewModel viewModel;
+  final HistoryViewModel viewModel;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       appBar: buildAppBar(context),
       body: buildBody(),
     );
@@ -17,7 +18,7 @@ class _CandidatesAdaptive extends StatelessWidget {
     return AppBar(
       centerTitle: false,
       title: Text(
-        'Private Vote',
+        'History',
         style: TextStyle(
             fontSize: 32,
             fontWeight: FontWeight.bold,
@@ -67,6 +68,8 @@ class _CandidatesAdaptive extends StatelessWidget {
   }
 
   Widget buildPrivateVoteEvents() {
-    return Expanded(child: EventsList(events: viewModel.events));
+    return Expanded(
+      child: EventsList(events: viewModel.events),
+    );
   }
 }

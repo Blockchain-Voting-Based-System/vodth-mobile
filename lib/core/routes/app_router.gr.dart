@@ -19,11 +19,11 @@ import 'package:vodth_mobile/views/candidates/candidates_view.dart' as _i4;
 import 'package:vodth_mobile/views/edit_profile/edit_profile_view.dart' as _i5;
 import 'package:vodth_mobile/views/events/events_view.dart' as _i6;
 import 'package:vodth_mobile/views/faqs/faqs_view.dart' as _i7;
-import 'package:vodth_mobile/views/home/home_view.dart' as _i8;
-import 'package:vodth_mobile/views/login/login_view.dart' as _i9;
-import 'package:vodth_mobile/views/main_screen/main_screen_view.dart' as _i10;
-import 'package:vodth_mobile/views/register/register_view.dart' as _i11;
-import 'package:vodth_mobile/views/setting/setting_view.dart' as _i12;
+import 'package:vodth_mobile/views/history/history_view.dart' as _i8;
+import 'package:vodth_mobile/views/home/home_view.dart' as _i9;
+import 'package:vodth_mobile/views/login/login_view.dart' as _i10;
+import 'package:vodth_mobile/views/main_screen/main_screen_view.dart' as _i11;
+import 'package:vodth_mobile/views/register/register_view.dart' as _i12;
 import 'package:vodth_mobile/views/test/test_view.dart' as _i13;
 import 'package:vodth_mobile/views/vote_result/vote_result_view.dart' as _i14;
 
@@ -79,34 +79,34 @@ abstract class $AppRouter extends _i15.RootStackRouter {
         child: const _i7.FaqsView(),
       );
     },
+    HistoryRoute.name: (routeData) {
+      return _i15.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i8.HistoryView(),
+      );
+    },
     HomeRoute.name: (routeData) {
       return _i15.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i8.HomeView(),
+        child: const _i9.HomeView(),
       );
     },
     LoginRoute.name: (routeData) {
       return _i15.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i9.LoginView(),
+        child: const _i10.LoginView(),
       );
     },
     MainScreenRoute.name: (routeData) {
       return _i15.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i10.MainScreenView(),
+        child: const _i11.MainScreenView(),
       );
     },
     RegisterRoute.name: (routeData) {
       return _i15.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i11.RegisterView(),
-      );
-    },
-    SettingRoute.name: (routeData) {
-      return _i15.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i12.SettingView(),
+        child: const _i12.RegisterView(),
       );
     },
     TestRoute.name: (routeData) {
@@ -247,7 +247,21 @@ class FaqsRoute extends _i15.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i8.HomeView]
+/// [_i8.HistoryView]
+class HistoryRoute extends _i15.PageRouteInfo<void> {
+  const HistoryRoute({List<_i15.PageRouteInfo>? children})
+      : super(
+          HistoryRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'HistoryRoute';
+
+  static const _i15.PageInfo<void> page = _i15.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i9.HomeView]
 class HomeRoute extends _i15.PageRouteInfo<void> {
   const HomeRoute({List<_i15.PageRouteInfo>? children})
       : super(
@@ -261,7 +275,7 @@ class HomeRoute extends _i15.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i9.LoginView]
+/// [_i10.LoginView]
 class LoginRoute extends _i15.PageRouteInfo<void> {
   const LoginRoute({List<_i15.PageRouteInfo>? children})
       : super(
@@ -275,7 +289,7 @@ class LoginRoute extends _i15.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i10.MainScreenView]
+/// [_i11.MainScreenView]
 class MainScreenRoute extends _i15.PageRouteInfo<void> {
   const MainScreenRoute({List<_i15.PageRouteInfo>? children})
       : super(
@@ -289,7 +303,7 @@ class MainScreenRoute extends _i15.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i11.RegisterView]
+/// [_i12.RegisterView]
 class RegisterRoute extends _i15.PageRouteInfo<void> {
   const RegisterRoute({List<_i15.PageRouteInfo>? children})
       : super(
@@ -298,20 +312,6 @@ class RegisterRoute extends _i15.PageRouteInfo<void> {
         );
 
   static const String name = 'RegisterRoute';
-
-  static const _i15.PageInfo<void> page = _i15.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i12.SettingView]
-class SettingRoute extends _i15.PageRouteInfo<void> {
-  const SettingRoute({List<_i15.PageRouteInfo>? children})
-      : super(
-          SettingRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'SettingRoute';
 
   static const _i15.PageInfo<void> page = _i15.PageInfo<void>(name);
 }

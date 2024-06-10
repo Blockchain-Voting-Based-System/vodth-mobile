@@ -21,12 +21,12 @@ class _EditProfileAdaptive extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 50,
-            backgroundImage: NetworkImage(
+            backgroundImage: const NetworkImage(
                 'https://avatars.githubusercontent.com/u/109834020?v=4'), // Placeholder image
             child: Align(
               alignment: Alignment.bottomRight,
               child: IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.edit,
                   color: Colors.blue,
                   size: 30,
@@ -37,12 +37,12 @@ class _EditProfileAdaptive extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           TextButton(
             onPressed: () {
               // Handle change profile picture
             },
-            child: Text(
+            child: const Text(
               'Outhdom',
               style: TextStyle(color: Colors.black, fontSize: 24),
             ),
@@ -69,7 +69,7 @@ class _EditProfileAdaptive extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.blue),
+          icon: const Icon(Icons.arrow_back, color: Colors.blue),
           onPressed: () {
             Navigator.of(context).pop();
           },

@@ -10,12 +10,14 @@ class VmSuiAddress extends StatelessWidget {
         '0x2b42771d127c7aee2ef9fefc054d00e87adab986ccaf7c5386aa07df7bce9b0b';
     String formattedAddress = formatAddress(fullAddress);
 
-    return Text(
-      formattedAddress,
-      style: M3TextTheme.of(context).titleSmall?.copyWith(
-          fontWeight: FontWeight.bold,
-          color: Theme.of(context).primaryColor,
-          overflow: TextOverflow.ellipsis),
+    return Expanded(
+      child: Text(
+        formattedAddress,
+        style: M3TextTheme.of(context).titleSmall?.copyWith(
+            fontWeight: FontWeight.bold,
+            color: Theme.of(context).primaryColor,
+            overflow: TextOverflow.ellipsis),
+      ),
     );
   }
 

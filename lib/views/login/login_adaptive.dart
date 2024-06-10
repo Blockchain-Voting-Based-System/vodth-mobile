@@ -18,19 +18,20 @@ class _LoginAdaptive extends StatelessWidget {
   Widget _buildPasswordField() {
     return StatefulBuilder(
       builder: (context, setState) {
-        bool _isPasswordVisible = false;
+        bool isPasswordVisible = false;
         return TextField(
-          obscureText: !_isPasswordVisible,
+          obscureText: !isPasswordVisible,
           decoration: InputDecoration(
             labelText: 'Password',
             border: const OutlineInputBorder(),
             suffixIcon: IconButton(
               icon: Icon(
-                _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                // ignore: dead_code
+                isPasswordVisible ? Icons.visibility : Icons.visibility_off,
               ),
               onPressed: () {
                 setState(() {
-                  _isPasswordVisible = !_isPasswordVisible;
+                  isPasswordVisible = !isPasswordVisible;
                 });
               },
             ),
@@ -79,7 +80,7 @@ class _LoginAdaptive extends StatelessWidget {
               minimumSize: const Size(double.infinity, 50),
             ),
             onPressed: () {
-              context.router.push(HomeRoute());
+              context.router.push(const HomeRoute());
             },
             child: const Center(
               child: Text(
@@ -133,7 +134,7 @@ class _LoginAdaptive extends StatelessWidget {
               const Text("Not yet have account?"),
               TextButton(
                 onPressed: () {
-                  context.router.push(RegisterRoute());
+                  context.router.push(const RegisterRoute());
                 },
                 child: const Text('Create account'),
               ),

@@ -7,14 +7,14 @@ import 'package:vodth_mobile/themes/theme_constant.dart';
 
 class ViewModelProvider<T extends BaseViewModel> extends StatelessWidget {
   const ViewModelProvider({
-    Key? key,
+    super.key,
     required this.builder,
     required this.create,
     this.onGenerateTitle,
     this.onGenerateTitleColor,
     this.root = false,
     this.child,
-  }) : super(key: key);
+  });
 
   final Create<T> create;
   final Future<String?> Function(T)? onGenerateTitle;

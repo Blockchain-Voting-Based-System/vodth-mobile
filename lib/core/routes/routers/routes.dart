@@ -7,7 +7,7 @@ final routers = [
   AutoRoute(page: MainScreenRoute.page, initial: true, children: [
     AutoRoute(page: HomeRoute.page),
     AutoRoute(page: CandidatesRoute.page),
-    AutoRoute(page: VoteResultRoute.page),
+    AutoRoute(page: HistoryRoute.page),
     AutoRoute(page: AccountRoute.page),
   ]),
 

@@ -14,7 +14,6 @@ class _HomeAdaptive extends StatelessWidget {
       //   },
       //   child: const Icon(Icons.add),
       // ),
-      backgroundColor: Colors.white,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: const Text(
@@ -50,31 +49,29 @@ class _HomeAdaptive extends StatelessWidget {
   }
 
   Widget _buildBody(context) {
-    return SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Welcome, vaneath!',
-              style: TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                  color: M3Color.of(context).primary),
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              'Events',
-              style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black),
-            ),
-            const SizedBox(height: 8),
-            EventsList(viewModel: viewModel),
-          ],
-        ),
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Welcome, vaneath!',
+            style: TextStyle(
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+                color: M3Color.of(context).primary),
+          ),
+          const SizedBox(height: 16),
+          const Text(
+            'Events',
+            style: TextStyle(
+                fontSize: 24, fontWeight: FontWeight.w500, color: Colors.black),
+          ),
+          const SizedBox(height: 8),
+          Expanded(
+            child: EventsList(events: viewModel.events),
+          ),
+        ],
       ),
     );
   }

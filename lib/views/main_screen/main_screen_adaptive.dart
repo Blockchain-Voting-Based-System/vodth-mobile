@@ -11,7 +11,7 @@ class _MainScreenAdaptive extends StatelessWidget {
       routes: const [
         HomeRoute(),
         CandidatesRoute(),
-        VoteResultRoute(),
+        HistoryRoute(),
         AccountRoute(),
       ],
       builder: (context, child) {

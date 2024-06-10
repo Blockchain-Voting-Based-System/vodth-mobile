@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:vodth_mobile/constant/config_constant.dart';
 import 'package:vodth_mobile/core/theme/theme_constant.dart';
 
 class NewEventCardV1 extends StatelessWidget {
@@ -19,7 +18,6 @@ class NewEventCardV1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         border: Border.all(
@@ -27,29 +25,33 @@ class NewEventCardV1 extends StatelessWidget {
           width: 1,
         ),
       ),
-      child: buuldEventDetail(),
+      child: _buildEventCard(),
     );
   }
 
-  Widget buuldEventDetail() {
-    return Row(
-      children: [
-        buildEventThumbNail(),
-        ConfigConstant.sizedBoxW2,
-        buildEventInfos(),
-      ],
+  Widget _buildEventCard() {
+    return SizedBox(
+      height: 200,
+      child: Row(
+        children: [
+          _buildEventInformation(),
+          _buildEventThumbNail(),
+        ],
+      ),
     );
   }
 
-  Widget buildEventThumbNail() {
+  Widget _buildEventThumbNail() {
     return Column(
       children: [
         Container(
-          width: 100,
-          height: 100,
+          width: 150,
+          height: 200,
           decoration: BoxDecoration(
-            color: Colors.red,
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: const BorderRadius.only(
+              topRight: Radius.circular(15),
+              bottomRight: Radius.circular(15),
+            ),
             image: DecorationImage(
               fit: BoxFit.cover,
               image: NetworkImage(thumbnailUrl),
@@ -60,33 +62,32 @@ class NewEventCardV1 extends StatelessWidget {
     );
   }
 
-  Widget buildEventInfos() {
+  Widget _buildEventInformation() {
     return Expanded(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            overflow: TextOverflow.clip,
-            maxLines: null, // Add this line
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              color: ThemeConstant.brandColor,
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              overflow: TextOverflow.clip,
+              maxLines: null, // Add this line
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                color: ThemeConstant.brandColor,
+              ),
             ),
-          ),
-          ConfigConstant.sizedBoxH1,
-          Text(
-            description,
-            overflow: TextOverflow.clip,
-            maxLines: null, // Add this line
-            style: TextStyle(
-              color: Colors.grey[800],
+            Text(
+              description,
+              style: TextStyle(
+                color: Colors.grey[800],
+              ),
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
             ),
-          ),
-          ConfigConstant.sizedBoxH1,
-          Padding(
-            padding: const EdgeInsets.only(left: 12.0),
-            child: Text(
+            const Spacer(),
+            Text(
               'Date: ${time.split('T').first}',
               overflow: TextOverflow.clip,
               maxLines: null, // Add this line
@@ -95,8 +96,8 @@ class NewEventCardV1 extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

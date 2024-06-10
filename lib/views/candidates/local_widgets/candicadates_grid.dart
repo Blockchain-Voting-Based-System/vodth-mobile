@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:vodth_mobile/core/models/vodth/candidate_model.dart';
 import 'package:vodth_mobile/core/routes/app_router.gr.dart';
 import 'package:vodth_mobile/views/candidates/local_widgets/candidate_card.dart';
-import 'package:vodth_mobile/views/widgets/vodth_tap_effect.dart';
+import 'package:vodth_mobile/views/widgets/vm_tap_effect.dart';
 
 class CandidatesGrid extends StatelessWidget {
   const CandidatesGrid({super.key, this.candidates});
@@ -25,14 +25,14 @@ class CandidatesGrid extends StatelessWidget {
       itemCount: candidates?.length ?? 0,
       itemBuilder: (context, index) {
         final CandidateModel candidate = candidates![index];
-        return VodthTapEffect(
+        return VmTapEffect(
           onTap: () {
             context.router.push(
               CandidateRoute(candidate: candidate),
             );
           },
           effects: const [
-            VodthTapEffectType.scaleDown,
+            VmTapEffectType.scaleDown,
           ],
           child: CandidateCard(
             candidate: candidate,

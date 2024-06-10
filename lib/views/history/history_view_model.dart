@@ -2,11 +2,20 @@ import 'package:vodth_mobile/core/base/base_view_model.dart';
 import 'package:vodth_mobile/core/models/vodth/event_model.dart';
 
 class HistoryViewModel extends BaseViewModel {
+  String _selectedChip = 'All';
+  String get selectedChip => _selectedChip;
+
+  void selectChip(String chip) {
+    _selectedChip = chip;
+    notifyListeners();
+  }
+
   final List<EventModel> events = [
     EventModel(
       id: 1,
       title: 'JCI Present Election',
-      description: 'Representative of the Kungfu panda club',
+      description:
+          'Representative of the Kungfu panda club. lorem ipsum dolor sit amet consectur adispicing elit lorem ipsum dolor sit amet consectur adispicing elit',
       startDate: DateTime.now(),
       endDate: DateTime.now(),
       activate: true,
@@ -32,8 +41,7 @@ class HistoryViewModel extends BaseViewModel {
       startDate: DateTime.now(),
       endDate: DateTime.now(),
       activate: true,
-      bannerUrl:
-          'https://cambodiainvestmentreview.com/wp-content/uploads/2022/03/CADT-0-scaled.jpg',
+      bannerUrl: 'https://avatars.githubusercontent.com/u/109834020?v=4',
       candidates: [],
     ),
   ];

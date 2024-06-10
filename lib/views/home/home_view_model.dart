@@ -52,8 +52,7 @@ class HomeViewModel extends BaseViewModel {
       startDate: DateTime.now(),
       endDate: DateTime.now(),
       activate: true,
-      bannerUrl:
-          'https://cambodiainvestmentreview.com/wp-content/uploads/2022/03/CADT-0-scaled.jpg',
+      bannerUrl: 'https://avatars.githubusercontent.com/u/109834020?v=4',
       candidates: [],
     ),
   ];

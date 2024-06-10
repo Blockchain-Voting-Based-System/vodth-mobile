@@ -15,7 +15,7 @@ class _EditProfileAdaptive extends StatelessWidget {
     );
   }
 
-  Widget _buildProfilePicture() {
+  Widget _buildProfilePicture(BuildContext context) {
     return Center(
       child: Column(
         children: [
@@ -26,9 +26,9 @@ class _EditProfileAdaptive extends StatelessWidget {
             child: Align(
               alignment: Alignment.bottomRight,
               child: IconButton(
-                icon: const Icon(
+                icon: Icon(
                   Icons.edit,
-                  color: Colors.blue,
+                  color: M3Color.of(context).primary,
                   size: 30,
                 ),
                 onPressed: () {
@@ -56,11 +56,11 @@ class _EditProfileAdaptive extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: const Text(
+      appBar: MorphingAppBar(
+        title: Text(
           'Edit profile',
           style: TextStyle(
-            color: Colors.blue,
+            color: M3Color.of(context).primary,
             fontSize: 24,
             fontWeight: FontWeight.bold,
           ),
@@ -69,7 +69,7 @@ class _EditProfileAdaptive extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.blue),
+          icon: Icon(Icons.arrow_back, color: M3Color.of(context).primary),
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -85,13 +85,13 @@ class _EditProfileAdaptive extends StatelessWidget {
       child: ListView(
         children: [
           const SizedBox(height: 24),
-          _buildProfilePicture(),
+          _buildProfilePicture(context),
           const SizedBox(height: 36),
           _buildUsernameField(),
           const SizedBox(height: 24),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blue,
+              backgroundColor: M3Color.of(context).primary,
               minimumSize: const Size(double.infinity, 50),
             ),
             onPressed: () {

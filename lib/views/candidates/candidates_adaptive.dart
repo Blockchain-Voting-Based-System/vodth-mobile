@@ -43,23 +43,17 @@ class _CandidatesAdaptive extends StatelessWidget {
     return Row(
       children: [
         ElevatedButton(
-          onPressed: () {
-            print('nothing');
-          },
+          onPressed: () {},
           child: const Text('All'),
         ),
         ConfigConstant.sizedBoxW1,
         ElevatedButton(
-          onPressed: () {
-            print('nothing');
-          },
+          onPressed: () {},
           child: const Text('My vote'),
         ),
         ConfigConstant.sizedBoxW1,
         ElevatedButton(
-          onPressed: () {
-            print('nothing');
-          },
+          onPressed: () {},
           child: const Text('Result'),
         ),
       ],

@@ -1,4 +1,4 @@
-part of events;
+part of 'events_view.dart';
 
 class _EventsAdaptive extends StatelessWidget {
   const _EventsAdaptive(this.viewModel);
@@ -135,7 +135,8 @@ class _EventsAdaptive extends StatelessWidget {
                   children: [
                     const SizedBox(width: 8),
                     Text(candidate['rank']!,
-                        style: const TextStyle(fontSize: 16, color: Colors.grey)),
+                        style:
+                            const TextStyle(fontSize: 16, color: Colors.grey)),
                     const SizedBox(width: 16),
                     const CircleAvatar(
                       radius: 32, // Image radius

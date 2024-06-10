@@ -9,6 +9,7 @@ class _EventsAdaptive extends StatelessWidget {
   Widget build(BuildContext context) {
     // final tabsRouter = AutoTabsRouter.of(context);
     return Scaffold(
+      extendBody: true,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -45,35 +46,35 @@ class _EventsAdaptive extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 8),
-                    Text(
+                    const SizedBox(height: 8),
+                    const Text(
                       'CADT CSA Selection 2024',
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w900,
                       ),
                     ),
-                    SizedBox(height: 16),
-                    Text(
+                    const SizedBox(height: 16),
+                    const Text(
                       'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
                       style: TextStyle(fontSize: 16),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     TextButton(
                       onPressed: () {},
-                      child: Text('More Detail'),
+                      child: const Text('More Detail'),
                     ),
-                    SizedBox(height: 8),
-                    Divider(),
-                    SizedBox(height: 8),
-                    Text(
+                    const SizedBox(height: 8),
+                    const Divider(),
+                    const SizedBox(height: 8),
+                    const Text(
                       'Candidates',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     _buildCandidateList(),
                   ],
                 ),
@@ -114,7 +115,7 @@ class _EventsAdaptive extends StatelessWidget {
     ];
 
     return ListView.builder(
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       itemCount: candidates.length,
       itemBuilder: (context, index) {
@@ -132,25 +133,25 @@ class _EventsAdaptive extends StatelessWidget {
                 leading: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    SizedBox(width: 8),
+                    const SizedBox(width: 8),
                     Text(candidate['rank']!,
-                        style: TextStyle(fontSize: 16, color: Colors.grey)),
-                    SizedBox(width: 16),
-                    CircleAvatar(
+                        style: const TextStyle(fontSize: 16, color: Colors.grey)),
+                    const SizedBox(width: 16),
+                    const CircleAvatar(
                       radius: 32, // Image radius
                       backgroundImage: AssetImage('assets/images/yura.png'),
                     ),
-                    SizedBox(width: 16),
+                    const SizedBox(width: 16),
                   ],
                 ),
                 title: Text(
                   candidate['name']!,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 16,
                       color: Colors.black,
                       fontWeight: FontWeight.w600),
                 ),
-                trailing: Icon(Icons.arrow_forward_ios),
+                trailing: const Icon(Icons.arrow_forward_ios),
                 onTap: () {
                   _showCandidateDetails(context, candidate);
                 },
@@ -178,40 +179,40 @@ class _EventsAdaptive extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    CircleAvatar(
+                    const CircleAvatar(
                       radius: 40,
                       backgroundImage: AssetImage(
                           'assets/images/yura.png'), // Add a default profile image or candidate image
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     Text(
                       candidate['name']!,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Text(
                       candidate['description'] ?? 'No description available.',
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 16,
                       ),
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     SizedBox(
                       width: double.infinity, // Makes the button full width
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: M3Color.of(context)
                               .primary, // Set the background color here
-                          padding: EdgeInsets.symmetric(vertical: 16.0),
+                          padding: const EdgeInsets.symmetric(vertical: 16.0),
                         ),
                         onPressed: () {
                           Navigator.pop(context); // Close the bottom sheet
                         },
-                        child: Text(
+                        child: const Text(
                           'Vote',
                           style: TextStyle(
                             fontSize: 16,

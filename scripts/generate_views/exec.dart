@@ -31,6 +31,7 @@ void main() async {
     'about_us': 'about_us',
     'edit_profile': 'edit_profile',
     'faqs': 'faqs',
+    'history': 'history',
   };
 
   for (final view in views.entries) {

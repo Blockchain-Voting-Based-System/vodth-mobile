@@ -12,7 +12,6 @@ class EventsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      shrinkWrap: true,
       itemCount: events.length,
       itemBuilder: (context, index) {
         final EventModel event = events[index];

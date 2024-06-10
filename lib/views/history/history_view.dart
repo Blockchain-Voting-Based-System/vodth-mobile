@@ -1,4 +1,4 @@
-library candidates;
+library history;
 
 import 'package:vodth_mobile/constant/config_constant.dart';
 import 'package:vodth_mobile/core/routes/routes_export.dart';
@@ -7,19 +7,19 @@ import 'package:flutter/material.dart';
 import 'package:vodth_mobile/core/theme/m3/m3_color.dart';
 import 'package:vodth_mobile/views/home/local_widgets/events_list.dart';
 
-import 'candidates_view_model.dart';
-part 'candidates_adaptive.dart';
+import 'history_view_model.dart';
+part 'history_adaptive.dart';
 
 @RoutePage()
-class CandidatesView extends StatelessWidget {
-  const CandidatesView({super.key});
+class HistoryView extends StatelessWidget {
+  const HistoryView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelProvider<CandidatesViewModel>(
-      create: (context) => CandidatesViewModel(),
+    return ViewModelProvider<HistoryViewModel>(
+      create: (context) => HistoryViewModel(),
       builder: (context, viewModel, child) {
-        return _CandidatesAdaptive(viewModel);
+        return _HistoryAdaptive(viewModel);
       },
     );
   }

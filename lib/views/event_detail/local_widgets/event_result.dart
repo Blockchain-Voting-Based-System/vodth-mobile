@@ -62,21 +62,33 @@ class EventResult extends StatelessWidget {
   }
 
   Widget _buildRankingTable() {
-    return ListView.builder(
-      physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemCount: viewModel.candidates?.length,
-      itemBuilder: (context, index) {
-        CandidateModel candidate = viewModel.candidates![index];
-        return Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
-            side: BorderSide(color: M3Color.of(context).primary, width: 1.0),
+    if (viewModel.candidates == null) {
+      return const Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Text(
+          'No candidate',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w900,
           ),
-          child: _buildCandidateTile(index, context, candidate),
-        );
-      },
-    );
+        ),
+      );
+    } else {
+      return ListView.builder(
+        shrinkWrap: true,
+        itemCount: viewModel.candidates?.length,
+        itemBuilder: (context, index) {
+          CandidateModel candidate = viewModel.candidates![index];
+          return Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
+              side: BorderSide(color: M3Color.of(context).primary, width: 1.0),
+            ),
+            child: _buildCandidateTile(index, context, candidate),
+          );
+        },
+      );
+    }
   }
 
   ListTile _buildCandidateTile(int index, BuildContext context, CandidateModel candidate) {

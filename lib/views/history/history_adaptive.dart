@@ -28,6 +28,9 @@ class _HistoryAdaptive extends StatelessWidget {
         _buildChipOptions(context),
         ConfigConstant.sizedBoxH2,
         _buildPrivateVoteEvents(),
+        _buildEventVote(),
+        const SizedBox(height: 16),
+        _buildCandidateLiveVote(),
       ],
     );
   }
@@ -79,5 +82,20 @@ class _HistoryAdaptive extends StatelessWidget {
 
   Widget _buildPrivateVoteEvents() {
     return EventsList(events: viewModel.events);
+  }
+
+  _buildEventVote() {
+    return Text(viewModel.event?.data?.owner.toString() ?? 'No content');
+  }
+
+  _buildCandidateLiveVote() {
+    return StreamBuilder(
+      stream: viewModel.getStreamCandidate(),
+      builder: (context, snapshop) {
+        return Text(
+          snapshop.data ?? 'Can not fetch candidat',
+        );
+      },
+    );
   }
 }

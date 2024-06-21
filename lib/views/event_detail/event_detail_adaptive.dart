@@ -30,23 +30,12 @@ class _EventDetailAdaptive extends StatelessWidget {
   }
 
   _buildBody(BuildContext context) {
-    return FutureBuilder(
-      builder: (context, snapshot) {
-        if (viewModel.event == null) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (snapshot.hasError) {
-          return const Center(child: Text('Error'));
-        } else {
-          return TabBarView(
-            children: [
-              _buildEventDetail(context),
-              _buildCandidates(context),
-              _buildResults(context),
-            ],
-          );
-        }
-      },
-      future: viewModel.load(),
+    return TabBarView(
+      children: [
+        _buildEventDetail(context),
+        _buildCandidates(context),
+        _buildResults(context),
+      ],
     );
   }
 

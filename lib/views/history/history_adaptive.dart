@@ -61,7 +61,8 @@ class _HistoryAdaptive extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildEventImage(context: context, imageUrl: event.imageUrl ?? ''),
+              _buildEventImage(
+                  context: context, imageUrl: event.imageUrl ?? ''),
               const SizedBox(width: 16.0),
               _buildEventInformation(
                 context: context,

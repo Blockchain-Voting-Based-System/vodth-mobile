@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "902325669003",
+    "firebase_url": "https://vodth-dapp-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "vodth-dapp",
+    "storage_bucket": "vodth-dapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:902325669003:android:3f990442820855a5e6588e",
+        "android_client_info": {
+          "package_name": "com.example.vodth_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "902325669003-kl6jhh9e5jdcstocr3rjhl3afgbml97g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAN2Xt7WPsImJ3llDoeu97ksqgeXTgMLkI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "902325669003-kl6jhh9e5jdcstocr3rjhl3afgbml97g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

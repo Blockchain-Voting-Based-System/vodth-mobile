@@ -12,7 +12,7 @@ class CandidateCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: NetworkImage(candidate.avartarUrl ?? ''),
+          image: NetworkImage(candidate.imageName ?? ''),
           fit: BoxFit.cover,
         ),
         color: const Color(0xFF00E4ED),

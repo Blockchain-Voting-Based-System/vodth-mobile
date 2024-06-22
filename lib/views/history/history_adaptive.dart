@@ -27,7 +27,7 @@ class _HistoryAdaptive extends StatelessWidget {
       children: [
         _buildChipOptions(context),
         ConfigConstant.sizedBoxH2,
-        _buildPrivateVoteEvents(),
+        // _buildPrivateVoteEvents(),
       ],
     );
   }
@@ -77,7 +77,7 @@ class _HistoryAdaptive extends StatelessWidget {
     );
   }
 
-  Widget _buildPrivateVoteEvents() {
-    return EventsList(events: viewModel.events);
-  }
+  // Widget _buildPrivateVoteEvents() {
+  //   // return EventsList(events: viewModel.events);
+  // }
 }

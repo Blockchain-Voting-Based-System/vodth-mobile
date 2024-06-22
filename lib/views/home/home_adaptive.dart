@@ -20,8 +20,9 @@ class _HomeAdaptive extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 16),
             child: IconButton(
-              icon: const Icon(Icons
-                  .notifications_outlined), // Add your notification icon here
+              icon: const Icon(
+                Icons.notifications_outlined,
+              ),
               onPressed: () {
                 // Add functionality for when the notification icon is pressed
               },
@@ -55,7 +56,7 @@ class _HomeAdaptive extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Expanded(
-            child: EventsList(events: viewModel.events),
+            child: EventsList(events: viewModel.events ?? []),
           ),
         ],
       ),

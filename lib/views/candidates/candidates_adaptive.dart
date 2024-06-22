@@ -33,7 +33,7 @@ class _CandidatesAdaptive extends StatelessWidget {
         children: [
           buildTabs(),
           ConfigConstant.sizedBoxH2,
-          buildPrivateVoteEvents(),
+          // buildPrivateVoteEvents(),
         ],
       ),
     );
@@ -60,7 +60,7 @@ class _CandidatesAdaptive extends StatelessWidget {
     );
   }
 
-  Widget buildPrivateVoteEvents() {
-    return Expanded(child: EventsList(events: viewModel.events));
-  }
+  // Widget buildPrivateVoteEvents() {
+  //   return Expanded(child: EventsList(events: viewModel.events));
+  // }
 }

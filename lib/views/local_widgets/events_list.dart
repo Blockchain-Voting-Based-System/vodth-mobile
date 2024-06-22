@@ -25,9 +25,9 @@ class EventsList extends StatelessWidget {
           child: Container(
             margin: const EdgeInsets.only(bottom: 16),
             child: NewEventCardV1(
-              title: event.title ?? 'N/A',
-              time: event.startDate!.toIso8601String(),
-              thumbnailUrl: event.bannerUrl ?? '',
+              title: event.name ?? 'N/A',
+              time: event.startDate ?? 'N/A',
+              thumbnailUrl: event.imageName ?? '',
               description: event.description ?? 'N/A',
             ),
           ),

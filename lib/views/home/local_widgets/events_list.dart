@@ -27,7 +27,7 @@ class EventsList extends StatelessWidget {
           child: NewEventCardV1(
             title: event.name ?? 'N/A',
             time: event.startDate ?? 'N/A',
-            thumbnailUrl: event.imageName ?? '',
+            thumbnailUrl: event.imageUrl ?? 'https://picsum.photos/200/300',
             description: event.description ?? 'N/A',
           ),
         );

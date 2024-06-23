@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:sui/sui.dart';
 import 'package:vodth_mobile/core/base/base_view_model.dart';
 import 'package:vodth_mobile/core/models/vodth/event_model.dart';
@@ -23,10 +24,13 @@ class HomeViewModel extends BaseViewModel {
   String address =
       '0x2b42771d127c7aee2ef9fefc054d00e87adab986ccaf7c5386aa07df7bce9b0b';
 
+  final storage =
+      FirebaseStorage.instance.refFromURL('gs://vodth-mobile.appspot.com');
+
   List<SuiObjectResponse>? get ownedObject => _ownedObject?.data;
   PaginatedObjectsResponse? _ownedObject;
 
-  List<EventModel>? events;
+  List<EventModel>? eventsList;
 
   Future<void> getEventsList() async {
     try {
@@ -35,9 +39,8 @@ class HomeViewModel extends BaseViewModel {
           .where('type', isEqualTo: 'public')
           .get();
 
-      events = snapshot.docs.map((doc) {
-        return EventModel.fromFirestore(doc);
-      }).toList();
+      eventsList =
+          snapshot.docs.map((e) => EventModel.fromFirestore(e)).toList();
     } catch (e) {
       print("Error getting events: $e");
     }

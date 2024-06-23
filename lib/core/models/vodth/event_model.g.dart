@@ -23,6 +23,8 @@ abstract class _$EventModelCWProxy {
 
   EventModel imageName(String? imageName);
 
+  EventModel imageUrl(String? imageUrl);
+
   EventModel candidates(List<CandidateModel>? candidates);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `EventModel(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
@@ -40,6 +42,7 @@ abstract class _$EventModelCWProxy {
     String? endDate,
     String? type,
     String? imageName,
+    String? imageUrl,
     List<CandidateModel>? candidates,
   });
 }
@@ -75,6 +78,9 @@ class _$EventModelCWProxyImpl implements _$EventModelCWProxy {
   EventModel imageName(String? imageName) => this(imageName: imageName);
 
   @override
+  EventModel imageUrl(String? imageUrl) => this(imageUrl: imageUrl);
+
+  @override
   EventModel candidates(List<CandidateModel>? candidates) =>
       this(candidates: candidates);
 
@@ -95,6 +101,7 @@ class _$EventModelCWProxyImpl implements _$EventModelCWProxy {
     Object? endDate = const $CopyWithPlaceholder(),
     Object? type = const $CopyWithPlaceholder(),
     Object? imageName = const $CopyWithPlaceholder(),
+    Object? imageUrl = const $CopyWithPlaceholder(),
     Object? candidates = const $CopyWithPlaceholder(),
   }) {
     return EventModel(
@@ -130,6 +137,10 @@ class _$EventModelCWProxyImpl implements _$EventModelCWProxy {
           ? _value.imageName
           // ignore: cast_nullable_to_non_nullable
           : imageName as String?,
+      imageUrl: imageUrl == const $CopyWithPlaceholder()
+          ? _value.imageUrl
+          // ignore: cast_nullable_to_non_nullable
+          : imageUrl as String?,
       candidates: candidates == const $CopyWithPlaceholder()
           ? _value.candidates
           // ignore: cast_nullable_to_non_nullable
@@ -157,6 +168,7 @@ EventModel _$EventModelFromJson(Map<String, dynamic> json) => EventModel(
       endDate: json['endDate'] as String?,
       type: json['type'] as String?,
       imageName: json['imageName'] as String?,
+      imageUrl: json['imageUrl'] as String?,
       candidates: (json['candidates'] as List<dynamic>?)
           ?.map((e) => CandidateModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -171,6 +183,7 @@ Map<String, dynamic> _$EventModelToJson(EventModel instance) =>
       'endDate': instance.endDate,
       'eventId': instance.eventId,
       'imageName': instance.imageName,
+      'imageUrl': instance.imageUrl,
       'type': instance.type,
       'candidates': instance.candidates,
     };

@@ -65,7 +65,7 @@ class ViewModelProvider<T extends BaseViewModel> extends StatelessWidget {
       return Title(
         color:
             onGenerateTitleColor?.call(viewModel) ?? ThemeConstant.brandColor,
-        title: 'BookMe+ | Official Site',
+        title: 'Vodth+ | Official Site',
         child: child,
       );
     }

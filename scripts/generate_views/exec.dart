@@ -33,6 +33,7 @@ void main() async {
     // 'faqs': 'faqs',
     // 'history': 'history',
     // 'private_vote': 'private_vote',
+    'candidate_page' : 'candidate_page',
   };
 
   for (final view in views.entries) {

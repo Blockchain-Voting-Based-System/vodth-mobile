@@ -7,19 +7,21 @@ part of 'event_model.dart';
 // **************************************************************************
 
 abstract class _$EventModelCWProxy {
-  EventModel id(int? id);
+  EventModel id(String? id);
 
-  EventModel title(String? title);
+  EventModel name(String? name);
 
   EventModel description(String? description);
 
-  EventModel startDate(DateTime? startDate);
+  EventModel eventId(String? eventId);
 
-  EventModel endDate(DateTime? endDate);
+  EventModel startDate(String? startDate);
 
-  EventModel activate(bool? activate);
+  EventModel endDate(String? endDate);
 
-  EventModel bannerUrl(String? bannerUrl);
+  EventModel type(String? type);
+
+  EventModel imageName(String? imageName);
 
   EventModel candidates(List<CandidateModel>? candidates);
 
@@ -30,13 +32,14 @@ abstract class _$EventModelCWProxy {
   /// EventModel(...).copyWith(id: 12, name: "My name")
   /// ````
   EventModel call({
-    int? id,
-    String? title,
+    String? id,
+    String? name,
     String? description,
-    DateTime? startDate,
-    DateTime? endDate,
-    bool? activate,
-    String? bannerUrl,
+    String? eventId,
+    String? startDate,
+    String? endDate,
+    String? type,
+    String? imageName,
     List<CandidateModel>? candidates,
   });
 }
@@ -48,25 +51,28 @@ class _$EventModelCWProxyImpl implements _$EventModelCWProxy {
   final EventModel _value;
 
   @override
-  EventModel id(int? id) => this(id: id);
+  EventModel id(String? id) => this(id: id);
 
   @override
-  EventModel title(String? title) => this(title: title);
+  EventModel name(String? name) => this(name: name);
 
   @override
   EventModel description(String? description) => this(description: description);
 
   @override
-  EventModel startDate(DateTime? startDate) => this(startDate: startDate);
+  EventModel eventId(String? eventId) => this(eventId: eventId);
 
   @override
-  EventModel endDate(DateTime? endDate) => this(endDate: endDate);
+  EventModel startDate(String? startDate) => this(startDate: startDate);
 
   @override
-  EventModel activate(bool? activate) => this(activate: activate);
+  EventModel endDate(String? endDate) => this(endDate: endDate);
 
   @override
-  EventModel bannerUrl(String? bannerUrl) => this(bannerUrl: bannerUrl);
+  EventModel type(String? type) => this(type: type);
+
+  @override
+  EventModel imageName(String? imageName) => this(imageName: imageName);
 
   @override
   EventModel candidates(List<CandidateModel>? candidates) =>
@@ -82,43 +88,48 @@ class _$EventModelCWProxyImpl implements _$EventModelCWProxy {
   /// ````
   EventModel call({
     Object? id = const $CopyWithPlaceholder(),
-    Object? title = const $CopyWithPlaceholder(),
+    Object? name = const $CopyWithPlaceholder(),
     Object? description = const $CopyWithPlaceholder(),
+    Object? eventId = const $CopyWithPlaceholder(),
     Object? startDate = const $CopyWithPlaceholder(),
     Object? endDate = const $CopyWithPlaceholder(),
-    Object? activate = const $CopyWithPlaceholder(),
-    Object? bannerUrl = const $CopyWithPlaceholder(),
+    Object? type = const $CopyWithPlaceholder(),
+    Object? imageName = const $CopyWithPlaceholder(),
     Object? candidates = const $CopyWithPlaceholder(),
   }) {
     return EventModel(
       id: id == const $CopyWithPlaceholder()
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
-          : id as int?,
-      title: title == const $CopyWithPlaceholder()
-          ? _value.title
+          : id as String?,
+      name: name == const $CopyWithPlaceholder()
+          ? _value.name
           // ignore: cast_nullable_to_non_nullable
-          : title as String?,
+          : name as String?,
       description: description == const $CopyWithPlaceholder()
           ? _value.description
           // ignore: cast_nullable_to_non_nullable
           : description as String?,
+      eventId: eventId == const $CopyWithPlaceholder()
+          ? _value.eventId
+          // ignore: cast_nullable_to_non_nullable
+          : eventId as String?,
       startDate: startDate == const $CopyWithPlaceholder()
           ? _value.startDate
           // ignore: cast_nullable_to_non_nullable
-          : startDate as DateTime?,
+          : startDate as String?,
       endDate: endDate == const $CopyWithPlaceholder()
           ? _value.endDate
           // ignore: cast_nullable_to_non_nullable
-          : endDate as DateTime?,
-      activate: activate == const $CopyWithPlaceholder()
-          ? _value.activate
+          : endDate as String?,
+      type: type == const $CopyWithPlaceholder()
+          ? _value.type
           // ignore: cast_nullable_to_non_nullable
-          : activate as bool?,
-      bannerUrl: bannerUrl == const $CopyWithPlaceholder()
-          ? _value.bannerUrl
+          : type as String?,
+      imageName: imageName == const $CopyWithPlaceholder()
+          ? _value.imageName
           // ignore: cast_nullable_to_non_nullable
-          : bannerUrl as String?,
+          : imageName as String?,
       candidates: candidates == const $CopyWithPlaceholder()
           ? _value.candidates
           // ignore: cast_nullable_to_non_nullable
@@ -138,17 +149,14 @@ extension $EventModelCopyWith on EventModel {
 // **************************************************************************
 
 EventModel _$EventModelFromJson(Map<String, dynamic> json) => EventModel(
-      id: (toInt(json, 'id') as num?)?.toInt(),
-      title: json['title'] as String?,
+      id: json['id'] as String?,
+      name: json['name'] as String?,
       description: json['description'] as String?,
-      startDate: json['startDate'] == null
-          ? null
-          : DateTime.parse(json['startDate'] as String),
-      endDate: json['endDate'] == null
-          ? null
-          : DateTime.parse(json['endDate'] as String),
-      activate: json['activate'] as bool?,
-      bannerUrl: json['bannerUrl'] as String?,
+      eventId: json['eventId'] as String?,
+      startDate: json['startDate'] as String?,
+      endDate: json['endDate'] as String?,
+      type: json['type'] as String?,
+      imageName: json['imageName'] as String?,
       candidates: (json['candidates'] as List<dynamic>?)
           ?.map((e) => CandidateModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -157,11 +165,12 @@ EventModel _$EventModelFromJson(Map<String, dynamic> json) => EventModel(
 Map<String, dynamic> _$EventModelToJson(EventModel instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'title': instance.title,
+      'name': instance.name,
       'description': instance.description,
-      'startDate': instance.startDate?.toIso8601String(),
-      'endDate': instance.endDate?.toIso8601String(),
-      'activate': instance.activate,
-      'bannerUrl': instance.bannerUrl,
+      'startDate': instance.startDate,
+      'endDate': instance.endDate,
+      'eventId': instance.eventId,
+      'imageName': instance.imageName,
+      'type': instance.type,
       'candidates': instance.candidates,
     };

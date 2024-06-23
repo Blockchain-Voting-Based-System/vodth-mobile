@@ -48,7 +48,7 @@ class _CandidateAdaptive extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         image: DecorationImage(
-          image: NetworkImage(viewModel.candidate?.avartarUrl ?? ''),
+          image: NetworkImage(viewModel.candidate?.imageName ?? ''),
           fit: BoxFit.cover,
         ),
       ),
@@ -94,7 +94,7 @@ class _CandidateAdaptive extends StatelessWidget {
         ),
         ConfigConstant.sizedBoxH1,
         Text(
-          viewModel.candidate?.info ?? 'N/A',
+          viewModel.candidate?.bio ?? 'N/A',
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
                 color: ThemeConstant.brandColor,
                 fontSize: 20,

@@ -44,48 +44,7 @@ class _HomeAdaptive extends StatelessWidget {
         const SizedBox(height: 32),
         _buildChipOptions(context),
         const SizedBox(height: 16.0),
-        _buildEvent(
-          context: context,
-          title: 'CSA Voting',
-          description:
-              'Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry',
-          startDate: '10/7/2024',
-          endDate: '31/7/2024',
-          imageUrl: "https://avatars.githubusercontent.com/u/109834020?v=4",
-        ),
-        _buildEvent(
-          context: context,
-          title: 'Presedential Election',
-          description:
-              'Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry',
-          startDate: '1/2/2024',
-          endDate: '31/3/2024',
-          imageUrl:
-              "https://media.istockphoto.com/id/1337692300/vector/orator-speaking-from-tribune.jpg?s=612x612&w=0&k=20&c=lC3TceG4QvPN6K3ci76QbV0OWJ2637WV-wbLQJDc3pg=",
-        ),
-        _buildEvent(
-          context: context,
-          title: 'Class Representative Election',
-          description:
-              'Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry',
-          startDate: '1/8/2024',
-          endDate: '7/8/2024',
-          imageUrl:
-              "https://www.shutterstock.com/image-illustration/political-leader-speaking-media-background-600nw-2074143290.jpg",
-        ),
-
-        // Add more events here
-        for (int i = 0; i < viewModel.eventCount; i++)
-          _buildEvent(
-            context: context,
-            title: 'Event $i',
-            description:
-                'Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry',
-            startDate: '1st Aug 2024',
-            endDate: '7th Aug 2024',
-            imageUrl:
-                "https://www.shutterstock.com/image-illustration/political-leader-speaking-media-background-600nw-2074143290.jpg",
-          ),
+        EventsList(events: viewModel.eventsList ?? []),
       ],
     );
   }

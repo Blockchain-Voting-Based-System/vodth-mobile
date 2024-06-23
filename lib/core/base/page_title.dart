@@ -66,7 +66,7 @@ class PageTitleState<T extends BaseViewModel> extends State<PageTitle<T>>
     return Title(
       color: widget.onGenerateTitleColor?.call(widget.viewModel) ??
           ThemeConstant.brandColor,
-      title: '$title - BookMe+',
+      title: '$title - Vodth',
       child: widget.child,
     );
   }

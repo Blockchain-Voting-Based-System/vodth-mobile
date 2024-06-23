@@ -103,7 +103,7 @@ class _AccountAdaptive extends StatelessWidget {
       children: [
         _buildSectionTitle(context, 'Preferences'),
         _buildAccountItem(context, 'Language', Icons.language, () {
-          // Handle Notifications tap
+          _showLanguageOptions(context);
         }),
         _buildAccountItem(context, 'Notifications', Icons.notifications, () {
           // Handle Notifications tap
@@ -171,5 +171,86 @@ class _AccountAdaptive extends StatelessWidget {
 
   Widget _buildDivider() {
     return const Divider();
+  }
+
+  void _showLanguageOptions(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16.0)),
+      ),
+      builder: (context) {
+        return DraggableScrollableSheet(
+          expand: false,
+          builder: (context, scrollController) {
+            return SingleChildScrollView(
+              controller: scrollController,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text(
+                      'Choose language',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    ListTile(
+                      leading: Image.asset(
+                          'assets/images/Flag_of_the_United_Kingdom.png',
+                          width: 24),
+                      title: const Text('English'),
+                      trailing: Radio(
+                        value: 'en',
+                        groupValue: 'en', // Set the current selected value here
+                        onChanged: (value) {
+                          // Handle language selection
+                        },
+                      ),
+                    ),
+                    ListTile(
+                      leading: Image.asset('assets/images/Flag_of_Cambodia.png',
+                          width: 24),
+                      title: const Text('ភាសាខ្មែរ'),
+                      trailing: Radio(
+                        value: 'kh',
+                        groupValue: 'en', // Set the current selected value here
+                        onChanged: (value) {
+                          // Handle language selection
+                        },
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: M3Color.of(context).primary,
+                          padding: const EdgeInsets.symmetric(vertical: 16.0),
+                        ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text(
+                          'Apply',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
+    );
   }
 }

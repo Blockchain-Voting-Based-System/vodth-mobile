@@ -61,7 +61,9 @@ class _EventsAdaptive extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        _showEventDetails(context);
+                      },
                       child: const Text('More Detail'),
                     ),
                     const SizedBox(height: 8),
@@ -90,25 +92,21 @@ class _EventsAdaptive extends StatelessWidget {
     final candidates = [
       {
         'name': 'Vuthy Outhdom',
-        'rank': 'No.1',
         'description':
             'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. Ipsum passages, and more recently with desktop publishing software.'
       },
       {
         'name': 'Yin Vannthoura',
-        'rank': 'No.2',
         'description':
             'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. Ipsum passages, and more recently with desktop publishing software.'
       },
       {
         'name': 'Savuth Youvneath',
-        'rank': 'No.3',
         'description':
             'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. Ipsum passages, and more recently with desktop publishing software.'
       },
       {
         'name': 'Hello world',
-        'rank': 'No.4',
         'description':
             'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. Ipsum passages, and more recently with desktop publishing software.'
       },
@@ -120,108 +118,82 @@ class _EventsAdaptive extends StatelessWidget {
       itemCount: candidates.length,
       itemBuilder: (context, index) {
         final candidate = candidates[index];
-        return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 0.0),
-          child: Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12.0),
-              side: BorderSide(color: M3Color.of(context).primary, width: 1.0),
+        return Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+            side: BorderSide(color: M3Color.of(context).primary, width: 1.0),
+          ),
+          child: ListTile(
+            leading: const Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                CircleAvatar(
+                  radius: 32, // Image radius
+                  backgroundImage: AssetImage('assets/images/yura.png'),
+                ),
+              ],
             ),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ListTile(
-                leading: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const SizedBox(width: 8),
-                    Text(candidate['rank']!,
-                        style:
-                            const TextStyle(fontSize: 16, color: Colors.grey)),
-                    const SizedBox(width: 16),
-                    const CircleAvatar(
-                      radius: 32, // Image radius
-                      backgroundImage: AssetImage('assets/images/yura.png'),
-                    ),
-                    const SizedBox(width: 16),
-                  ],
-                ),
-                title: Text(
-                  candidate['name']!,
-                  style: const TextStyle(
-                      fontSize: 16,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w600),
-                ),
-                trailing: const Icon(Icons.arrow_forward_ios),
-                onTap: () {
-                  _showCandidateDetails(context, candidate);
-                },
+            title: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text(
+                candidate['name']!,
+                style: const TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w600),
               ),
             ),
+            trailing: const Icon(Icons.arrow_forward_ios),
+            onTap: () {
+              context.router.push(const CandidatePageRoute());
+            },
           ),
         );
       },
     );
   }
 
-  void _showCandidateDetails(
-      BuildContext context, Map<String, String> candidate) {
+  void _showEventDetails(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      isScrollControlled: true, // Ensures the modal takes up more space
+      isScrollControlled: true,
       builder: (context) {
         return DraggableScrollableSheet(
           expand: false,
           builder: (context, scrollController) {
             return SingleChildScrollView(
               controller: scrollController,
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
+              child: const Padding(
+                padding: EdgeInsets.all(16.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const CircleAvatar(
-                      radius: 40,
-                      backgroundImage: AssetImage(
-                          'assets/images/yura.png'), // Add a default profile image or candidate image
-                    ),
-                    const SizedBox(height: 16),
                     Text(
-                      candidate['name']!,
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      candidate['description'] ?? 'No description available.',
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 16,
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    SizedBox(
-                      width: double.infinity, // Makes the button full width
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: M3Color.of(context)
-                              .primary, // Set the background color here
-                          padding: const EdgeInsets.symmetric(vertical: 16.0),
-                        ),
-                        onPressed: () {
-                          Navigator.pop(context); // Close the bottom sheet
-                        },
-                        child: const Text(
-                          'Vote',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                        'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. Ipsum passages, and more recently with desktop publishing software.'),
+                    // const CircleAvatar(
+                    //   radius: 40,
+                    //   backgroundImage: AssetImage('assets/images/yura.png'),
+                    // ),
+                    // const SizedBox(height: 16),
+                    // SizedBox(
+                    //   width: double.infinity,
+                    //   child: ElevatedButton(
+                    //     style: ElevatedButton.styleFrom(
+                    //       backgroundColor: M3Color.of(context).primary,
+                    //       padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    //     ),
+                    //     onPressed: () {
+                    //       Navigator.pop(context);
+                    //     },
+                    //     child: const Text(
+                    //       'Vote',
+                    //       style: TextStyle(
+                    //         fontSize: 16,
+                    //         color: Colors.white,
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
@@ -232,17 +204,3 @@ class _EventsAdaptive extends StatelessWidget {
     );
   }
 }
-
-
-// part of events;
-
-// class _EventsAdaptive extends StatelessWidget {
-//   const _EventsAdaptive(this.viewModel);
-
-//   final EventsViewModel viewModel;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return const Placeholder();
-//   }
-// }

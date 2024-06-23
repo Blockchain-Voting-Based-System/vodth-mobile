@@ -4,6 +4,22 @@ import 'package:vodth_mobile/core/base/base_view_model.dart';
 import 'package:vodth_mobile/core/models/vodth/event_model.dart';
 
 class HomeViewModel extends BaseViewModel {
+  String _selectedChip = 'All';
+  String get selectedChip => _selectedChip;
+
+  int get eventCount => _eventCount;
+  int _eventCount = 0;
+
+  void selectChip(String chip) {
+    _selectedChip = chip;
+    notifyListeners();
+  }
+
+  void setEventCount(int count) {
+    _eventCount = count;
+    notifyListeners();
+  }
+  
   String address =
       '0x2b42771d127c7aee2ef9fefc054d00e87adab986ccaf7c5386aa07df7bce9b0b';
 

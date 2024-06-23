@@ -4,7 +4,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vodth_mobile/core/base/view_model_provider.dart';
-import 'package:vodth_mobile/core/models/vodth/event_model.dart';
 import 'package:vodth_mobile/core/routes/app_router.gr.dart';
 import 'package:vodth_mobile/core/routes/routes_export.dart';
 import 'package:vodth_mobile/core/services/event_service.dart';

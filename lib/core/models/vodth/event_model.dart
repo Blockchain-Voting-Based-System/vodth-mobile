@@ -16,6 +16,7 @@ class EventModel extends BaseModel {
   final String? endDate;
   final String? eventId;
   final String? imageName;
+  final String? imageUrl;
   final String? type;
   final List<CandidateModel>? candidates;
 
@@ -28,6 +29,7 @@ class EventModel extends BaseModel {
     this.endDate,
     this.type,
     this.imageName,
+    this.imageUrl,
     this.candidates,
   });
 
@@ -47,6 +49,7 @@ class EventModel extends BaseModel {
       endDate: data['endDate'],
       type: data['type'],
       imageName: data['imageName'],
+      imageUrl: data['imageUrl'],
       candidates: (data['candidates'] as List?)
           ?.map((e) => CandidateModel.fromJson(e))
           .toList(),

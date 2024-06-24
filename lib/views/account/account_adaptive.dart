@@ -86,6 +86,9 @@ class _AccountAdaptive extends StatelessWidget {
       children: [
         const SizedBox(height: 16),
         _buildSectionTitle(context, 'Account Information'),
+        _buildAccountItem(context, 'SUI Wallet', Icons.wallet, () {
+          context.router.push(const SuiInfomationRoute());
+        }),
         _buildAccountItem(context, 'Edit Profile', Icons.person, () {
           context.router.push(const EditProfileRoute());
         }),

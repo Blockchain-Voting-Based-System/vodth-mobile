@@ -21,4 +21,5 @@ final routers = [
   AutoRoute(page: EditProfileRoute.page),
   AutoRoute(page: FaqsRoute.page),
   AutoRoute(page: CandidatePageRoute.page),
+  AutoRoute(page: SuiInfomationRoute.page),
 ];

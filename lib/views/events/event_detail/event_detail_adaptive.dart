@@ -8,82 +8,91 @@ class _EventDetailAdaptive extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBody: true,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Stack(
-                children: [
-                  Image.asset(
-                    'assets/images/cadt.jpg',
-                    width: double.infinity,
-                    height: 200,
-                    fit: BoxFit.cover,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        color: Colors.white,
-                      ),
-                      child: IconButton(
-                        onPressed: () => context.router.popForced(),
-                        icon: Icon(
-                          Icons.arrow_back,
-                          color: M3Color.of(context).primary,
+      appBar: MorphingAppBar(),
+      body: _buildBody(),
+    );
+  }
+
+  FutureBuilder<void> _buildBody() {
+    return FutureBuilder(
+      builder: (context, snapshot) {
+        return SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Stack(
+                  children: [
+                    Image.asset(
+                      'assets/images/cadt.jpg',
+                      width: double.infinity,
+                      height: 200,
+                      fit: BoxFit.cover,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          color: Colors.white,
+                        ),
+                        child: IconButton(
+                          onPressed: () => context.router.popForced(),
+                          icon: Icon(
+                            Icons.arrow_back,
+                            color: M3Color.of(context).primary,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 8),
-                    const Text(
-                      'CADT CSA Selection 2024',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    const Text(
-                      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.',
-                      style: TextStyle(fontSize: 16),
-                    ),
-                    const SizedBox(height: 8),
-                    TextButton(
-                      onPressed: () {
-                        _showEventDetails(context);
-                      },
-                      child: const Text('More Detail'),
-                    ),
-                    const SizedBox(height: 8),
-                    const Divider(),
-                    const SizedBox(height: 8),
-                    const Text(
-                      'Candidates',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    _buildCandidateList(),
                   ],
                 ),
-              ),
-            ],
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 8),
+                      Text(
+                        viewModel.event?.name ?? 'N/A',
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        viewModel.event?.description ?? 'N/A',
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                      const SizedBox(height: 8),
+                      TextButton(
+                        onPressed: () {
+                          _showEventDetails(context);
+                        },
+                        child: const Text('More Detail'),
+                      ),
+                      const SizedBox(height: 8),
+                      const Divider(),
+                      const SizedBox(height: 8),
+                      const Text(
+                        'Candidates',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      _buildCandidateList(),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
+      future: viewModel.getEventDetail(),
     );
   }
 
@@ -104,8 +113,7 @@ class _EventDetailAdaptive extends StatelessWidget {
               return Card(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
-                  side: BorderSide(
-                      color: M3Color.of(context).primary, width: 1.0),
+                  side: BorderSide(color: M3Color.of(context).primary, width: 1.0),
                 ),
                 child: ListTile(
                   leading: const Row(
@@ -121,15 +129,15 @@ class _EventDetailAdaptive extends StatelessWidget {
                     padding: const EdgeInsets.all(12.0),
                     child: Text(
                       candidate?.name ?? 'N/A',
-                      style: const TextStyle(
-                          fontSize: 16,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w600),
+                      style: const TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w600),
                     ),
                   ),
                   trailing: const Icon(Icons.arrow_forward_ios),
                   onTap: () {
-                    context.router.push(const CandidatePageRoute());
+                    context.router.push(CandidateDetailRoute(
+                      id: candidate?.id,
+                      suiEventId: viewModel.event?.suiEventId,
+                    ));
                   },
                 ),
               );

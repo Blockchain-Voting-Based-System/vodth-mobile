@@ -13,7 +13,7 @@ abstract class _$EventModelCWProxy {
 
   EventModel description(String? description);
 
-  EventModel eventId(String? eventId);
+  EventModel suiEventId(String? suiEventId);
 
   EventModel startDate(String? startDate);
 
@@ -37,7 +37,7 @@ abstract class _$EventModelCWProxy {
     String? id,
     String? name,
     String? description,
-    String? eventId,
+    String? suiEventId,
     String? startDate,
     String? endDate,
     String? type,
@@ -63,7 +63,7 @@ class _$EventModelCWProxyImpl implements _$EventModelCWProxy {
   EventModel description(String? description) => this(description: description);
 
   @override
-  EventModel eventId(String? eventId) => this(eventId: eventId);
+  EventModel suiEventId(String? suiEventId) => this(suiEventId: suiEventId);
 
   @override
   EventModel startDate(String? startDate) => this(startDate: startDate);
@@ -96,7 +96,7 @@ class _$EventModelCWProxyImpl implements _$EventModelCWProxy {
     Object? id = const $CopyWithPlaceholder(),
     Object? name = const $CopyWithPlaceholder(),
     Object? description = const $CopyWithPlaceholder(),
-    Object? eventId = const $CopyWithPlaceholder(),
+    Object? suiEventId = const $CopyWithPlaceholder(),
     Object? startDate = const $CopyWithPlaceholder(),
     Object? endDate = const $CopyWithPlaceholder(),
     Object? type = const $CopyWithPlaceholder(),
@@ -117,10 +117,10 @@ class _$EventModelCWProxyImpl implements _$EventModelCWProxy {
           ? _value.description
           // ignore: cast_nullable_to_non_nullable
           : description as String?,
-      eventId: eventId == const $CopyWithPlaceholder()
-          ? _value.eventId
+      suiEventId: suiEventId == const $CopyWithPlaceholder()
+          ? _value.suiEventId
           // ignore: cast_nullable_to_non_nullable
-          : eventId as String?,
+          : suiEventId as String?,
       startDate: startDate == const $CopyWithPlaceholder()
           ? _value.startDate
           // ignore: cast_nullable_to_non_nullable
@@ -163,7 +163,7 @@ EventModel _$EventModelFromJson(Map<String, dynamic> json) => EventModel(
       id: json['id'] as String?,
       name: json['name'] as String?,
       description: json['description'] as String?,
-      eventId: json['eventId'] as String?,
+      suiEventId: json['suiEventId'] as String?,
       startDate: json['startDate'] as String?,
       endDate: json['endDate'] as String?,
       type: json['type'] as String?,
@@ -181,7 +181,7 @@ Map<String, dynamic> _$EventModelToJson(EventModel instance) =>
       'description': instance.description,
       'startDate': instance.startDate,
       'endDate': instance.endDate,
-      'eventId': instance.eventId,
+      'suiEventId': instance.suiEventId,
       'imageName': instance.imageName,
       'imageUrl': instance.imageUrl,
       'type': instance.type,

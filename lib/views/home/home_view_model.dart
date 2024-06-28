@@ -20,7 +20,7 @@ class HomeViewModel extends BaseViewModel {
     _eventCount = count;
     notifyListeners();
   }
-  
+
   String address =
       '0x2b42771d127c7aee2ef9fefc054d00e87adab986ccaf7c5386aa07df7bce9b0b';
 

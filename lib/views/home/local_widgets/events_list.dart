@@ -19,7 +19,7 @@ class EventsList extends StatelessWidget {
         final EventModel event = events[index];
         return VmTapEffect(
           onTap: () {
-            context.router.push(const EventsRoute());
+            context.router.push(EventDetailRoute(id: event.id.toString()));
           },
           effects: const [
             VmTapEffectType.scaleDown,

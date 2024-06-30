@@ -39,14 +39,14 @@ class _VoteResultAdaptive extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           _buildPieChart(context),
-          SizedBox(height: 24),
+          const SizedBox(height: 24),
           _buildTotalVotes(context),
-          SizedBox(height: 24),
-          Text(
+          const SizedBox(height: 24),
+          const Text(
             'Vote Ranking',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           _buildRankingTable(),
         ],
       ),
@@ -57,9 +57,9 @@ class _VoteResultAdaptive extends StatelessWidget {
     return PieChart(
       dataMap: viewModel.candidateVotes,
       chartType: ChartType.disc,
-      animationDuration: Duration(milliseconds: 800),
+      animationDuration: const Duration(milliseconds: 800),
       chartLegendSpacing: 48,
-      colorList: [
+      colorList: const [
         Colors.blueAccent,
         Colors.yellowAccent,
         Colors.greenAccent,
@@ -68,7 +68,7 @@ class _VoteResultAdaptive extends StatelessWidget {
         showLegends: false,
         legendPosition: LegendPosition.right,
       ),
-      chartValuesOptions: ChartValuesOptions(
+      chartValuesOptions: const ChartValuesOptions(
         showChartValueBackground: false,
         showChartValues: true,
         showChartValuesOutside: false,
@@ -85,14 +85,14 @@ class _VoteResultAdaptive extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text(
+        const Text(
           'Total Votes',
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         Text(
           totalVotes.toString(),
           style: TextStyle(
@@ -133,8 +133,8 @@ class _VoteResultAdaptive extends StatelessWidget {
                     color: M3Color.of(context).primary,
                   ),
                 ),
-                SizedBox(width: 16),
-                CircleAvatar(
+                const SizedBox(width: 16),
+                const CircleAvatar(
                   radius: 32, // Image radius
                   backgroundImage: AssetImage('assets/images/yura.png'),
                 ),

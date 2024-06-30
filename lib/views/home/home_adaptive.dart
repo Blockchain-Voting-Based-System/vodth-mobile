@@ -44,7 +44,7 @@ class _HomeAdaptive extends StatelessWidget {
         // const SizedBox(height: 32),
         _buildChipOptions(context),
         const SizedBox(height: 16.0),
-        EventsList(events: viewModel.eventsList ?? []),
+        _buildEvents(context, viewModel.eventsList ?? []),
       ],
     );
   }
@@ -70,9 +70,7 @@ class _HomeAdaptive extends StatelessWidget {
           showCheckmark: false,
           shape: RoundedRectangleBorder(
             side: BorderSide(
-              color: isSelected
-                  ? M3Color.of(context).primary
-                  : const Color(0xFFDADADA),
+              color: isSelected ? M3Color.of(context).primary : const Color(0xFFDADADA),
               width: 1.0,
             ),
             borderRadius: BorderRadius.circular(8.0),
@@ -86,9 +84,7 @@ class _HomeAdaptive extends StatelessWidget {
           },
           backgroundColor: Colors.white,
           selectedColor: M3Color.of(context).primary,
-          labelStyle: M3TextTheme.of(context).bodySmall?.copyWith(
-              color: isSelected ? Colors.white : const Color(0xFF404040),
-              fontWeight: FontWeight.bold),
+          labelStyle: M3TextTheme.of(context).bodySmall?.copyWith(color: isSelected ? Colors.white : const Color(0xFF404040), fontWeight: FontWeight.bold),
         );
       },
     );
@@ -120,11 +116,7 @@ class _HomeAdaptive extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(8.0),
         boxShadow: [
-          BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 1,
-              blurRadius: 1,
-              offset: const Offset(0, 1) // changes position of shadow
+          BoxShadow(color: Colors.grey.withOpacity(0.3), spreadRadius: 1, blurRadius: 1, offset: const Offset(0, 1) // changes position of shadow
               ),
         ],
       ),
@@ -135,6 +127,34 @@ class _HomeAdaptive extends StatelessWidget {
           icon: Icon(Icons.search),
         ),
       ),
+    );
+  }
+
+  Widget _buildEvents(context, List<EventModel> events) {
+    return ListView.separated(
+      shrinkWrap: true,
+      itemCount: events.length,
+      itemBuilder: (context, index) {
+        final EventModel event = events[index];
+        return VmTapEffect(
+          onTap: () {
+            context.router.push(EventDetailRoute(id: event.id.toString()));
+          },
+          effects: const [
+            VmTapEffectType.scaleDown,
+          ],
+          child: EventCard(
+            title: event.name ?? 'N/A',
+            time: event.startDate ?? 'N/A',
+            type: event.type ?? 'N/A',
+            thumbnailUrl: event.imageUrl ?? 'https://picsum.photos/200/300',
+            description: event.description ?? 'N/A',
+          ),
+        );
+      },
+      separatorBuilder: (BuildContext context, int index) {
+        return ConfigConstant.sizedBoxH1;
+      },
     );
   }
 }

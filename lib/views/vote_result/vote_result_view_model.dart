@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:vodth_mobile/core/base/base_view_model.dart';
 
 class VoteResultViewModel extends BaseViewModel {
@@ -11,5 +10,4 @@ class VoteResultViewModel extends BaseViewModel {
   double get totalVotes {
     return candidateVotes.values.fold(0, (sum, votes) => sum + votes);
   }
-
 }

@@ -19,6 +19,7 @@ class EventModel extends BaseModel {
   final String? imageUrl;
   final String? type;
   final List<CandidateModel>? candidates;
+  final List<dynamic>? voterSecrets;
 
   EventModel({
     this.id,
@@ -31,6 +32,7 @@ class EventModel extends BaseModel {
     this.imageName,
     this.imageUrl,
     this.candidates,
+    this.voterSecrets,
   });
 
   @override
@@ -38,18 +40,18 @@ class EventModel extends BaseModel {
   factory EventModel.fromJson(Map<String, dynamic> json) => _$EventModelFromJson(json);
 
   factory EventModel.fromFirestore(DocumentSnapshot doc) {
-    Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+    dynamic data = doc.data();
     return EventModel(
       id: doc.reference.id,
       name: data['name'],
       description: data['description'],
-      suiEventId: data['eventId'],
+      suiEventId: data['suiEventId'],
       startDate: data['startDate'],
       endDate: data['endDate'],
       type: data['type'],
       imageName: data['imageName'],
       imageUrl: data['imageUrl'],
-      candidates: (data['candidates'] as List?)?.map((e) => CandidateModel.fromJson(e)).toList(),
+      voterSecrets: data['voterSecrets'],
     );
   }
 }

@@ -37,7 +37,9 @@ class _EventDetailAdaptive extends StatelessWidget {
                           color: Colors.white,
                         ),
                         child: IconButton(
-                          onPressed: () => context.router.popForced(),
+                          onPressed: () {
+                            context.router.popForced();
+                          },
                           icon: Icon(
                             Icons.arrow_back,
                             color: M3Color.of(context).primary,

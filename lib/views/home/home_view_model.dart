@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:sui/sui.dart';
 import 'package:vodth_mobile/core/base/base_view_model.dart';
 import 'package:vodth_mobile/core/models/vodth/event_model.dart';
@@ -21,11 +22,9 @@ class HomeViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  String address =
-      '0x2b42771d127c7aee2ef9fefc054d00e87adab986ccaf7c5386aa07df7bce9b0b';
+  String address = '0x2b42771d127c7aee2ef9fefc054d00e87adab986ccaf7c5386aa07df7bce9b0b';
 
-  final storage =
-      FirebaseStorage.instance.refFromURL('gs://vodth-mobile.appspot.com');
+  final storage = FirebaseStorage.instance.refFromURL('gs://vodth-mobile.appspot.com');
 
   List<SuiObjectResponse>? get ownedObject => _ownedObject?.data;
   PaginatedObjectsResponse? _ownedObject;
@@ -34,15 +33,13 @@ class HomeViewModel extends BaseViewModel {
 
   Future<void> getEventsList() async {
     try {
-      var snapshot = await FirebaseFirestore.instance
-          .collection('events')
-          // .where('type', isEqualTo: 'public')
-          .get();
+      var snapshot = await FirebaseFirestore.instance.collection('events').get();
 
-      eventsList =
-          snapshot.docs.map((e) => EventModel.fromFirestore(e)).toList();
+      eventsList = snapshot.docs.map((e) => EventModel.fromFirestore(e)).toList();
     } catch (e) {
-      print("Error getting events: $e");
+      if (kDebugMode) {
+        print("Error getting events: $e");
+      }
     }
   }
 

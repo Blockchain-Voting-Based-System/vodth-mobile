@@ -76,8 +76,4 @@ class _HistoryAdaptive extends StatelessWidget {
       },
     );
   }
-
-  // Widget _buildPrivateVoteEvents() {
-  //   // return EventsList(events: viewModel.events);
-  // }
 }

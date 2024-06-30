@@ -27,6 +27,8 @@ abstract class _$EventModelCWProxy {
 
   EventModel candidates(List<CandidateModel>? candidates);
 
+  EventModel voterSecrets(List<dynamic>? voterSecrets);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `EventModel(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -44,6 +46,7 @@ abstract class _$EventModelCWProxy {
     String? imageName,
     String? imageUrl,
     List<CandidateModel>? candidates,
+    List<dynamic>? voterSecrets,
   });
 }
 
@@ -85,6 +88,10 @@ class _$EventModelCWProxyImpl implements _$EventModelCWProxy {
       this(candidates: candidates);
 
   @override
+  EventModel voterSecrets(List<dynamic>? voterSecrets) =>
+      this(voterSecrets: voterSecrets);
+
+  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `EventModel(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -103,6 +110,7 @@ class _$EventModelCWProxyImpl implements _$EventModelCWProxy {
     Object? imageName = const $CopyWithPlaceholder(),
     Object? imageUrl = const $CopyWithPlaceholder(),
     Object? candidates = const $CopyWithPlaceholder(),
+    Object? voterSecrets = const $CopyWithPlaceholder(),
   }) {
     return EventModel(
       id: id == const $CopyWithPlaceholder()
@@ -145,6 +153,10 @@ class _$EventModelCWProxyImpl implements _$EventModelCWProxy {
           ? _value.candidates
           // ignore: cast_nullable_to_non_nullable
           : candidates as List<CandidateModel>?,
+      voterSecrets: voterSecrets == const $CopyWithPlaceholder()
+          ? _value.voterSecrets
+          // ignore: cast_nullable_to_non_nullable
+          : voterSecrets as List<dynamic>?,
     );
   }
 }
@@ -172,6 +184,7 @@ EventModel _$EventModelFromJson(Map<String, dynamic> json) => EventModel(
       candidates: (json['candidates'] as List<dynamic>?)
           ?.map((e) => CandidateModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      voterSecrets: json['voterSecrets'] as List<dynamic>?,
     );
 
 Map<String, dynamic> _$EventModelToJson(EventModel instance) =>
@@ -186,4 +199,5 @@ Map<String, dynamic> _$EventModelToJson(EventModel instance) =>
       'imageUrl': instance.imageUrl,
       'type': instance.type,
       'candidates': instance.candidates,
+      'voterSecrets': instance.voterSecrets,
     };

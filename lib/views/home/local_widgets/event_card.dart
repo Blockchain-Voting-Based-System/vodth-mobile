@@ -1,110 +1,118 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
+import 'package:vodth_mobile/core/theme/theme_constant.dart';
 
 class EventCard extends StatelessWidget {
   const EventCard({
     super.key,
     required this.title,
     required this.time,
+    required this.type,
     required this.thumbnailUrl,
+    required this.description,
   });
 
   final String title;
   final String time;
+  final String type;
   final String thumbnailUrl;
+  final String description;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
-      width: MediaQuery.of(context).size.width,
-      height: 180,
       decoration: BoxDecoration(
-        color: Colors.black,
         borderRadius: BorderRadius.circular(15),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.6),
-            offset: const Offset(
-              0.0,
-              10.0,
-            ),
-            blurRadius: 10.0,
-            spreadRadius: -6.0,
-          ),
-        ],
-        image: buildImage(),
-      ),
-      child: Stack(
-        children: [
-          buildEventTitle(),
-          buildEventTimeLine(),
-        ],
-      ),
-    );
-  }
-
-  DecorationImage buildImage() {
-    return DecorationImage(
-      colorFilter: ColorFilter.mode(
-        Colors.black.withOpacity(0.2),
-        BlendMode.multiply,
-      ),
-      image: NetworkImage(thumbnailUrl),
-      fit: BoxFit.cover,
-    );
-  }
-
-  Widget buildEventTitle() {
-    return Align(
-      alignment: Alignment.center,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 5.0),
-        child: Text(
-          title,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 19,
-            fontWeight: FontWeight.bold,
-          ),
-          overflow: TextOverflow.ellipsis,
-          maxLines: 2,
-          textAlign: TextAlign.center,
+        border: Border.all(
+          color: Colors.grey,
+          width: 1,
         ),
       ),
+      child: _buildEventCard(),
     );
   }
 
-  Widget buildEventTimeLine() {
-    return Align(
-      alignment: Alignment.bottomLeft,
+  Widget _buildEventCard() {
+    return SizedBox(
+      height: 200,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-            padding: EdgeInsets.all(5),
-            margin: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              color: Colors.black.withOpacity(0.4),
-              borderRadius: BorderRadius.circular(15),
+          _buildEventInformation(),
+          _buildEventThumbNail(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildEventThumbNail() {
+    return Column(
+      children: [
+        Container(
+          width: 150,
+          height: 200,
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.only(
+              topRight: Radius.circular(15),
+              bottomRight: Radius.circular(15),
             ),
-            child: Row(
+            image: DecorationImage(
+              fit: BoxFit.cover,
+              image: NetworkImage(thumbnailUrl),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildEventInformation() {
+    return Expanded(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              overflow: TextOverflow.clip,
+              maxLines: null, // Add this line
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                color: ThemeConstant.brandColor,
+              ),
+            ),
+            Text(
+              description,
+              style: TextStyle(
+                color: Colors.grey[800],
+              ),
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
+            ),
+            const Spacer(),
+            Column(
               children: [
-                Icon(
-                  Icons.schedule,
-                  color: Colors.yellow,
-                  size: 18,
-                ),
-                SizedBox(width: 7),
                 Text(
-                  time,
-                  style: TextStyle(color: Colors.white),
+                  'Type: $type', overflow: TextOverflow.clip,
+                  maxLines: null, // Add this line
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  'Date: ${time.split('T').first}',
+                  overflow: TextOverflow.clip,
+                  maxLines: null, // Add this line
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

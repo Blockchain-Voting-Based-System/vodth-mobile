@@ -72,6 +72,12 @@ class _EventDetailAdaptive extends StatelessWidget {
                         },
                         child: const Text('More Detail'),
                       ),
+                      TextButton(
+                        onPressed: () {
+                          context.router.push(const VoteResultRoute());
+                        },
+                        child: const Text('Vote result'),
+                      ),
                       const SizedBox(height: 8),
                       const Divider(),
                       const SizedBox(height: 8),
@@ -113,7 +119,8 @@ class _EventDetailAdaptive extends StatelessWidget {
               return Card(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
-                  side: BorderSide(color: M3Color.of(context).primary, width: 1.0),
+                  side: BorderSide(
+                      color: M3Color.of(context).primary, width: 1.0),
                 ),
                 child: ListTile(
                   leading: const Row(
@@ -129,7 +136,10 @@ class _EventDetailAdaptive extends StatelessWidget {
                     padding: const EdgeInsets.all(12.0),
                     child: Text(
                       candidate?.name ?? 'N/A',
-                      style: const TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w600),
+                      style: const TextStyle(
+                          fontSize: 16,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w600),
                     ),
                   ),
                   trailing: const Icon(Icons.arrow_forward_ios),

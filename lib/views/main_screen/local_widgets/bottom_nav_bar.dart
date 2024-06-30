@@ -28,12 +28,12 @@ class _BottomNavBarState extends State<BottomNavBar> {
           ),
           label: 'Home',
         ),
-        BottomNavigationBarItem(
-          icon: ImageIcon(
-            AssetImage('assets/icons/private_icon.png'),
-          ),
-          label: 'Prvate Vote',
-        ),
+        // BottomNavigationBarItem(
+        //   icon: ImageIcon(
+        //     AssetImage('assets/icons/private_icon.png'),
+        //   ),
+        //   label: 'Prvate Vote',
+        // ),
         BottomNavigationBarItem(
           icon: ImageIcon(
             AssetImage('assets/icons/history_icon.png'),

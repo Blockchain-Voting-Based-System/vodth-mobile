@@ -93,7 +93,7 @@ class _AccountAdaptive extends StatelessWidget {
           context.router.push(const EditProfileRoute());
         }),
         _buildAccountItem(context, 'Change Password', Icons.lock, () {
-          context.router.push(const VoteResultRoute());
+          
         }),
         const SizedBox(height: 24),
       ],

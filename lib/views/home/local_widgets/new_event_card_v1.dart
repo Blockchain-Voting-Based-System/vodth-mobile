@@ -31,7 +31,7 @@ class NewEventCardV1 extends StatelessWidget {
 
   Widget _buildEventCard() {
     return SizedBox(
-      height: 200,
+      height: 150,
       child: Row(
         children: [
           _buildEventInformation(),
@@ -45,8 +45,8 @@ class NewEventCardV1 extends StatelessWidget {
     return Column(
       children: [
         Container(
-          width: 150,
-          height: 200,
+          width: 100,
+          height: 150,
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.only(
               topRight: Radius.circular(15),

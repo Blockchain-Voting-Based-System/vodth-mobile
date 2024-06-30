@@ -108,27 +108,27 @@ class _HomeAdaptive extends StatelessWidget {
     );
   }
 
-  Widget _buildSearchBar() {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 16.0),
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(8.0),
-        boxShadow: [
-          BoxShadow(color: Colors.grey.withOpacity(0.3), spreadRadius: 1, blurRadius: 1, offset: const Offset(0, 1) // changes position of shadow
-              ),
-        ],
-      ),
-      child: const TextField(
-        decoration: InputDecoration(
-          hintText: 'Search events',
-          border: InputBorder.none,
-          icon: Icon(Icons.search),
-        ),
-      ),
-    );
-  }
+  // Widget _buildSearchBar() {
+  //   return Container(
+  //     margin: const EdgeInsets.only(bottom: 16.0),
+  //     padding: const EdgeInsets.symmetric(horizontal: 16.0),
+  //     decoration: BoxDecoration(
+  //       color: Colors.white,
+  //       borderRadius: BorderRadius.circular(8.0),
+  //       boxShadow: [
+  //         BoxShadow(color: Colors.grey.withOpacity(0.3), spreadRadius: 1, blurRadius: 1, offset: const Offset(0, 1) // changes position of shadow
+  //             ),
+  //       ],
+  //     ),
+  //     child: const TextField(
+  //       decoration: InputDecoration(
+  //         hintText: 'Search events',
+  //         border: InputBorder.none,
+  //         icon: Icon(Icons.search),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   Widget _buildEvents(context, List<EventModel> events) {
     return ListView.separated(

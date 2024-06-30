@@ -95,17 +95,12 @@ class CandidateDetailViewModel extends BaseViewModel {
       DocumentSnapshot<Map<String, dynamic>> eventSnapshot = await transaction.get(eventDocRef);
 
       if (!eventSnapshot.exists) {
-        print("Event not found");
         return false;
       }
 
-      print("Secrets: ${eventSnapshot.data()}");
-
       List<dynamic> voterSecrets = eventSnapshot.data()?['voterSecrets'] ?? [];
 
-      print("Secrets: $voterSecrets");
       if (!voterSecrets.contains(secret)) {
-        print("Secret not found");
         return false;
       }
 
@@ -116,7 +111,6 @@ class CandidateDetailViewModel extends BaseViewModel {
       transaction.update(eventDocRef, {'voterSecrets': voterSecrets});
       return true;
     }).catchError((error) {
-      print("Error removing secret: $error");
       return false;
     });
   }

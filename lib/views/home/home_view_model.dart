@@ -36,7 +36,7 @@ class HomeViewModel extends BaseViewModel {
     try {
       var snapshot = await FirebaseFirestore.instance
           .collection('events')
-          .where('type', isEqualTo: 'public')
+          // .where('type', isEqualTo: 'public')
           .get();
 
       eventsList =

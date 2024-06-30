@@ -17,8 +17,6 @@ class _CandidateDetailAdaptive extends StatelessWidget {
         child: VmButton.filled(
           label: 'Vote',
           onPressed: () async {
-            print('event type: ${viewModel.event?.type}');
-            print(viewModel.candidate?.suiCandidateId);
             if (viewModel.event?.type == 'private') {
               _showSecretKeyDialog(context);
             } else if (viewModel.event?.type == 'public') {

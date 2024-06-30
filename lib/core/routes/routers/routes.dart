@@ -24,4 +24,5 @@ final routers = [
   AutoRoute(page: FaqsRoute.page),
   AutoRoute(page: CandidatePageRoute.page),
   AutoRoute(page: SuiInfomationRoute.page),
+  AutoRoute(page: VoteResultRoute.page),
 ];

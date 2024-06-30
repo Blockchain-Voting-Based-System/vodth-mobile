@@ -93,7 +93,7 @@ class _AccountAdaptive extends StatelessWidget {
           context.router.push(const EditProfileRoute());
         }),
         _buildAccountItem(context, 'Change Password', Icons.lock, () {
-          // Handle Change Password tap
+          context.router.push(const VoteResultRoute());
         }),
         const SizedBox(height: 24),
       ],
@@ -108,9 +108,7 @@ class _AccountAdaptive extends StatelessWidget {
         _buildAccountItem(context, 'Language', Icons.language, () {
           _showLanguageOptions(context);
         }),
-        _buildAccountItem(context, 'Notifications', Icons.notifications, () {
-          // Handle Notifications tap
-        }),
+        _buildAccountItem(context, 'Notifications', Icons.notifications, () {}),
         _buildAccountItem(context, 'Themes', Icons.palette, () {
           // Handle Themes tap
         }),

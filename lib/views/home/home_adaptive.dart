@@ -40,8 +40,8 @@ class _HomeAdaptive extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
       children: [
         const SizedBox(height: 8),
-        _buildSearchBar(),
-        const SizedBox(height: 32),
+        // _buildSearchBar(),
+        // const SizedBox(height: 32),
         _buildChipOptions(context),
         const SizedBox(height: 16.0),
         EventsList(events: viewModel.eventsList ?? []),

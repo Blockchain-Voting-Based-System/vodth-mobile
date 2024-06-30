@@ -41,8 +41,7 @@ class _CandidateAdaptive extends StatelessWidget {
     );
   }
 
-  Widget buildCandidateProfileImage(
-      BuildContext context, CandidateViewModel viewModel) {
+  Widget buildCandidateProfileImage(BuildContext context, CandidateViewModel viewModel) {
     return Container(
       height: MediaQuery.of(context).size.height / 2.25,
       decoration: BoxDecoration(

@@ -12,7 +12,8 @@ final routers = [
   ]),
 
   //Add new route here
-  AutoRoute(page: CandidateRoute.page),
+  AutoRoute(page: CandidateRoute.page, path: '/candidates'),
+  AutoRoute(page: CandidateDetailRoute.page, path: '/candidates/:id'),
   AutoRoute(page: AccountRoute.page, path: '/account'),
   AutoRoute(page: LoginRoute.page),
   AutoRoute(page: RegisterRoute.page),

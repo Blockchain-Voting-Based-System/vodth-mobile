@@ -19,7 +19,9 @@ abstract class _$CandidateModelCWProxy {
 
   CandidateModel birthday(String? birthday);
 
-  CandidateModel candidateId(String? candidateId);
+  CandidateModel suiCandidateId(String? suiCandidateId);
+
+  CandidateModel suiEventId(String? suiEventId);
 
   CandidateModel eventId(String? eventId);
 
@@ -40,7 +42,8 @@ abstract class _$CandidateModelCWProxy {
     String? id,
     String? name,
     String? birthday,
-    String? candidateId,
+    String? suiCandidateId,
+    String? suiEventId,
     String? eventId,
     String? imageName,
     EventModel? event,
@@ -72,8 +75,11 @@ class _$CandidateModelCWProxyImpl implements _$CandidateModelCWProxy {
   CandidateModel birthday(String? birthday) => this(birthday: birthday);
 
   @override
-  CandidateModel candidateId(String? candidateId) =>
-      this(candidateId: candidateId);
+  CandidateModel suiCandidateId(String? suiCandidateId) =>
+      this(suiCandidateId: suiCandidateId);
+
+  @override
+  CandidateModel suiEventId(String? suiEventId) => this(suiEventId: suiEventId);
 
   @override
   CandidateModel eventId(String? eventId) => this(eventId: eventId);
@@ -99,7 +105,8 @@ class _$CandidateModelCWProxyImpl implements _$CandidateModelCWProxy {
     Object? id = const $CopyWithPlaceholder(),
     Object? name = const $CopyWithPlaceholder(),
     Object? birthday = const $CopyWithPlaceholder(),
-    Object? candidateId = const $CopyWithPlaceholder(),
+    Object? suiCandidateId = const $CopyWithPlaceholder(),
+    Object? suiEventId = const $CopyWithPlaceholder(),
     Object? eventId = const $CopyWithPlaceholder(),
     Object? imageName = const $CopyWithPlaceholder(),
     Object? event = const $CopyWithPlaceholder(),
@@ -129,10 +136,14 @@ class _$CandidateModelCWProxyImpl implements _$CandidateModelCWProxy {
           ? _value.birthday
           // ignore: cast_nullable_to_non_nullable
           : birthday as String?,
-      candidateId: candidateId == const $CopyWithPlaceholder()
-          ? _value.candidateId
+      suiCandidateId: suiCandidateId == const $CopyWithPlaceholder()
+          ? _value.suiCandidateId
           // ignore: cast_nullable_to_non_nullable
-          : candidateId as String?,
+          : suiCandidateId as String?,
+      suiEventId: suiEventId == const $CopyWithPlaceholder()
+          ? _value.suiEventId
+          // ignore: cast_nullable_to_non_nullable
+          : suiEventId as String?,
       eventId: eventId == const $CopyWithPlaceholder()
           ? _value.eventId
           // ignore: cast_nullable_to_non_nullable
@@ -167,7 +178,8 @@ CandidateModel _$CandidateModelFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String?,
       name: json['name'] as String?,
       birthday: json['birthday'] as String?,
-      candidateId: json['candidateId'] as String?,
+      suiCandidateId: json['suiCandidateId'] as String?,
+      suiEventId: json['suiEventId'] as String?,
       eventId: json['eventId'] as String?,
       imageName: json['imageName'] as String?,
       event: json['event'] == null
@@ -179,7 +191,8 @@ Map<String, dynamic> _$CandidateModelToJson(CandidateModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'birthday': instance.birthday,
-      'candidateId': instance.candidateId,
+      'suiCandidateId': instance.suiCandidateId,
+      'suiEventId': instance.suiEventId,
       'eventId': instance.eventId,
       'imageName': instance.imageName,
       'name': instance.name,

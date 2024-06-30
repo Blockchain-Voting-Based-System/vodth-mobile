@@ -11,7 +11,8 @@ part 'candidate_model.g.dart';
 class CandidateModel extends BaseModel {
   final String? id;
   final String? birthday;
-  final String? candidateId;
+  final String? suiCandidateId;
+  final String? suiEventId;
   final String? eventId;
   final String? imageName;
   final String? name;
@@ -27,7 +28,8 @@ class CandidateModel extends BaseModel {
     this.id,
     this.name,
     this.birthday,
-    this.candidateId,
+    this.suiCandidateId,
+    this.suiEventId,
     this.eventId,
     this.imageName,
     this.event,
@@ -35,8 +37,7 @@ class CandidateModel extends BaseModel {
 
   @override
   Map<String, dynamic> toJson() => _$CandidateModelToJson(this);
-  factory CandidateModel.fromJson(Map<String, dynamic> json) =>
-      _$CandidateModelFromJson(json);
+  factory CandidateModel.fromJson(Map<String, dynamic> json) => _$CandidateModelFromJson(json);
 
   factory CandidateModel.fromFirestore(DocumentSnapshot doc) {
     Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
@@ -44,7 +45,8 @@ class CandidateModel extends BaseModel {
       id: doc.reference.id,
       name: data['name'],
       birthday: data['birthday'],
-      candidateId: data['candidateId'],
+      suiCandidateId: data['suiCandidateId'],
+      suiEventId: data['suiEventId'],
       eventId: data['eventId'],
       imageName: data['imageName'],
       sex: data['sex'],

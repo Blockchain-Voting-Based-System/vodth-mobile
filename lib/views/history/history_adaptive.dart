@@ -31,10 +31,64 @@ class _HistoryAdaptive extends StatelessWidget {
   //     ],
   //   );
   // }
+  // Widget _buildBody(BuildContext context) {
+  //   return ListView(
+  //     padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+  //     children: [
+  //       _buildChipOptions(context),
+  //       ConfigConstant.sizedBoxH2,
+  //       // _buildPrivateVoteEvents(),
+  //     ],
+  //   );
+  // }
   Widget _buildBody(BuildContext context) {
     return ListView(
       padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
       children: [
+        // _buildChipOptions(context),
+        const SizedBox(height: 8.0),
+        _buildEvent(
+          context: context,
+          title: 'CSA Voting',
+          description:
+              'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+          startDate: '1st July 2024',
+          endDate: '31st July 2024',
+          imageUrl: "https://avatars.githubusercontent.com/u/109834020?v=4",
+        ),
+        _buildEvent(
+          context: context,
+          title: 'Presedential Election',
+          description:
+              'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+          startDate: '1st Feb 2025',
+          endDate: '31st March 2025',
+          imageUrl:
+              "https://media.istockphoto.com/id/1337692300/vector/orator-speaking-from-tribune.jpg?s=612x612&w=0&k=20&c=lC3TceG4QvPN6K3ci76QbV0OWJ2637WV-wbLQJDc3pg=",
+        ),
+        _buildEvent(
+          context: context,
+          title: 'Class Representative Election',
+          description:
+              'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+          startDate: '1st Aug 2024',
+          endDate: '7th Aug 2024',
+          imageUrl:
+              "https://www.shutterstock.com/image-illustration/political-leader-speaking-media-background-600nw-2074143290.jpg",
+        ),
+
+        // Add more events here
+        for (int i = 0; i < viewModel.eventCount; i++)
+          _buildEvent(
+            context: context,
+            title: 'Event $i',
+            description:
+                'Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+            startDate: '1st Aug 2024',
+            endDate: '7th Aug 2024',
+            imageUrl:
+                "https://www.shutterstock.com/image-illustration/political-leader-speaking-media-background-600nw-2074143290.jpg",
+          ),
         // _buildChipOptions(context),
         const SizedBox(height: 8.0),
         _buildEvent(

@@ -141,7 +141,7 @@ class _HistoryAdaptive extends StatelessWidget {
         VmTapEffectType.scaleDown,
       ],
       onTap: () {
-        context.pushRoute(const EventsRoute());
+        // context.pushRoute(const EventsRoute());
       },
       child: Card(
         color: Colors.white,

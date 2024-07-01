@@ -250,22 +250,22 @@ class VmButton extends StatelessWidget {
   Widget buildButton(BuildContext context) {
     bool disable = onPressed == null;
 
-    Color? _foregroundColor = disable ? disableForegroundColor : foregroundColor ?? M3Color.of(context).onPrimary;
-    Color? _backgroundColor = disable ? disableBackgroundColor : backgroundColor ?? M3Color.of(context).primary;
-    Color? _borderColor = disable ? disableBorderColor : borderColor;
+    Color? foregroundColorInner = disable ? disableForegroundColor : foregroundColor ?? M3Color.of(context).onPrimary;
+    Color? backgroundColorInner = disable ? disableBackgroundColor : backgroundColor ?? M3Color.of(context).primary;
+    Color? borderColorInner = disable ? disableBorderColor : borderColor;
 
     if (iconData != null) {
       return TextButton.icon(
         onPressed: onPressed,
-        icon: Icon(iconData, color: _foregroundColor),
-        style: buildButtonStyle(_backgroundColor, _borderColor),
-        label: buildLabel(context, _foregroundColor),
+        icon: Icon(iconData, color: foregroundColorInner),
+        style: buildButtonStyle(backgroundColorInner, borderColorInner),
+        label: buildLabel(context, foregroundColorInner),
       );
     } else {
       return TextButton(
         onPressed: onPressed,
-        style: buildButtonStyle(_backgroundColor, _borderColor),
-        child: buildLabel(context, _foregroundColor),
+        style: buildButtonStyle(backgroundColorInner, borderColorInner),
+        child: buildLabel(context, foregroundColorInner),
       );
     }
   }

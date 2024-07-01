@@ -59,7 +59,7 @@ class _VoteResultAdaptive extends StatelessWidget {
       chartType: ChartType.disc,
       animationDuration: const Duration(milliseconds: 800),
       chartLegendSpacing: 48,
-      colorList: [
+      colorList: const [
         Colors.blueAccent,
         Colors.yellowAccent,
         Colors.greenAccent,

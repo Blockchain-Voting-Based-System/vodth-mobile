@@ -36,27 +36,25 @@ class _AboutUsAdaptive extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(24.0),
       child: ListView(
-        children: const [
+        children: [
           // const SizedBox(height: 16),
-          Text('Vodth',
+          const Text('Vodth',
               style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                   color: Colors.grey)),
-          SizedBox(height: 16),
-          Text(
-              'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it',
-              style: TextStyle(fontSize: 16)),
-          SizedBox(height: 24),
-          Text('Our Mission',
+          const SizedBox(height: 16),
+          Text(viewModel.aboutUs[0]['aboutus_desc'].toString(),
+              style: const TextStyle(fontSize: 16)),
+          const SizedBox(height: 24),
+          const Text('Our Mission',
               style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                   color: Colors.grey)),
-          SizedBox(height: 16),
-          Text(
-              'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it',
-              style: TextStyle(fontSize: 16)),
+          const SizedBox(height: 16),
+          Text(viewModel.aboutUs[0]['aboutus_ourmission'].toString(),
+              style: const TextStyle(fontSize: 16)),
         ],
       ),
     );

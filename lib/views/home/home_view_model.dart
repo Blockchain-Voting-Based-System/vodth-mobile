@@ -33,7 +33,10 @@ class HomeViewModel extends BaseViewModel {
 
   Future<void> getEventsList() async {
     try {
-      var snapshot = await FirebaseFirestore.instance.collection('events').get();
+      var snapshot = await FirebaseFirestore.instance
+          .collection('events')
+          // .where('type', isEqualTo: 'public')
+          .get();
 
       eventsList = snapshot.docs.map((e) => EventModel.fromFirestore(e)).toList();
     } catch (e) {

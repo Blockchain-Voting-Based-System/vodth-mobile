@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
 part of 'candidate_detail_view.dart';
 
 class _CandidateDetailAdaptive extends StatelessWidget {
@@ -11,7 +9,6 @@ class _CandidateDetailAdaptive extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MorphingAppBar(),
-      backgroundColor: Colors.white,
       body: _buildBody(context),
       bottomNavigationBar: VmBottomNavigationWrapper(
         child: VmButton.filled(
@@ -23,10 +20,10 @@ class _CandidateDetailAdaptive extends StatelessWidget {
               MessengerService.of(context).showBlankLoading(
                 future: () async {
                   await viewModel.voteCandidate(context);
-                  context.router.popForced();
                 },
                 debugSource: "CandidateDetailViewModel#voteCandidate",
               );
+              context.router.popForced();
             }
           },
         ),
@@ -35,21 +32,31 @@ class _CandidateDetailAdaptive extends StatelessWidget {
   }
 
   Widget _buildBody(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 16.0, right: 16.0, left: 16.0),
-      child: ListView(
-        physics: const AlwaysScrollableScrollPhysics(),
-        children: [
-          Column(
-            children: [
-              buildCandidateProfileImage(context),
-              ConfigConstant.sizedBoxH2,
-              ConfigConstant.sizedBoxH2,
-              buildCandidateDetail(context),
-            ],
-          ),
-        ],
-      ),
+    return FutureBuilder(
+      builder: (context, _) {
+        if (viewModel.candidate == null) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else {
+          return Padding(
+            padding: const EdgeInsets.only(top: 16.0, right: 16.0, left: 16.0),
+            child: ListView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              children: [
+                Column(
+                  children: [
+                    buildCandidateProfileImage(context),
+                    ConfigConstant.sizedBoxH2,
+                    buildCandidateDetail(context),
+                  ],
+                ),
+              ],
+            ),
+          );
+        }
+      },
+      future: viewModel.load(),
     );
   }
 
@@ -59,7 +66,7 @@ class _CandidateDetailAdaptive extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         image: DecorationImage(
-          image: NetworkImage(viewModel.candidate?.imageName ?? ''),
+          image: NetworkImage(viewModel.candidate?.imageUrl ?? 'https://via.placeholder.com/150'),
           fit: BoxFit.cover,
         ),
       ),
@@ -119,76 +126,7 @@ class _CandidateDetailAdaptive extends StatelessWidget {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text(
-            'Private Vote Secret Key',
-            style: M3TextTheme.of(context).titleLarge?.copyWith(
-                  color: M3Color.of(context).primary,
-                  fontWeight: FontWeight.bold,
-                ),
-          ),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              const Text('Please enter your secret key to join the voting event:'),
-              const SizedBox(height: 8.0),
-              TextField(
-                controller: controller,
-                decoration: const InputDecoration(
-                  hintText: "Secret Key",
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFFDADADA)),
-                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('Cancel'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            Container(
-              decoration: BoxDecoration(
-                color: M3Color.of(context).primary,
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              width: 100,
-              padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-              child: TextButton(
-                  child: const Text(
-                    'Vote',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  onPressed: () async {
-                    MessengerService.of(context).showBlankLoading(
-                      future: () async {
-                        bool isValid = await viewModel.validateAndRemoveSecret(controller.text);
-
-                        if (isValid) {
-                          await viewModel.voteCandidate(context);
-
-                          context.router.popForced();
-                          MessengerService.of(context).showSnackBar(
-                            'Vote successfully',
-                          );
-                        } else {
-                          context.router.popForced();
-                          MessengerService.of(context).showSnackBar(
-                            'Invalid secret key',
-                            success: false,
-                          );
-                        }
-                      },
-                      debugSource: "CandidateDetailViewModel#voteCandidate",
-                    );
-                  }),
-            ),
-          ],
-        );
+        return PrivateVoteSecretDialog(controller: controller, viewModel: viewModel);
       },
     );
   }

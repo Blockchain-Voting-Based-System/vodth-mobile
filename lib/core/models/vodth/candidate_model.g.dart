@@ -25,7 +25,7 @@ abstract class _$CandidateModelCWProxy {
 
   CandidateModel eventId(String? eventId);
 
-  CandidateModel imageName(String? imageName);
+  CandidateModel imageUrl(String? imageUrl);
 
   CandidateModel event(EventModel? event);
 
@@ -45,7 +45,7 @@ abstract class _$CandidateModelCWProxy {
     String? suiCandidateId,
     String? suiEventId,
     String? eventId,
-    String? imageName,
+    String? imageUrl,
     EventModel? event,
   });
 }
@@ -85,7 +85,7 @@ class _$CandidateModelCWProxyImpl implements _$CandidateModelCWProxy {
   CandidateModel eventId(String? eventId) => this(eventId: eventId);
 
   @override
-  CandidateModel imageName(String? imageName) => this(imageName: imageName);
+  CandidateModel imageUrl(String? imageUrl) => this(imageUrl: imageUrl);
 
   @override
   CandidateModel event(EventModel? event) => this(event: event);
@@ -108,7 +108,7 @@ class _$CandidateModelCWProxyImpl implements _$CandidateModelCWProxy {
     Object? suiCandidateId = const $CopyWithPlaceholder(),
     Object? suiEventId = const $CopyWithPlaceholder(),
     Object? eventId = const $CopyWithPlaceholder(),
-    Object? imageName = const $CopyWithPlaceholder(),
+    Object? imageUrl = const $CopyWithPlaceholder(),
     Object? event = const $CopyWithPlaceholder(),
   }) {
     return CandidateModel(
@@ -148,10 +148,10 @@ class _$CandidateModelCWProxyImpl implements _$CandidateModelCWProxy {
           ? _value.eventId
           // ignore: cast_nullable_to_non_nullable
           : eventId as String?,
-      imageName: imageName == const $CopyWithPlaceholder()
-          ? _value.imageName
+      imageUrl: imageUrl == const $CopyWithPlaceholder()
+          ? _value.imageUrl
           // ignore: cast_nullable_to_non_nullable
-          : imageName as String?,
+          : imageUrl as String?,
       event: event == const $CopyWithPlaceholder()
           ? _value.event
           // ignore: cast_nullable_to_non_nullable
@@ -181,7 +181,7 @@ CandidateModel _$CandidateModelFromJson(Map<String, dynamic> json) =>
       suiCandidateId: json['suiCandidateId'] as String?,
       suiEventId: json['suiEventId'] as String?,
       eventId: json['eventId'] as String?,
-      imageName: json['imageName'] as String?,
+      imageUrl: json['imageUrl'] as String?,
       event: json['event'] == null
           ? null
           : EventModel.fromJson(json['event'] as Map<String, dynamic>),
@@ -194,7 +194,7 @@ Map<String, dynamic> _$CandidateModelToJson(CandidateModel instance) =>
       'suiCandidateId': instance.suiCandidateId,
       'suiEventId': instance.suiEventId,
       'eventId': instance.eventId,
-      'imageName': instance.imageName,
+      'imageUrl': instance.imageUrl,
       'name': instance.name,
       'sex': instance.sex,
       'status': instance.status,

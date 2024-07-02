@@ -8,28 +8,12 @@ class _HomeAdaptive extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: MorphingAppBar(
         title: Image.asset(
           'assets/images/vodth_logo.png',
-          height: 40,
+          height: 30,
         ),
-        centerTitle: false,
-        backgroundColor: Colors.white,
         elevation: 0,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 16),
-            child: IconButton(
-              icon: const Icon(
-                Icons.notifications_outlined,
-                size: 32,
-              ), // Add your notification icon here
-              onPressed: () {
-                // Add functionality for when the notification icon is pressed
-              },
-            ),
-          ),
-        ],
       ),
       body: _buildBody(context),
     );
@@ -39,9 +23,6 @@ class _HomeAdaptive extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
       children: [
-        const SizedBox(height: 8),
-        // _buildSearchBar(),
-        // const SizedBox(height: 32),
         _buildChipOptions(context),
         const SizedBox(height: 16.0),
         _buildEvents(context, viewModel.eventsList ?? []),
@@ -90,71 +71,32 @@ class _HomeAdaptive extends StatelessWidget {
     );
   }
 
-  // ignore: unused_element
-  Column _buildOwnedObjects() {
+  Widget _buildEvents(BuildContext context, List<EventModel> events) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          "Owned objects: ${viewModel.address}",
-          style: const TextStyle(fontWeight: FontWeight.bold),
-        ),
-        ...viewModel.ownedObject!.map(
-          (object) {
-            return Text(object.data?.objectId ?? '');
-          },
-        )
+        ...events.map((event) {
+          return Column(
+            children: [
+              VmTapEffect(
+                onTap: () {
+                  context.pushRoute(EventDetailRoute(id: event.id.toString()));
+                },
+                effects: const [
+                  VmTapEffectType.scaleDown,
+                ],
+                child: EventCard(
+                  title: event.name ?? 'N/A',
+                  time: event.startDate ?? 'N/A',
+                  type: event.type ?? 'N/A',
+                  thumbnailUrl: event.imageUrl ?? 'https://picsum.photos/200/300',
+                  description: event.description ?? 'N/A',
+                ),
+              ),
+              const SizedBox(height: 8),
+            ],
+          );
+        })
       ],
-    );
-  }
-
-  // Widget _buildSearchBar() {
-  //   return Container(
-  //     margin: const EdgeInsets.only(bottom: 16.0),
-  //     padding: const EdgeInsets.symmetric(horizontal: 16.0),
-  //     decoration: BoxDecoration(
-  //       color: Colors.white,
-  //       borderRadius: BorderRadius.circular(8.0),
-  //       boxShadow: [
-  //         BoxShadow(color: Colors.grey.withOpacity(0.3), spreadRadius: 1, blurRadius: 1, offset: const Offset(0, 1) // changes position of shadow
-  //             ),
-  //       ],
-  //     ),
-  //     child: const TextField(
-  //       decoration: InputDecoration(
-  //         hintText: 'Search events',
-  //         border: InputBorder.none,
-  //         icon: Icon(Icons.search),
-  //       ),
-  //     ),
-  //   );
-  // }
-
-  Widget _buildEvents(context, List<EventModel> events) {
-    return ListView.separated(
-      shrinkWrap: true,
-      itemCount: events.length,
-      itemBuilder: (context, index) {
-        final EventModel event = events[index];
-        return VmTapEffect(
-          onTap: () {
-            context.router.push(EventDetailRoute(id: event.id.toString()));
-          },
-          effects: const [
-            VmTapEffectType.scaleDown,
-          ],
-          child: EventCard(
-            title: event.name ?? 'N/A',
-            time: event.startDate ?? 'N/A',
-            type: event.type ?? 'N/A',
-            thumbnailUrl: event.imageUrl ?? 'https://picsum.photos/200/300',
-            description: event.description ?? 'N/A',
-          ),
-        );
-      },
-      separatorBuilder: (BuildContext context, int index) {
-        return ConfigConstant.sizedBoxH1;
-      },
     );
   }
 }

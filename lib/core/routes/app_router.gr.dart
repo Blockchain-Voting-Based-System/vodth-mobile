@@ -47,18 +47,14 @@ abstract class $AppRouter extends _i16.RootStackRouter {
     },
     CandidateDetailRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
-      final queryParams = routeData.queryParams;
       final args = routeData.argsAs<CandidateDetailRouteArgs>(
-          orElse: () => CandidateDetailRouteArgs(
-                id: pathParams.optString('id'),
-                suiEventId: queryParams.optString('suiEventId'),
-              ));
+          orElse: () =>
+              CandidateDetailRouteArgs(id: pathParams.optString('id')));
       return _i16.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i3.CandidateDetailView(
           key: args.key,
           id: args.id,
-          suiEventId: args.suiEventId,
         ),
       );
     },
@@ -178,17 +174,14 @@ class CandidateDetailRoute
   CandidateDetailRoute({
     _i17.Key? key,
     required String? id,
-    required String? suiEventId,
     List<_i16.PageRouteInfo>? children,
   }) : super(
           CandidateDetailRoute.name,
           args: CandidateDetailRouteArgs(
             key: key,
             id: id,
-            suiEventId: suiEventId,
           ),
           rawPathParams: {'id': id},
-          rawQueryParams: {'suiEventId': suiEventId},
           initialChildren: children,
         );
 
@@ -202,18 +195,15 @@ class CandidateDetailRouteArgs {
   const CandidateDetailRouteArgs({
     this.key,
     required this.id,
-    required this.suiEventId,
   });
 
   final _i17.Key? key;
 
   final String? id;
 
-  final String? suiEventId;
-
   @override
   String toString() {
-    return 'CandidateDetailRouteArgs{key: $key, id: $id, suiEventId: $suiEventId}';
+    return 'CandidateDetailRouteArgs{key: $key, id: $id}';
   }
 }
 

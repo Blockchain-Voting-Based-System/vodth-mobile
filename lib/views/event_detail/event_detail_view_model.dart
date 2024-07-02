@@ -8,38 +8,53 @@ import 'package:vodth_mobile/core/routes/app_router.gr.dart';
 class EventDetailViewModel extends BaseViewModel {
   final EventDetailRouteArgs params;
 
-  EventDetailViewModel({required this.params});
+  EventDetailViewModel({required this.params}) {
+    load();
+  }
 
-  List<CandidateModel>? _candidates;
-  List<CandidateModel>? get candidates => _candidates;
+  List<CandidateModel>? candidates;
 
-  EventModel? _event;
-  EventModel? get event => _event;
+  EventModel? event;
+
+  Future<void> load() async {
+    await getEventDetail();
+    await getCandidates();
+
+    notifyListeners();
+  }
 
   Future<void> getEventDetail() async {
-    if (params.id == null) {
-      return;
-    }
-
     try {
-      DocumentSnapshot<Map<String, dynamic>> event = await FirebaseFirestore.instance.collection('events').doc(params.id).get();
-      _event = EventModel.fromFirestore(event);
+      DocumentSnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore.instance.collection('events').doc(params.id).get();
+      event = EventModel.fromFirestore(snapshot);
     } catch (e) {
       if (kDebugMode) {
         print("Error getting event: $e");
       }
     }
+
+    notifyListeners();
   }
 
-  Future<void> getCandidatesList() async {
+  Future<void> getCandidates() async {
     try {
-      QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore.instance.collection('candidates').where('eventId', isEqualTo: params.id).get();
-
-      _candidates = snapshot.docs.map((e) => CandidateModel.fromFirestore(e)).toList();
+      QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore.instance.collection('candidates').where('eventId', isEqualTo: event?.id).get();
+      candidates = snapshot.docs.map((e) => CandidateModel.fromFirestore(e)).toList();
     } catch (e) {
       if (kDebugMode) {
         print("Error getting events: $e");
       }
     }
+    notifyListeners();
+  }
+
+  Map<String, double> candidateVotes = {
+    'Candidate A': 8,
+    'Candidate B': 3,
+    'Candidate C': 4,
+  };
+
+  double get totalVotes {
+    return candidateVotes.values.fold(0, (sum, votes) => sum + votes);
   }
 }

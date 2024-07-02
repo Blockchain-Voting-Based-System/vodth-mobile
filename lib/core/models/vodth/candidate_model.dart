@@ -14,7 +14,7 @@ class CandidateModel extends BaseModel {
   final String? suiCandidateId;
   final String? suiEventId;
   final String? eventId;
-  final String? imageName;
+  final String? imageUrl;
   final String? name;
   final String? sex;
   final String? status;
@@ -31,7 +31,7 @@ class CandidateModel extends BaseModel {
     this.suiCandidateId,
     this.suiEventId,
     this.eventId,
-    this.imageName,
+    this.imageUrl,
     this.event,
   });
 
@@ -48,7 +48,7 @@ class CandidateModel extends BaseModel {
       suiCandidateId: data['suiCandidateId'],
       suiEventId: data['suiEventId'],
       eventId: data['eventId'],
-      imageName: data['imageName'],
+      imageUrl: data['imageUrl'],
       sex: data['sex'],
       status: data['status'],
       bio: data['bio'],

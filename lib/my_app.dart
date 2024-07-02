@@ -27,8 +27,7 @@ class MyApp extends StatelessWidget {
         ...AutoRouterDelegate.defaultNavigatorObserversBuilder(),
         AutoRouteObserver(),
       ],
-      placeholder: (context) =>
-          const Center(child: CircularProgressIndicator.adaptive()),
+      placeholder: (context) => const Center(child: CircularProgressIndicator.adaptive()),
       deepLinkBuilder: null,
     );
   }

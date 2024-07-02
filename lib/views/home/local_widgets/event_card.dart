@@ -47,7 +47,7 @@ class EventCard extends StatelessWidget {
     return Column(
       children: [
         Container(
-          width: 150,
+          width: 120,
           height: 200,
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.only(

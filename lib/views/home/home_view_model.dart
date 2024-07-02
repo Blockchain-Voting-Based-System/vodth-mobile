@@ -61,7 +61,7 @@ class HomeViewModel extends BaseViewModel {
   }
 
   Future<void> getBalance() async {
-    final client = SuiClient(SuiUrls.devnet);
+    final client = SuiClient(SuiUrls.testnet);
 
     _balance = await client.getBalance(address);
 
@@ -76,7 +76,7 @@ class HomeViewModel extends BaseViewModel {
   }
 
   Future<void> getOwnedObjects() async {
-    final client = SuiClient(SuiUrls.devnet);
+    final client = SuiClient(SuiUrls.testnet);
 
     _ownedObject = await client.getOwnedObjects(address);
 

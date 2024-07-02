@@ -19,7 +19,7 @@ class _CandidateDetailAdaptive extends StatelessWidget {
             } else if (viewModel.event?.type == 'public') {
               MessengerService.of(context).showBlankLoading(
                 future: () async {
-                  await viewModel.voteCandidate(context);
+                  await viewModel.voteCandidate();
                 },
                 debugSource: "CandidateDetailViewModel#voteCandidate",
               );

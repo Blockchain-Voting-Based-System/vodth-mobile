@@ -68,8 +68,7 @@ class _AccountAdaptive extends StatelessWidget {
               ),
               Row(
                 children: [
-                  Text('Account Address: ',
-                      style: M3TextTheme.of(context).labelMedium),
+                  Text('Account Address: ', style: M3TextTheme.of(context).labelMedium),
                   const VmSuiAddress(),
                 ],
               ),
@@ -92,9 +91,7 @@ class _AccountAdaptive extends StatelessWidget {
         _buildAccountItem(context, 'Edit Profile', Icons.person, () {
           context.router.push(const EditProfileRoute());
         }),
-        _buildAccountItem(context, 'Change Password', Icons.lock, () {
-          
-        }),
+        _buildAccountItem(context, 'Change Password', Icons.lock, () {}),
         const SizedBox(height: 24),
       ],
     );
@@ -159,13 +156,11 @@ class _AccountAdaptive extends StatelessWidget {
     );
   }
 
-  Widget _buildAccountItem(
-      BuildContext context, String title, IconData icon, VoidCallback onTap) {
+  Widget _buildAccountItem(BuildContext context, String title, IconData icon, VoidCallback onTap) {
     return ListTile(
       title: Text(title),
       leading: Icon(icon, color: M3Color.of(context).primary),
-      trailing:
-          Icon(Icons.arrow_forward_ios, color: M3Color.of(context).primary),
+      trailing: Icon(Icons.arrow_forward_ios, color: M3Color.of(context).primary),
       onTap: onTap,
     );
   }
@@ -201,9 +196,7 @@ class _AccountAdaptive extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
                     ListTile(
-                      leading: Image.asset(
-                          'assets/images/Flag_of_the_United_Kingdom.png',
-                          width: 24),
+                      leading: Image.asset('assets/images/Flag_of_the_United_Kingdom.png', width: 24),
                       title: const Text('English'),
                       trailing: Radio(
                         value: 'en',
@@ -214,8 +207,7 @@ class _AccountAdaptive extends StatelessWidget {
                       ),
                     ),
                     ListTile(
-                      leading: Image.asset('assets/images/Flag_of_Cambodia.png',
-                          width: 24),
+                      leading: Image.asset('assets/images/Flag_of_Cambodia.png', width: 24),
                       title: const Text('ភាសាខ្មែរ'),
                       trailing: Radio(
                         value: 'kh',

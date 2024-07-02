@@ -17,16 +17,12 @@ class CandidateDetailViewModel extends BaseViewModel {
 
   SignTransactionService signTx = SignTransactionService();
 
-  CandidateModel? _candidate;
-  CandidateModel? get candidate => _candidate;
-
-  EventModel? _event;
-  EventModel? get event => _event;
+  CandidateModel? candidate;
+  EventModel? event;
 
   Future<void> load() async {
-    await getCandidateDetail();
-    await getEventDetail();
-    notifyListeners();
+    getCandidateDetail();
+    getEventDetail();
   }
 
   Future<void> getEventDetail() async {
@@ -35,9 +31,9 @@ class CandidateDetailViewModel extends BaseViewModel {
     }
 
     try {
-      DocumentSnapshot<Map<String, dynamic>> event = await FirebaseFirestore.instance.collection('events').doc(candidate!.eventId).get();
-
-      _event = EventModel.fromFirestore(event);
+      DocumentSnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore.instance.collection('events').doc(candidate!.eventId).get();
+      event = EventModel.fromFirestore(snapshot);
+      notifyListeners();
     } catch (e) {
       if (kDebugMode) {
         print("Error getting event: $e");
@@ -48,8 +44,8 @@ class CandidateDetailViewModel extends BaseViewModel {
   Future<void> getCandidateDetail() async {
     try {
       DocumentSnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore.instance.collection('candidates').doc(params.id).get();
-
-      _candidate = CandidateModel.fromFirestore(snapshot);
+      candidate = CandidateModel.fromFirestore(snapshot);
+      notifyListeners();
     } catch (e) {
       if (kDebugMode) {
         print("Error getting candidate: $e");

@@ -7,157 +7,155 @@ class _EventDetailAdaptive extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: MorphingAppBar(),
-      body: _buildBody(),
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        appBar: MorphingAppBar(
+          bottom: const TabBar(
+            tabs: [
+              Tab(text: 'Event'),
+              Tab(text: 'Candidates'),
+              Tab(text: 'Results'),
+            ],
+          ),
+        ),
+        body: _buildBody(context),
+      ),
     );
   }
 
-  FutureBuilder<void> _buildBody() {
-    return FutureBuilder(
-      builder: (context, snapshot) {
-        return SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Stack(
-                  children: [
-                    Image.asset(
-                      'assets/images/cadt.jpg',
-                      width: double.infinity,
-                      height: 200,
-                      fit: BoxFit.cover,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          color: Colors.white,
-                        ),
-                        child: IconButton(
-                          onPressed: () {
-                            context.router.popForced();
-                          },
-                          icon: Icon(
-                            Icons.arrow_back,
-                            color: M3Color.of(context).primary,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: 8),
-                      Text(
-                        viewModel.event?.name ?? 'N/A',
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w900,
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      Text(
-                        viewModel.event?.description ?? 'N/A',
-                        style: const TextStyle(fontSize: 16),
-                      ),
-                      const SizedBox(height: 8),
-                      TextButton(
-                        onPressed: () {
-                          _showEventDetails(context);
-                        },
-                        child: const Text('More Detail'),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          context.router.push(const VoteResultRoute());
-                        },
-                        child: const Text('Vote result'),
-                      ),
-                      const SizedBox(height: 8),
-                      const Divider(),
-                      const SizedBox(height: 8),
-                      const Text(
-                        'Candidates',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      _buildCandidateList(),
-                    ],
-                  ),
-                ),
-              ],
+  _buildBody(BuildContext context) {
+    return TabBarView(
+      children: [
+        _buildEventDetail(context),
+        _buildCandidates(context),
+        _buildResults(context),
+      ],
+    );
+  }
+
+  Widget _buildResults(BuildContext context) {
+    return EventResult(viewModel: viewModel);
+  }
+
+  Widget _buildEventDetail(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildEventBanner(),
+          _buildEventInfo(context),
+        ],
+      ),
+    );
+  }
+
+  Image _buildEventBanner() {
+    return Image.network(
+      viewModel.event?.imageUrl ?? 'https://via.placeholder.com/150',
+      width: double.infinity,
+      height: 200,
+      fit: BoxFit.cover,
+    );
+  }
+
+  Padding _buildEventInfo(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 8),
+          Text(
+            viewModel.event?.name ?? 'N/A',
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w900,
             ),
           ),
-        );
-      },
-      future: viewModel.getEventDetail(),
+          const SizedBox(height: 16),
+          Text(
+            viewModel.event?.description ?? 'N/A',
+            style: const TextStyle(fontSize: 16),
+          ),
+          const SizedBox(height: 8),
+          TextButton(
+            onPressed: () {
+              _showEventDetails(context);
+            },
+            child: const Text('More Detail'),
+          ),
+          const SizedBox(height: 8),
+          const Divider(),
+          const SizedBox(height: 8),
+        ],
+      ),
     );
   }
 
-  Widget _buildCandidateList() {
-    return FutureBuilder(
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        } else {
-          return ListView.builder(
-            physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: viewModel.candidates?.length,
-            itemBuilder: (context, index) {
-              final candidate = viewModel.candidates?[index];
-              return Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  side: BorderSide(
-                      color: M3Color.of(context).primary, width: 1.0),
+  Widget _buildCandidates(BuildContext context) {
+    return ListView(
+      physics: const NeverScrollableScrollPhysics(),
+      padding: const EdgeInsets.all(16.0),
+      shrinkWrap: true,
+      children: viewModel.candidates != null
+          ? [
+              const Text(
+                'Candidates',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w900,
                 ),
-                child: ListTile(
-                  leading: const Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      CircleAvatar(
-                        radius: 32, // Image radius
-                        backgroundImage: AssetImage('assets/images/yura.png'),
+              ),
+              ...viewModel.candidates!.map(
+                (candidate) {
+                  return GestureDetector(
+                    onTap: () {
+                      context.pushRoute(
+                        CandidateDetailRoute(id: candidate.id),
+                      );
+                    },
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        side: BorderSide(color: M3Color.of(context).primary, width: 1.0),
                       ),
-                    ],
-                  ),
-                  title: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Text(
-                      candidate?.name ?? 'N/A',
-                      style: const TextStyle(
-                          fontSize: 16,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w600),
+                      child: ListTile(
+                        leading: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            CircleAvatar(
+                              radius: 32, // Image radius
+                              backgroundImage: NetworkImage(candidate.imageUrl ?? 'https://via.placeholder.com/150'),
+                            ),
+                          ],
+                        ),
+                        title: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Text(
+                            candidate.name ?? 'N/A',
+                            style: const TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                        trailing: const Icon(Icons.arrow_forward_ios),
+                      ),
                     ),
+                  );
+                },
+              ),
+            ]
+          : [
+              const Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text(
+                  'No candidate',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w900,
                   ),
-                  trailing: const Icon(Icons.arrow_forward_ios),
-                  onTap: () {
-                    context.router.push(CandidateDetailRoute(
-                      id: candidate?.id,
-                      suiEventId: viewModel.event?.suiEventId,
-                    ));
-                  },
                 ),
-              );
-            },
-          );
-        }
-      },
-      future: viewModel.getCandidatesList(),
+              ),
+            ],
     );
   }
 

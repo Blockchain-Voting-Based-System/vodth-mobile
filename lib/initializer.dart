@@ -24,10 +24,8 @@ class Initializer {
 
   static void loadLicenses() {
     LicenseRegistry.addLicense(() async* {
-      final kantumruyProLicense =
-          await rootBundle.loadString('assets/fonts/kantumruy_pro/OFL.txt');
-      final poppinsLicense =
-          await rootBundle.loadString('assets/fonts/poppins/OFL.txt');
+      final kantumruyProLicense = await rootBundle.loadString('assets/fonts/kantumruy_pro/OFL.txt');
+      final poppinsLicense = await rootBundle.loadString('assets/fonts/poppins/OFL.txt');
 
       yield LicenseEntryWithLineBreaks(['KantumruyPro'], kantumruyProLicense);
       yield LicenseEntryWithLineBreaks(['Poppins'], poppinsLicense);

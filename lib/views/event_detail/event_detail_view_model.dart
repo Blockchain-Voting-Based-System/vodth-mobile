@@ -27,6 +27,8 @@ class EventDetailViewModel extends BaseViewModel {
     try {
       DocumentSnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore.instance.collection('events').doc(params.id).get();
       event = EventModel.fromFirestore(snapshot);
+
+      notifyListeners();
     } catch (e) {
       if (kDebugMode) {
         print("Error getting event: $e");
@@ -40,6 +42,8 @@ class EventDetailViewModel extends BaseViewModel {
     try {
       QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore.instance.collection('candidates').where('eventId', isEqualTo: event?.id).get();
       candidates = snapshot.docs.map((e) => CandidateModel.fromFirestore(e)).toList();
+
+      notifyListeners();
     } catch (e) {
       if (kDebugMode) {
         print("Error getting events: $e");
@@ -55,6 +59,6 @@ class EventDetailViewModel extends BaseViewModel {
   };
 
   double get totalVotes {
-    return candidateVotes.values.fold(0, (sum, votes) => sum + votes);
+    return candidateVotes.values.fold(0, (total, votes) => total + votes);
   }
 }

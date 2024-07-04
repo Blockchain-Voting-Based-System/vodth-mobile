@@ -18,6 +18,14 @@
       "group": "build",
       "label": "dart: dart run build_runner build",
       "detail": "Generate routes, models, etc."
+    },
+    {
+      // do flutter run 52w5
+      "type": "shell",
+      "label": "flutter: flutter run",
+      "command": "flutter run -d 52b17be3",
+      "problemMatcher": [],
+      "group": "build"
     }
   ]
 }

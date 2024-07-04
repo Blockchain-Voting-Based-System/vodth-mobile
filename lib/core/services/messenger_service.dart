@@ -3,8 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:vodth_mobile/constant/config_constant.dart';
-import 'package:vodth_mobile/core/theme/m3/m3_color.dart';
-import 'package:vodth_mobile/views/widgets/vm_fade_in.dart';
 
 class MessengerService {
   final BuildContext context;
@@ -25,28 +23,26 @@ class MessengerService {
 
   ScaffoldFeatureController<SnackBar, SnackBarClosedReason>? showSnackBar(
     String message, {
-    bool success = true,
+    Color? foregroundColor,
+    Color? backgroundColor,
     SnackBarAction Function(Color? foreground)? action,
     bool showAction = true,
   }) {
     clearSnackBars();
 
-    Color? foreground = success ? null : M3Color.of(context).onError;
-    Color? background = success ? null : M3Color.of(context).error;
-
     return state?.showSnackBar(
       SnackBar(
-        width: 400.0,
-        content: Text(message, style: TextStyle(color: foreground)),
+        width: 320.0,
+        content: Text(message, style: TextStyle(color: foregroundColor)),
         behavior: SnackBarBehavior.floating,
-        backgroundColor: background,
+        backgroundColor: backgroundColor,
         dismissDirection: DismissDirection.horizontal,
         action: showAction
             ? action != null
-                ? action(foreground)
+                ? action(foregroundColor)
                 : SnackBarAction(
                     label: MaterialLocalizations.of(context).okButtonLabel,
-                    textColor: foreground,
+                    textColor: foregroundColor,
                     onPressed: () {},
                   )
             : null,
@@ -111,12 +107,10 @@ class MessengerService {
 
             final child = AlertDialog(
               alignment: Alignment.center,
-              content: VmFadeIn(
-                child: Lottie.asset(
-                  'assets/lotties/loading.json',
-                  width: ConfigConstant.objectHeight6,
-                  height: ConfigConstant.objectHeight6,
-                ),
+              content: Lottie.asset(
+                'assets/lotties/loading.json',
+                width: ConfigConstant.objectHeight6,
+                height: ConfigConstant.objectHeight6,
               ),
             );
 

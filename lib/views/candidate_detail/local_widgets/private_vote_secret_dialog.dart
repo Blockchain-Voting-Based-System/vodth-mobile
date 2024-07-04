@@ -1,4 +1,7 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
+import 'package:vodth_mobile/core/routes/routes_export.dart';
 import 'package:vodth_mobile/core/services/messenger_service.dart';
 import 'package:vodth_mobile/core/theme/m3/m3_color.dart';
 import 'package:vodth_mobile/core/theme/m3/m3_text_theme.dart';
@@ -45,7 +48,7 @@ class PrivateVoteSecretDialog extends StatelessWidget {
         TextButton(
           child: const Text('Cancel'),
           onPressed: () {
-            Navigator.of(context).pop();
+            context.router.popForced();
           },
         ),
         Container(
@@ -61,24 +64,25 @@ class PrivateVoteSecretDialog extends StatelessWidget {
                 style: TextStyle(color: Colors.white),
               ),
               onPressed: () async {
-                bool isValid = false;
-                MessengerService.of(context).showBlankLoading(
+                await MessengerService.of(context).showBlankLoading(
                   future: () async {
-                    isValid = await viewModel.validateAndRemoveSecret(controller.text);
+                    await viewModel.validateAndRemoveSecret(controller.text);
                   },
                   debugSource: "CandidateDetailViewModel#voteCandidate",
                 );
-
-                if (isValid) {
-                  viewModel.voteCandidate(context);
+                if (viewModel.validSecret) {
+                  context.router.popForced();
 
                   MessengerService.of(context).showSnackBar(
                     'Vote successfully',
+                    backgroundColor: M3Color.bootstrap(context).success.color,
+                    foregroundColor: M3Color.bootstrap(context).success.onColor,
                   );
                 } else {
                   MessengerService.of(context).showSnackBar(
                     'Invalid secret key',
-                    success: false,
+                    backgroundColor: M3Color.of(context).error,
+                    foregroundColor: M3Color.of(context).onError,
                   );
                 }
               }),

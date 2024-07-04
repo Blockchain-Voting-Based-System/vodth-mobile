@@ -9,7 +9,7 @@ class SignTransactionService {
     SignatureScheme.Ed25519,
   );
 
-  final SuiClient client = SuiClient(SuiUrls.devnet);
+  final SuiClient client = SuiClient(SuiUrls.testnet);
 
-  final String packageObjectId = '0x98a90bd1fd6b4e3481a860f2d401d452135af3c18e2d00b12f7c158c182c37a5';
+  final String packageObjectId = '0xab81384c6b7b4244cdd8d8d940810f5d5f1657aded5055dbc99d9a0c0e2d3ae2';
 }

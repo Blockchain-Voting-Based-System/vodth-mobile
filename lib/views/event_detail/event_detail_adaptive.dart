@@ -10,27 +10,42 @@ class _EventDetailAdaptive extends StatelessWidget {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        appBar: MorphingAppBar(
-          bottom: const TabBar(
-            tabs: [
-              Tab(text: 'Event'),
-              Tab(text: 'Candidates'),
-              Tab(text: 'Results'),
-            ],
-          ),
-        ),
+        appBar: _buildAppBar(),
         body: _buildBody(context),
       ),
     );
   }
 
+  AppBar _buildAppBar() {
+    return AppBar(
+      bottom: const TabBar(
+        tabs: [
+          Tab(text: 'Event'),
+          Tab(text: 'Candidates'),
+          Tab(text: 'Results'),
+        ],
+      ),
+    );
+  }
+
   _buildBody(BuildContext context) {
-    return TabBarView(
-      children: [
-        _buildEventDetail(context),
-        _buildCandidates(context),
-        _buildResults(context),
-      ],
+    return FutureBuilder(
+      builder: (context, snapshot) {
+        if (viewModel.event == null) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return const Center(child: Text('Error'));
+        } else {
+          return TabBarView(
+            children: [
+              _buildEventDetail(context),
+              _buildCandidates(context),
+              _buildResults(context),
+            ],
+          );
+        }
+      },
+      future: viewModel.load(),
     );
   }
 

@@ -7,7 +7,11 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Initializer.load();
 
-  runApp(AppScope(builder: (context, router) {
-    return MyApp(router: router);
-  }));
+  runApp(
+    AppScope(
+      builder: (context, router) {
+        return MyApp(router: router);
+      },
+    ),
+  );
 }

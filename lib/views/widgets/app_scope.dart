@@ -1,10 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:vodth_mobile/constant/app_constant.dart';
 import 'package:vodth_mobile/core/routes/routes_export.dart';
 import 'package:vodth_mobile/provider_scope.dart';
 
 class AppScope extends StatefulWidget {
-  static BuildContext? get globalContext =>
-      _AppScopeState.instance._router.navigatorKey.currentContext;
+  static BuildContext? get globalContext => _AppScopeState.instance._router.navigatorKey.currentContext;
   static AppRouter get router => _AppScopeState.instance._router;
 
   const AppScope({
@@ -20,8 +21,7 @@ class AppScope extends StatefulWidget {
     } catch (e) {
       // handle in case current page is not a router.
     }
-    Future.microtask(
-        () => context.findAncestorStateOfType<_AppScopeState>()!.restartApp());
+    Future.microtask(() => context.findAncestorStateOfType<_AppScopeState>()!.restartApp());
   }
 
   @override
@@ -56,7 +56,15 @@ class _AppScopeState extends State<AppScope> {
     return KeyedSubtree(
       key: _key,
       child: ProviderScope(
-        child: widget.builder(context, _router),
+        child: EasyLocalization(
+          useFallbackTranslations: true,
+          useOnlyLangCode: true,
+          saveLocale: true,
+          fallbackLocale: AppConstant.fallbackLocale,
+          supportedLocales: AppConstant.supportedLocales,
+          path: 'assets/translations',
+          child: widget.builder(context, _router),
+        ),
       ),
     );
   }

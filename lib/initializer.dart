@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -18,6 +19,9 @@ class Initializer {
     // theme
     await M3Color.instance.initialize();
     await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+
+    // translation
+    await EasyLocalization.ensureInitialized();
 
     loadLicenses();
   }

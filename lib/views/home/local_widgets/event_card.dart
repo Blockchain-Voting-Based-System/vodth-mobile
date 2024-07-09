@@ -90,6 +90,7 @@ class EventCard extends StatelessWidget {
             ),
             const Spacer(),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   'Type: $type', overflow: TextOverflow.clip,

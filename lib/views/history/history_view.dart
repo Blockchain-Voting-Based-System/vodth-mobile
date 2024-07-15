@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:swipeable_page_route/swipeable_page_route.dart';
 import 'package:vodth_mobile/core/base/view_model_provider.dart';
-import 'package:vodth_mobile/core/routes/app_router.gr.dart';
 import 'package:vodth_mobile/core/routes/routes_export.dart';
 import 'package:vodth_mobile/core/theme/m3/m3_color.dart';
 import 'package:vodth_mobile/core/theme/m3/m3_text_theme.dart';

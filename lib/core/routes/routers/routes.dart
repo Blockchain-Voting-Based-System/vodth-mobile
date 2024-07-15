@@ -26,5 +26,5 @@ final routers = [
   AutoRoute(page: FaqsRoute.page),
   AutoRoute(page: SuiInfomationRoute.page),
   AutoRoute(page: VoteResultRoute.page),
-  AutoRoute(page: HistoryDetailRoute.page, path: '/histories/:id'),
+  AutoRoute(page: IdCardValidationRoute.page),
 ];

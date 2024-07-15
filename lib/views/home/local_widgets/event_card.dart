@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:vodth_mobile/core/models/vodth/event_model.dart';
 import 'package:vodth_mobile/core/theme/theme_constant.dart';
@@ -50,7 +49,8 @@ class EventCard extends StatelessWidget {
             ),
             image: DecorationImage(
               fit: BoxFit.cover,
-              image: NetworkImage(event.imageUrl ?? 'https://api.api-ninjas.com/v1/randomimage?category=nature'),
+              image: NetworkImage(event.imageUrl ??
+                  'https://api.api-ninjas.com/v1/randomimage?category=nature'),
             ),
           ),
         ),
@@ -59,7 +59,6 @@ class EventCard extends StatelessWidget {
   }
 
   Widget _buildEventInformation() {
-    String date = time.split('T').first;
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(16.0),

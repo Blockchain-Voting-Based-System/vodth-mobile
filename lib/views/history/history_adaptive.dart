@@ -50,8 +50,7 @@ class _HistoryAdaptive extends StatelessWidget {
         _buildEvent(
           context: context,
           title: 'CSA Voting',
-          description:
-              'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+          description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
           startDate: '1st July 2024',
           endDate: '31st July 2024',
           imageUrl: "https://avatars.githubusercontent.com/u/109834020?v=4",
@@ -59,22 +58,18 @@ class _HistoryAdaptive extends StatelessWidget {
         _buildEvent(
           context: context,
           title: 'Presedential Election',
-          description:
-              'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+          description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
           startDate: '1st Feb 2025',
           endDate: '31st March 2025',
-          imageUrl:
-              "https://media.istockphoto.com/id/1337692300/vector/orator-speaking-from-tribune.jpg?s=612x612&w=0&k=20&c=lC3TceG4QvPN6K3ci76QbV0OWJ2637WV-wbLQJDc3pg=",
+          imageUrl: "https://media.istockphoto.com/id/1337692300/vector/orator-speaking-from-tribune.jpg?s=612x612&w=0&k=20&c=lC3TceG4QvPN6K3ci76QbV0OWJ2637WV-wbLQJDc3pg=",
         ),
         _buildEvent(
           context: context,
           title: 'Class Representative Election',
-          description:
-              'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+          description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
           startDate: '1st Aug 2024',
           endDate: '7th Aug 2024',
-          imageUrl:
-              "https://www.shutterstock.com/image-illustration/political-leader-speaking-media-background-600nw-2074143290.jpg",
+          imageUrl: "https://www.shutterstock.com/image-illustration/political-leader-speaking-media-background-600nw-2074143290.jpg",
         ),
 
         // Add more events here
@@ -82,20 +77,17 @@ class _HistoryAdaptive extends StatelessWidget {
           _buildEvent(
             context: context,
             title: 'Event $i',
-            description:
-                'Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+            description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry',
             startDate: '1st Aug 2024',
             endDate: '7th Aug 2024',
-            imageUrl:
-                "https://www.shutterstock.com/image-illustration/political-leader-speaking-media-background-600nw-2074143290.jpg",
+            imageUrl: "https://www.shutterstock.com/image-illustration/political-leader-speaking-media-background-600nw-2074143290.jpg",
           ),
         // _buildChipOptions(context),
         const SizedBox(height: 8.0),
         _buildEvent(
           context: context,
           title: 'CSA Voting',
-          description:
-              'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+          description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
           startDate: '1st July 2024',
           endDate: '31st July 2024',
           imageUrl: "https://avatars.githubusercontent.com/u/109834020?v=4",
@@ -103,22 +95,18 @@ class _HistoryAdaptive extends StatelessWidget {
         _buildEvent(
           context: context,
           title: 'Presedential Election',
-          description:
-              'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+          description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
           startDate: '1st Feb 2025',
           endDate: '31st March 2025',
-          imageUrl:
-              "https://media.istockphoto.com/id/1337692300/vector/orator-speaking-from-tribune.jpg?s=612x612&w=0&k=20&c=lC3TceG4QvPN6K3ci76QbV0OWJ2637WV-wbLQJDc3pg=",
+          imageUrl: "https://media.istockphoto.com/id/1337692300/vector/orator-speaking-from-tribune.jpg?s=612x612&w=0&k=20&c=lC3TceG4QvPN6K3ci76QbV0OWJ2637WV-wbLQJDc3pg=",
         ),
         _buildEvent(
           context: context,
           title: 'Class Representative Election',
-          description:
-              'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+          description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
           startDate: '1st Aug 2024',
           endDate: '7th Aug 2024',
-          imageUrl:
-              "https://www.shutterstock.com/image-illustration/political-leader-speaking-media-background-600nw-2074143290.jpg",
+          imageUrl: "https://www.shutterstock.com/image-illustration/political-leader-speaking-media-background-600nw-2074143290.jpg",
         ),
 
         // Add more events here
@@ -126,12 +114,10 @@ class _HistoryAdaptive extends StatelessWidget {
           _buildEvent(
             context: context,
             title: 'Event $i',
-            description:
-                'Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+            description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry',
             startDate: '1st Aug 2024',
             endDate: '7th Aug 2024',
-            imageUrl:
-                "https://www.shutterstock.com/image-illustration/political-leader-speaking-media-background-600nw-2074143290.jpg",
+            imageUrl: "https://www.shutterstock.com/image-illustration/political-leader-speaking-media-background-600nw-2074143290.jpg",
           ),
       ],
     );
@@ -158,9 +144,7 @@ class _HistoryAdaptive extends StatelessWidget {
           checkmarkColor: Colors.white,
           shape: RoundedRectangleBorder(
             side: BorderSide(
-              color: isSelected
-                  ? M3Color.of(context).primary
-                  : const Color(0xFFDADADA),
+              color: isSelected ? M3Color.of(context).primary : const Color(0xFFDADADA),
               width: 1.0,
             ),
             borderRadius: BorderRadius.circular(10.0),
@@ -174,9 +158,7 @@ class _HistoryAdaptive extends StatelessWidget {
           },
           backgroundColor: Colors.white,
           selectedColor: M3Color.of(context).primary,
-          labelStyle: M3TextTheme.of(context).bodySmall?.copyWith(
-              color: isSelected ? Colors.white : const Color(0xFF404040),
-              fontWeight: FontWeight.bold),
+          labelStyle: M3TextTheme.of(context).bodySmall?.copyWith(color: isSelected ? Colors.white : const Color(0xFF404040), fontWeight: FontWeight.bold),
         );
       },
     );

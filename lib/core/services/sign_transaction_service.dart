@@ -11,5 +11,5 @@ class SignTransactionService {
 
   final SuiClient client = SuiClient(SuiUrls.testnet);
 
-  final String packageObjectId = '0xab81384c6b7b4244cdd8d8d940810f5d5f1657aded5055dbc99d9a0c0e2d3ae2';
+  final String packageObjectId = '0xe5f1a6e59ff0ad16e5859d6b89bdf4f3165a2297c43d6b4510209de7146a7308';
 }

@@ -11,7 +11,7 @@ class _HomeAdaptive extends StatelessWidget {
       appBar: MorphingAppBar(
         title: Image.asset(
           'assets/images/vodth_logo.png',
-          height: 30,
+          height: 40,
         ),
         elevation: 0,
       ),

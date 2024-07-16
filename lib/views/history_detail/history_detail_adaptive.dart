@@ -1,9 +1,9 @@
-part of 'event_detail_view.dart';
+part of 'history_detail_view.dart';
 
-class _EventDetailAdaptive extends StatelessWidget {
-  const _EventDetailAdaptive(this.viewModel);
+class _HistoryDetailAdaptive extends StatelessWidget {
+  const _HistoryDetailAdaptive(this.viewModel);
 
-  final EventDetailViewModel viewModel;
+  final HistoryDetailViewModel viewModel;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class _EventDetailAdaptive extends StatelessWidget {
         tabs: [
           Tab(text: 'Event'),
           Tab(text: 'Candidates'),
-          // Tab(text: 'Results'),
+          Tab(text: 'Results'),
         ],
       ),
     );
@@ -40,7 +40,7 @@ class _EventDetailAdaptive extends StatelessWidget {
             children: [
               _buildEventDetail(context),
               _buildCandidates(context),
-              // _buildResults(context),
+              _buildResults(context),
             ],
           );
         }
@@ -49,9 +49,9 @@ class _EventDetailAdaptive extends StatelessWidget {
     );
   }
 
-  // Widget _buildResults(BuildContext context) {
-  //   return EventResult(viewModel: viewModel);
-  // }
+  Widget _buildResults(BuildContext context) {
+    return HistoryResult(viewModel: viewModel);
+  }
 
   Widget _buildEventDetail(BuildContext context) {
     return SingleChildScrollView(
@@ -133,7 +133,8 @@ class _EventDetailAdaptive extends StatelessWidget {
                     child: Card(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
-                        side: BorderSide(color: M3Color.of(context).primary, width: 1.0),
+                        side: BorderSide(
+                            color: M3Color.of(context).primary, width: 1.0),
                       ),
                       child: ListTile(
                         leading: Row(
@@ -141,7 +142,9 @@ class _EventDetailAdaptive extends StatelessWidget {
                           children: [
                             CircleAvatar(
                               radius: 32, // Image radius
-                              backgroundImage: NetworkImage(candidate.imageUrl ?? 'https://via.placeholder.com/150'),
+                              backgroundImage: NetworkImage(
+                                  candidate.imageUrl ??
+                                      'https://via.placeholder.com/150'),
                             ),
                           ],
                         ),
@@ -149,7 +152,10 @@ class _EventDetailAdaptive extends StatelessWidget {
                           padding: const EdgeInsets.all(12.0),
                           child: Text(
                             candidate.name ?? 'N/A',
-                            style: const TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w600),
+                            style: const TextStyle(
+                                fontSize: 16,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w600),
                           ),
                         ),
                         trailing: const Icon(Icons.arrow_forward_ios),

@@ -23,25 +23,36 @@ class _EventDetailAdaptive extends StatelessWidget {
         tabs: [
           Tab(text: 'Event'),
           Tab(text: 'Candidates'),
-          Tab(text: 'Results'),
+          // Tab(text: 'Results'),
         ],
       ),
     );
   }
 
   _buildBody(BuildContext context) {
-    return TabBarView(
-      children: [
-        _buildEventDetail(context),
-        _buildCandidates(context),
-        _buildResults(context),
-      ],
+    return FutureBuilder(
+      builder: (context, snapshot) {
+        if (viewModel.event == null) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return const Center(child: Text('Error'));
+        } else {
+          return TabBarView(
+            children: [
+              _buildEventDetail(context),
+              _buildCandidates(context),
+              // _buildResults(context),
+            ],
+          );
+        }
+      },
+      future: viewModel.load(),
     );
   }
 
-  Widget _buildResults(BuildContext context) {
-    return EventResult(viewModel: viewModel);
-  }
+  // Widget _buildResults(BuildContext context) {
+  //   return EventResult(viewModel: viewModel);
+  // }
 
   Widget _buildEventDetail(BuildContext context) {
     return SingleChildScrollView(

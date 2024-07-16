@@ -36,7 +36,8 @@ void main() async {
     // 'candidate_page' : 'candidate_page',
     // 'sui_infomation' : 'sui_infomation',
     // 'events/event_detail': 'event_detail',
-    'candidates/candidate_detail': 'candidate_detail',
+    // 'candidates/candidate_detail': 'candidate_detail',
+    'history_detail' : 'history_detail',
   };
 
   for (final view in views.entries) {

@@ -1,5 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
+import 'package:sui/sui_client.dart';
+import 'package:sui/sui_urls.dart';
+import 'package:sui/types/objects.dart';
 import 'package:vodth_mobile/core/base/base_view_model.dart';
 import 'package:vodth_mobile/core/models/vodth/candidate_model.dart';
 import 'package:vodth_mobile/core/models/vodth/event_model.dart';
@@ -15,6 +18,9 @@ class EventDetailViewModel extends BaseViewModel {
   List<CandidateModel>? candidates;
 
   EventModel? event;
+
+  SuiMoveObject? get suiEventDetail => _suiEventDetail?.data?.content;
+  SuiObjectResponse? _suiEventDetail;
 
   Future<void> load() async {
     await getEventDetail();
@@ -52,13 +58,17 @@ class EventDetailViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  Map<String, double> candidateVotes = {
-    'Candidate A': 8,
-    'Candidate B': 3,
-    'Candidate C': 4,
-  };
+  Stream<String?> getLiveEventResult() async* {
+    final client = SuiClient(SuiUrls.testnet);
 
-  double get totalVotes {
-    return candidateVotes.values.fold(0, (total, votes) => total + votes);
+    _suiEventDetail = await client.getObject(event?.suiEventId ?? '', options: SuiObjectDataOptions(showContent: true));
+  }
+
+  Stream<String?> getCandidateVoteCount(String? suiCandidateId) async* {
+    final client = SuiClient(SuiUrls.testnet);
+
+    final candidate = await client.getObject(suiCandidateId ?? '', options: SuiObjectDataOptions(showContent: true));
+
+    yield candidate.data?.content?.fields?['voted'];
   }
 }

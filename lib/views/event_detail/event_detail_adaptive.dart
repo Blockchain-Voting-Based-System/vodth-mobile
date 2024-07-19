@@ -36,12 +36,15 @@ class _EventDetailAdaptive extends StatelessWidget {
         } else if (snapshot.hasError) {
           return const Center(child: Text('Error'));
         } else {
-          return TabBarView(
-            children: [
-              _buildEventDetail(context),
-              _buildCandidates(context),
-              _buildResults(context),
-            ],
+          return RefreshIndicator(
+            onRefresh: () => viewModel.load(),
+            child: TabBarView(
+              children: [
+                _buildEventDetail(context),
+                _buildCandidates(context),
+                _buildResults(context),
+              ],
+            ),
           );
         }
       },
@@ -50,17 +53,27 @@ class _EventDetailAdaptive extends StatelessWidget {
   }
 
   Widget _buildResults(BuildContext context) {
-    return EventResult(viewModel: viewModel);
+    return RefreshIndicator(
+      onRefresh: () => viewModel.load(),
+      child: StreamBuilder(
+          stream: viewModel.getLiveEventResult(),
+          builder: (context, snapshot) {
+            return EventResult(viewModel: viewModel);
+          }),
+    );
   }
 
   Widget _buildEventDetail(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildEventBanner(),
-          _buildEventInfo(context),
-        ],
+    return RefreshIndicator(
+      onRefresh: () => viewModel.load(),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildEventBanner(),
+            _buildEventInfo(context),
+          ],
+        ),
       ),
     );
   }
@@ -109,68 +122,71 @@ class _EventDetailAdaptive extends StatelessWidget {
   }
 
   Widget _buildCandidates(BuildContext context) {
-    return ListView(
-      physics: const NeverScrollableScrollPhysics(),
-      padding: const EdgeInsets.all(16.0),
-      shrinkWrap: true,
-      children: viewModel.candidates != null
-          ? [
-              const Text(
-                'Candidates',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w900,
-                ),
-              ),
-              ...viewModel.candidates!.map(
-                (candidate) {
-                  return GestureDetector(
-                    onTap: () {
-                      context.pushRoute(
-                        CandidateDetailRoute(id: candidate.id),
-                      );
-                    },
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                        side: BorderSide(color: M3Color.of(context).primary, width: 1.0),
-                      ),
-                      child: ListTile(
-                        leading: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            CircleAvatar(
-                              radius: 32, // Image radius
-                              backgroundImage: NetworkImage(candidate.imageUrl ?? 'https://via.placeholder.com/150'),
-                            ),
-                          ],
-                        ),
-                        title: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Text(
-                            candidate.name ?? 'N/A',
-                            style: const TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w600),
-                          ),
-                        ),
-                        trailing: const Icon(Icons.arrow_forward_ios),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ]
-          : [
-              const Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Text(
-                  'No candidate',
+    return RefreshIndicator(
+      onRefresh: () => viewModel.load(),
+      child: ListView(
+        physics: const NeverScrollableScrollPhysics(),
+        padding: const EdgeInsets.all(16.0),
+        shrinkWrap: true,
+        children: viewModel.candidates != null
+            ? [
+                const Text(
+                  'Candidates',
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w900,
                   ),
                 ),
-              ),
-            ],
+                ...viewModel.candidates!.map(
+                  (candidate) {
+                    return GestureDetector(
+                      onTap: () {
+                        context.pushRoute(
+                          CandidateDetailRoute(id: candidate.id),
+                        );
+                      },
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          side: BorderSide(color: M3Color.of(context).primary, width: 1.0),
+                        ),
+                        child: ListTile(
+                          leading: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              CircleAvatar(
+                                radius: 32, // Image radius
+                                backgroundImage: NetworkImage(candidate.imageUrl ?? 'https://via.placeholder.com/150'),
+                              ),
+                            ],
+                          ),
+                          title: Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Text(
+                              candidate.name ?? 'N/A',
+                              style: const TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w600),
+                            ),
+                          ),
+                          trailing: const Icon(Icons.arrow_forward_ios),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ]
+            : [
+                const Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Text(
+                    'No candidate',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                ),
+              ],
+      ),
     );
   }
 

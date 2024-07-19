@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pie_chart/pie_chart.dart';
+import 'package:vodth_mobile/core/models/vodth/candidate_model.dart';
 import 'package:vodth_mobile/core/theme/m3/m3_color.dart';
 import 'package:vodth_mobile/views/event_detail/event_detail_view_model.dart';
 
@@ -22,7 +22,7 @@ class EventResult extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          _buildPieChart(context),
+          // _buildPieChart(context),
           const SizedBox(height: 24),
           _buildTotalVotes(context),
           const SizedBox(height: 24),
@@ -37,34 +37,7 @@ class EventResult extends StatelessWidget {
     );
   }
 
-  Widget _buildPieChart(context) {
-    return PieChart(
-      dataMap: viewModel.candidateVotes,
-      chartType: ChartType.disc,
-      animationDuration: const Duration(milliseconds: 800),
-      chartLegendSpacing: 48,
-      colorList: const [
-        Colors.blueAccent,
-        Colors.yellowAccent,
-        Colors.greenAccent,
-      ],
-      legendOptions: const LegendOptions(
-        showLegends: false,
-        legendPosition: LegendPosition.right,
-      ),
-      chartValuesOptions: const ChartValuesOptions(
-        showChartValueBackground: false,
-        showChartValues: true,
-        showChartValuesOutside: false,
-        // decimalPlaces: 2,
-        showChartValuesInPercentage: true,
-      ),
-      chartRadius: MediaQuery.of(context).size.width / 2.5,
-    );
-  }
-
   Widget _buildTotalVotes(context) {
-    int totalVotes = viewModel.candidateVotes.values.reduce((a, b) => a + b).toInt();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -77,7 +50,7 @@ class EventResult extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         Text(
-          totalVotes.toString(),
+          viewModel.suiEventDetail?.fields['voted'].toString() ?? 'N/A',
           style: TextStyle(
             fontSize: 24,
             color: M3Color.of(context).primary,
@@ -89,58 +62,62 @@ class EventResult extends StatelessWidget {
   }
 
   Widget _buildRankingTable() {
-    List<MapEntry<String, double>> sortedEntries = viewModel.candidateVotes.entries.toList()..sort((a, b) => b.value.compareTo(a.value));
-
     return ListView.builder(
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      itemCount: sortedEntries.length,
+      itemCount: viewModel.candidates?.length,
       itemBuilder: (context, index) {
-        final entry = sortedEntries[index];
+        CandidateModel candidate = viewModel.candidates![index];
         return Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
             side: BorderSide(color: M3Color.of(context).primary, width: 1.0),
           ),
-          child: ListTile(
-            leading: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  'No.${index + 1}',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: M3Color.of(context).primary,
-                  ),
-                ),
-                const SizedBox(width: 16),
-                const CircleAvatar(
-                  radius: 32, // Image radius
-                  backgroundImage: AssetImage('assets/images/yura.png'),
-                ),
-              ],
-            ),
-            title: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Text(
-                entry.key,
-                style: const TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w600),
-              ),
-            ),
-            trailing: Text(
-              '${(entry.value / viewModel.totalVotes * 100).toStringAsFixed(2)}%',
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.grey[600],
-              ),
-            ),
-            onTap: () {
-              // context.router.push(const CandidatePageRoute());
-            },
-          ),
+          child: _buildCandidateTile(index, context, candidate),
         );
       },
+    );
+  }
+
+  ListTile _buildCandidateTile(int index, BuildContext context, CandidateModel candidate) {
+    return ListTile(
+      leading: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            'No.${index + 1}',
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: M3Color.of(context).primary,
+            ),
+          ),
+          const SizedBox(width: 16),
+          CircleAvatar(
+            radius: 32, // Image radius
+            backgroundImage: Image.network(candidate.imageUrl ?? '').image,
+          ),
+        ],
+      ),
+      title: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Text(
+          candidate.name ?? 'N/A',
+          style: const TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w600),
+        ),
+      ),
+      trailing: StreamBuilder(
+        stream: viewModel.getCandidateVoteCount(candidate.suiCandidateId),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return Text(
+              snapshot.data.toString(),
+              style: const TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w600),
+            );
+          }
+          return const CircularProgressIndicator();
+        },
+      ),
     );
   }
 }

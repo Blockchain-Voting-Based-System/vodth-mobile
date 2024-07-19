@@ -23,7 +23,7 @@ class _EventDetailAdaptive extends StatelessWidget {
         tabs: [
           Tab(text: 'Event'),
           Tab(text: 'Candidates'),
-          // Tab(text: 'Results'),
+          Tab(text: 'Results'),
         ],
       ),
     );
@@ -41,7 +41,7 @@ class _EventDetailAdaptive extends StatelessWidget {
             children: [
               _buildEventDetail(context),
               _buildCandidates(context),
-              // _buildResults(context),
+              _buildResults(context),
             ],
           );
         }
@@ -50,9 +50,9 @@ class _EventDetailAdaptive extends StatelessWidget {
     );
   }
 
-  // Widget _buildResults(BuildContext context) {
-  //   return EventResult(viewModel: viewModel);
-  // }
+  Widget _buildResults(BuildContext context) {
+    return EventResult(viewModel: viewModel);
+  }
 
   Widget _buildEventDetail(BuildContext context) {
     return SingleChildScrollView(

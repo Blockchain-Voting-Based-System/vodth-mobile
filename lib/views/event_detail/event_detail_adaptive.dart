@@ -125,7 +125,6 @@ class _EventDetailAdaptive extends StatelessWidget {
     return RefreshIndicator(
       onRefresh: () => viewModel.load(),
       child: ListView(
-        physics: const NeverScrollableScrollPhysics(),
         padding: const EdgeInsets.all(16.0),
         shrinkWrap: true,
         children: viewModel.candidates != null

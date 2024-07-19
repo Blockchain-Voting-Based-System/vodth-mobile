@@ -5,7 +5,7 @@ class HistoryViewModel extends BaseViewModel {
   String get selectedChip => _selectedChip;
 
   int get eventCount => _eventCount;
-  int _eventCount = 0;
+  final int _eventCount = 0;
 
   void selectChip(String chip) {
     _selectedChip = chip;

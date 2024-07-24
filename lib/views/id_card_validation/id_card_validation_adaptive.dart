@@ -29,7 +29,7 @@ class _IdCardValidationAdaptive extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("ID Classifier"),
+        title: const Text("ID Classifier"),
       ),
       body: Center(
         child: Column(
@@ -37,17 +37,18 @@ class _IdCardValidationAdaptive extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () => _pickImage(context),
-              child: Text("Pick an Image"),
+              child: const Text("Pick an Image"),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Consumer<IdCardValidationViewModel>(
               builder: (context, viewModel, child) {
                 return Column(
                   children: [
                     if (viewModel.selectedImage != null)
                       Image.memory(viewModel.selectedImage!),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Text(viewModel.result),
+                    Text(viewModel.extractedText),
                   ],
                 );
               },

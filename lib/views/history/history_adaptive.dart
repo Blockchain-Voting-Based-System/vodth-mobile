@@ -75,7 +75,9 @@ class _HistoryAdaptive extends StatelessWidget {
           checkmarkColor: Colors.white,
           shape: RoundedRectangleBorder(
             side: BorderSide(
-              color: isSelected ? M3Color.of(context).primary : const Color(0xFFDADADA),
+              color: isSelected
+                  ? M3Color.of(context).primary
+                  : const Color(0xFFDADADA),
               width: 1.0,
             ),
             borderRadius: BorderRadius.circular(10.0),
@@ -89,7 +91,9 @@ class _HistoryAdaptive extends StatelessWidget {
           },
           backgroundColor: Colors.white,
           selectedColor: M3Color.of(context).primary,
-          labelStyle: M3TextTheme.of(context).bodySmall?.copyWith(color: isSelected ? Colors.white : const Color(0xFF404040), fontWeight: FontWeight.bold),
+          labelStyle: M3TextTheme.of(context).bodySmall?.copyWith(
+              color: isSelected ? Colors.white : const Color(0xFF404040),
+              fontWeight: FontWeight.bold),
         );
       },
     );

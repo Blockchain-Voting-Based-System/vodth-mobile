@@ -48,6 +48,7 @@ class _IdCardValidationAdaptive extends StatelessWidget {
                       Image.memory(viewModel.selectedImage!),
                     const SizedBox(height: 20),
                     Text(viewModel.result),
+                    Text(viewModel.extractedText),
                   ],
                 );
               },

@@ -64,7 +64,7 @@ class _HomeAdaptive extends StatelessWidget {
             if (selected) {
               viewModel.selectChip(label);
               if (label == 'Public') {
-                context.router.push(IdCardValidationRoute());
+                context.router.push(const IdCardValidationRoute());
               }
             }
           },

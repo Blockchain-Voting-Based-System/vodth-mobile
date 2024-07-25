@@ -27,4 +27,5 @@ final routers = [
   AutoRoute(page: SuiInfomationRoute.page),
   AutoRoute(page: VoteResultRoute.page),
   AutoRoute(page: IdCardValidationRoute.page),
+  AutoRoute(page: NationalIdCardOcrRoute.page),
 ];

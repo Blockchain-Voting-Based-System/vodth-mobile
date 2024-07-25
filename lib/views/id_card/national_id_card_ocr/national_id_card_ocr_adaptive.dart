@@ -1,9 +1,9 @@
-part of 'id_card_validation_view.dart';
+part of 'national_id_card_ocr_view.dart';
 
-class _IdCardValidationAdaptive extends StatelessWidget {
-  const _IdCardValidationAdaptive(this.viewModel);
+class _NationalIdCardOcrAdaptive extends StatelessWidget {
+  const _NationalIdCardOcrAdaptive(this.viewModel);
 
-  final IdCardValidationViewModel? viewModel;
+  final NationalIdCardOcrViewModel? viewModel;
 
   Future<void> _pickImage(BuildContext context) async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
@@ -16,12 +16,11 @@ class _IdCardValidationAdaptive extends StatelessWidget {
       if (file.bytes != null) {
         fileBytes = file.bytes!;
       } else {
-        // Read the file bytes manually
         File filePath = File(file.path!);
         fileBytes = await filePath.readAsBytes();
       }
-      await Provider.of<IdCardValidationViewModel>(context, listen: false)
-          .classifyID(fileBytes);
+      await Provider.of<NationalIdCardOcrViewModel>(context, listen: false)
+          .ocrNationalID(fileBytes);
     }
   }
 
@@ -29,7 +28,7 @@ class _IdCardValidationAdaptive extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("ID Classifier"),
+        title: const Text("National ID OCR"),
       ),
       body: Center(
         child: Column(
@@ -40,7 +39,7 @@ class _IdCardValidationAdaptive extends StatelessWidget {
               child: const Text("Pick an Image"),
             ),
             const SizedBox(height: 20),
-            Consumer<IdCardValidationViewModel>(
+            Consumer<NationalIdCardOcrViewModel>(
               builder: (context, viewModel, child) {
                 return Column(
                   children: [

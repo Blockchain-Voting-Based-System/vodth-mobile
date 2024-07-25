@@ -9,7 +9,6 @@ import 'package:vodth_mobile/core/routes/app_router.gr.dart';
 import 'package:vodth_mobile/core/routes/routes_export.dart';
 import 'package:vodth_mobile/core/theme/m3/m3_color.dart';
 import 'package:vodth_mobile/core/theme/m3/m3_text_theme.dart';
-import 'package:vodth_mobile/views/widgets/vm_tap_effect.dart';
 
 import 'history_view_model.dart';
 

@@ -10,7 +10,7 @@ class _HistoryAdaptive extends StatelessWidget {
     return Scaffold(
       appBar: MorphingAppBar(
         title: Text(
-          'Vote History',
+          tr('title.vote_history'),
           style: M3TextTheme.of(context).titleLarge?.copyWith(
                 color: M3Color.of(context).primary,
                 fontWeight: FontWeight.bold,
@@ -21,26 +21,6 @@ class _HistoryAdaptive extends StatelessWidget {
     );
   }
 
-  // Widget _buildBody(BuildContext context) {
-  //   return ListView(
-  //     padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-  //     children: [
-  //       _buildChipOptions(context),
-  //       ConfigConstant.sizedBoxH2,
-  //       // _buildPrivateVoteEvents(),
-  //     ],
-  //   );
-  // }
-  // Widget _buildBody(BuildContext context) {
-  //   return ListView(
-  //     padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-  //     children: [
-  //       _buildChipOptions(context),
-  //       ConfigConstant.sizedBoxH2,
-  //       // _buildPrivateVoteEvents(),
-  //     ],
-  //   );
-  // }
   Widget _buildBody(BuildContext context) {
     return ListView(
       padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
@@ -92,111 +72,6 @@ class _HistoryAdaptive extends StatelessWidget {
           labelStyle: M3TextTheme.of(context).bodySmall?.copyWith(color: isSelected ? Colors.white : const Color(0xFF404040), fontWeight: FontWeight.bold),
         );
       },
-    );
-  }
-
-  Widget _buildEvent({
-    required BuildContext context,
-    required String title,
-    required String description,
-    required String imageUrl,
-    required String startDate,
-    required String endDate,
-  }) {
-    return VmTapEffect(
-      effects: const [
-        VmTapEffectType.scaleDown,
-      ],
-      onTap: () {
-        context.pushRoute(HistoryDetailRoute(id: 'GCBrh8zy4XRdtp0j6yFC'));
-      },
-      child: Card(
-        color: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildEventImage(context: context, imageUrl: imageUrl),
-              const SizedBox(width: 16.0),
-              _buildEventInformation(
-                context: context,
-                title: title,
-                description: description,
-                startDate: startDate,
-                endDate: endDate,
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  _buildEventImage({
-    required BuildContext context,
-    required String imageUrl,
-  }) {
-    return ClipRRect(
-      borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-      child: Image.network(
-        imageUrl,
-        width: 90,
-        height: 90,
-      ),
-    );
-  }
-
-  Widget _buildEventInformation({
-    required BuildContext context,
-    required String title,
-    required String description,
-    required String startDate,
-    required String endDate,
-  }) {
-    return Expanded(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: M3TextTheme.of(context).titleMedium?.copyWith(
-                  color: Colors.grey,
-                  fontWeight: FontWeight.bold,
-                ),
-          ),
-          const SizedBox(height: 8.0),
-          Text(
-            description,
-            style: M3TextTheme.of(context).bodySmall?.copyWith(
-                  color: const Color(0xFF404040),
-                ),
-            maxLines: 3,
-            overflow: TextOverflow.ellipsis,
-          ),
-          const SizedBox(height: 8.0),
-          RichText(
-            text: TextSpan(
-              text: 'Voted: ',
-              style: M3TextTheme.of(context).bodySmall?.copyWith(
-                    color: const Color(0xFF404040),
-                  ),
-              children: <TextSpan>[
-                TextSpan(
-                  text: 'Candidate A',
-                  style: M3TextTheme.of(context).bodySmall?.copyWith(
-                        color: const Color(0xFF404040),
-                        fontWeight: FontWeight.w500,
-                      ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
     );
   }
 

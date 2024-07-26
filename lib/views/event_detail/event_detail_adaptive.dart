@@ -18,11 +18,11 @@ class _EventDetailAdaptive extends StatelessWidget {
 
   AppBar _buildAppBar() {
     return AppBar(
-      bottom: const TabBar(
+      bottom: TabBar(
         tabs: [
-          Tab(text: 'Event'),
-          Tab(text: 'Candidates'),
-          Tab(text: 'Results'),
+          Tab(text: tr('stepper.event')),
+          Tab(text: tr('stepper.candidates')),
+          Tab(text: tr('stepper.results')),
         ],
       ),
     );
@@ -53,27 +53,22 @@ class _EventDetailAdaptive extends StatelessWidget {
   }
 
   Widget _buildResults(BuildContext context) {
-    return RefreshIndicator(
-      onRefresh: () => viewModel.load(),
-      child: StreamBuilder(
-          stream: viewModel.getLiveEventResult(),
-          builder: (context, snapshot) {
-            return EventResult(viewModel: viewModel);
-          }),
+    return StreamBuilder(
+      stream: viewModel.getLiveEventResult(),
+      builder: (context, snapshot) {
+        return EventResult(viewModel: viewModel);
+      },
     );
   }
 
   Widget _buildEventDetail(BuildContext context) {
-    return RefreshIndicator(
-      onRefresh: () => viewModel.load(),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildEventBanner(),
-            _buildEventInfo(context),
-          ],
-        ),
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildEventBanner(),
+          _buildEventInfo(context),
+        ],
       ),
     );
   }
@@ -108,11 +103,10 @@ class _EventDetailAdaptive extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           TextButton(
-            onPressed: () {
-              _showEventDetails(context);
-            },
-            child: const Text('More Detail'),
-          ),
+              onPressed: () {
+                _showEventDetails(context);
+              },
+              child: Text(tr('button.More_Detail'))),
           const SizedBox(height: 8),
           const Divider(),
           const SizedBox(height: 8),
@@ -122,70 +116,67 @@ class _EventDetailAdaptive extends StatelessWidget {
   }
 
   Widget _buildCandidates(BuildContext context) {
-    return RefreshIndicator(
-      onRefresh: () => viewModel.load(),
-      child: ListView(
-        padding: const EdgeInsets.all(16.0),
-        shrinkWrap: true,
-        children: viewModel.candidates != null
-            ? [
-                const Text(
-                  'Candidates',
+    return ListView(
+      padding: const EdgeInsets.all(16.0),
+      shrinkWrap: true,
+      children: viewModel.candidates != null
+          ? [
+              Text(
+                tr('stepper.candidates'),
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+              ...viewModel.candidates!.map(
+                (candidate) {
+                  return GestureDetector(
+                    onTap: () {
+                      context.pushRoute(
+                        CandidateDetailRoute(id: candidate.id),
+                      );
+                    },
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        side: BorderSide(color: M3Color.of(context).primary, width: 1.0),
+                      ),
+                      child: ListTile(
+                        leading: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            CircleAvatar(
+                              radius: 32, // Image radius
+                              backgroundImage: NetworkImage(candidate.imageUrl ?? 'https://via.placeholder.com/150'),
+                            ),
+                          ],
+                        ),
+                        title: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Text(
+                            candidate.name ?? 'N/A',
+                            style: const TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                        trailing: const Icon(Icons.arrow_forward_ios),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ]
+          : [
+              const Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text(
+                  'No candidate',
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w900,
                   ),
                 ),
-                ...viewModel.candidates!.map(
-                  (candidate) {
-                    return GestureDetector(
-                      onTap: () {
-                        context.pushRoute(
-                          CandidateDetailRoute(id: candidate.id),
-                        );
-                      },
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                          side: BorderSide(color: M3Color.of(context).primary, width: 1.0),
-                        ),
-                        child: ListTile(
-                          leading: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              CircleAvatar(
-                                radius: 32, // Image radius
-                                backgroundImage: NetworkImage(candidate.imageUrl ?? 'https://via.placeholder.com/150'),
-                              ),
-                            ],
-                          ),
-                          title: Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: Text(
-                              candidate.name ?? 'N/A',
-                              style: const TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w600),
-                            ),
-                          ),
-                          trailing: const Icon(Icons.arrow_forward_ios),
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ]
-            : [
-                const Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Text(
-                    'No candidate',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w900,
-                    ),
-                  ),
-                ),
-              ],
-      ),
+              ),
+            ],
     );
   }
 

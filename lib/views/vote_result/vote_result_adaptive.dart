@@ -10,9 +10,9 @@ class _VoteResultAdaptive extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text(
-          'Result',
-          style: TextStyle(
+        title: Text(tr('button.Result')
+          ,
+          style: const TextStyle(
             color: Colors.blue,
             fontSize: 24,
             fontWeight: FontWeight.bold,
@@ -42,9 +42,9 @@ class _VoteResultAdaptive extends StatelessWidget {
           const SizedBox(height: 24),
           _buildTotalVotes(context),
           const SizedBox(height: 24),
-          const Text(
-            'Vote Ranking',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+           Text(
+            tr('button.Vote_Ranking'),
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 8),
           _buildRankingTable(),
@@ -85,9 +85,9 @@ class _VoteResultAdaptive extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const Text(
-          'Total Votes',
-          style: TextStyle(
+         Text(
+          tr('button.Total_Votes'),
+          style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
@@ -126,7 +126,7 @@ class _VoteResultAdaptive extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  'No.${index + 1}',
+                  '${tr('no')}.${index + 1}',
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,

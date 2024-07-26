@@ -35,9 +35,9 @@ class _HomeAdaptive extends StatelessWidget {
       spacing: 8.0,
       runSpacing: 8.0,
       children: [
-        _buildChip(context, 'All'),
-        _buildChip(context, 'Public'),
-        _buildChip(context, 'Private'),
+        _buildChip(context, tr('button.All')),
+        _buildChip(context,tr('button.Public') ),
+        _buildChip(context, tr('button.Private')),
       ],
     );
   }

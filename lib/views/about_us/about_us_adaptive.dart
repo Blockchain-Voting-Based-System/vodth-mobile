@@ -10,9 +10,9 @@ class _AboutUsAdaptive extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text(
-          'About us',
-          style: TextStyle(
+        title:  Text(
+          tr('title.aboutus'),
+          style: const TextStyle(
             color: Colors.blue,
             fontSize: 24,
             fontWeight: FontWeight.bold,
@@ -47,8 +47,8 @@ class _AboutUsAdaptive extends StatelessWidget {
           Text(viewModel.aboutUs[0]['aboutus_desc'].toString(),
               style: const TextStyle(fontSize: 16)),
           const SizedBox(height: 24),
-          const Text('Our Mission',
-              style: TextStyle(
+          Text(tr('title.Our_Mission'),
+              style: const TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                   color: Colors.grey)),

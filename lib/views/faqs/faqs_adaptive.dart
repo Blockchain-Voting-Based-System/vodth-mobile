@@ -43,7 +43,7 @@ class _FaqsAdaptive extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
-          'FAQs',
+          tr('title.FAQs'),
           style: TextStyle(
             color: M3Color.of(context).primary,
             fontSize: 24,

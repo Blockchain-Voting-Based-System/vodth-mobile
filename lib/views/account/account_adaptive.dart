@@ -68,7 +68,7 @@ class _AccountAdaptive extends StatelessWidget {
               ),
               Row(
                 children: [
-                  Text('Account Address: ', style: M3TextTheme.of(context).labelMedium),
+                  Text('${tr('title.Account_Address')}:', style: M3TextTheme.of(context).labelMedium),
                   const VmSuiAddress(),
                 ],
               ),
@@ -84,14 +84,14 @@ class _AccountAdaptive extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 16),
-        _buildSectionTitle(context, 'Account Information'),
-        _buildAccountItem(context, 'SUI Wallet', Icons.wallet, () {
+        _buildSectionTitle(context, tr('title.Account_Information')),
+        _buildAccountItem(context, tr('title.Sui_Wallet'), Icons.wallet, () {
           context.router.push(const SuiInfomationRoute());
         }),
-        _buildAccountItem(context, 'Edit Profile', Icons.person, () {
+        _buildAccountItem(context, tr('title.Edit_Profile'), Icons.person, () {
           context.router.push(const EditProfileRoute());
         }),
-        _buildAccountItem(context, 'Change Password', Icons.lock, () {}),
+        _buildAccountItem(context, tr('title.Change_Password'), Icons.lock, () {}),
         const SizedBox(height: 24),
       ],
     );
@@ -101,12 +101,12 @@ class _AccountAdaptive extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildSectionTitle(context, 'Preferences'),
-        _buildAccountItem(context, 'Choose Languages', Icons.language, () {
+        _buildSectionTitle(context, tr('title.Preferences')),
+        _buildAccountItem(context, tr('title.Choose_Languages'), Icons.language, () {
           VmLanuagesBottomSheet().show(context);
         }),
-        _buildAccountItem(context, 'Notifications', Icons.notifications, () {}),
-        _buildAccountItem(context, 'Themes', Icons.palette, () {
+        _buildAccountItem(context, tr('title.Notifications'), Icons.notifications, () {}),
+        _buildAccountItem(context, tr('title.Themes'), Icons.palette, () {
           // Handle Themes tap
         }),
         const SizedBox(height: 16),
@@ -120,11 +120,11 @@ class _AccountAdaptive extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildSectionTitle(context, 'About Us'),
-        _buildAccountItem(context, 'About Us', Icons.info, () {
+        _buildSectionTitle(context, tr('title.aboutus')),
+        _buildAccountItem(context, tr('title.aboutus'), Icons.info, () {
           context.router.push(const AboutUsRoute());
         }),
-        _buildAccountItem(context, 'FAQs', Icons.question_mark, () {
+        _buildAccountItem(context, tr('title.FAQs'), Icons.question_mark, () {
           context.router.push(const FaqsRoute());
         }),
         const SizedBox(height: 16),
@@ -134,7 +134,7 @@ class _AccountAdaptive extends StatelessWidget {
 
   Widget _buildLogout(BuildContext context) {
     return ListTile(
-      title: Text('Logout', style: TextStyle(color: M3Color.of(context).error)),
+      title: Text(tr('title.Logout'), style: TextStyle(color: M3Color.of(context).error)),
       leading: Icon(Icons.logout, color: M3Color.of(context).error),
       onTap: () {
         context.router.push(const LoginRoute());

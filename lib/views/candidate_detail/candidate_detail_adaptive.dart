@@ -12,7 +12,7 @@ class _CandidateDetailAdaptive extends StatelessWidget {
       body: _buildBody(context),
       bottomNavigationBar: VmBottomNavigationWrapper(
         child: VmButton.filled(
-          label: 'Vote',
+          label: tr('button.Vote'),
           onPressed: () async {
             if (viewModel.event?.type == 'private') {
               _showSecretKeyDialog(context);
@@ -100,7 +100,7 @@ class _CandidateDetailAdaptive extends StatelessWidget {
           children: [
             Expanded(
               child: Text(
-                'Presedent of CADT',
+                'President of CADT',
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                       fontStyle: FontStyle.italic,
                       overflow: TextOverflow.ellipsis,

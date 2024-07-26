@@ -1,5 +1,6 @@
 library vote_result;
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:vodth_mobile/core/base/view_model_provider.dart';

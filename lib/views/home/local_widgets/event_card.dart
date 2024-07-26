@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:vodth_mobile/core/theme/theme_constant.dart';
 
@@ -65,6 +66,7 @@ class EventCard extends StatelessWidget {
   }
 
   Widget _buildEventInformation() {
+    String date = time.split('T').first;
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -93,7 +95,7 @@ class EventCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Type: $type', overflow: TextOverflow.clip,
+                   ('${tr('type')}: $type'), overflow: TextOverflow.clip,
                   maxLines: null, // Add this line
                   style: const TextStyle(
                     fontSize: 12,
@@ -102,7 +104,8 @@ class EventCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  'Date: ${time.split('T').first}',
+                  // 'Date: ${time.split('T').first}',
+                  ('${tr('date')}: $date'),
                   overflow: TextOverflow.clip,
                   maxLines: null, // Add this line
                   style: const TextStyle(

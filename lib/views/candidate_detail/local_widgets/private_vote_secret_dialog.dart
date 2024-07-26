@@ -61,7 +61,7 @@ class PrivateVoteSecretDialog extends StatelessWidget {
           child: TextButton(
               child:  Text(
                 tr('button.Vote'),
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
               ),
               onPressed: () async {
                 await MessengerService.of(context).showBlankLoading(

@@ -38,6 +38,8 @@ void main() async {
     // 'events/event_detail': 'event_detail',
     // 'candidates/candidate_detail': 'candidate_detail',
     'history_detail' : 'history_detail',
+    // 'candidates/candidate_detail': 'candidate_detail',
+    // 'id_card/id_card_validation': 'id_card_validation',
   };
 
   for (final view in views.entries) {

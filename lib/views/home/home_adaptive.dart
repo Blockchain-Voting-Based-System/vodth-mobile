@@ -51,7 +51,9 @@ class _HomeAdaptive extends StatelessWidget {
           showCheckmark: false,
           shape: RoundedRectangleBorder(
             side: BorderSide(
-              color: isSelected ? M3Color.of(context).primary : const Color(0xFFDADADA),
+              color: isSelected
+                  ? M3Color.of(context).primary
+                  : const Color(0xFFDADADA),
               width: 1.0,
             ),
             borderRadius: BorderRadius.circular(8.0),
@@ -61,11 +63,16 @@ class _HomeAdaptive extends StatelessWidget {
           onSelected: (bool selected) {
             if (selected) {
               viewModel.selectChip(label);
+              if (label == 'Public') {
+                context.router.push(const IdCardValidationRoute());
+              }
             }
           },
           backgroundColor: Colors.white,
           selectedColor: M3Color.of(context).primary,
-          labelStyle: M3TextTheme.of(context).bodySmall?.copyWith(color: isSelected ? Colors.white : const Color(0xFF404040), fontWeight: FontWeight.bold),
+          labelStyle: M3TextTheme.of(context).bodySmall?.copyWith(
+              color: isSelected ? Colors.white : const Color(0xFF404040),
+              fontWeight: FontWeight.bold),
         );
       },
     );
@@ -88,7 +95,8 @@ class _HomeAdaptive extends StatelessWidget {
                   title: event.name ?? 'N/A',
                   time: event.startDate ?? 'N/A',
                   type: event.type ?? 'N/A',
-                  thumbnailUrl: event.imageUrl ?? 'https://picsum.photos/200/300',
+                  thumbnailUrl:
+                      event.imageUrl ?? 'https://picsum.photos/200/300',
                   description: event.description ?? 'N/A',
                 ),
               ),

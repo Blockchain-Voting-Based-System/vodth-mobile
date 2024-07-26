@@ -19,14 +19,17 @@ class _HomeAdaptive extends StatelessWidget {
     );
   }
 
-  Widget _buildBody(context) {
-    return ListView(
-      padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-      children: [
-        _buildChipOptions(context),
-        const SizedBox(height: 16.0),
-        _buildEvents(context, viewModel.eventsList ?? []),
-      ],
+  Widget _buildBody(BuildContext context) {
+    return RefreshIndicator(
+      onRefresh: () => EventService.instance.fetchEventsAndSaveToLocalStorage(),
+      child: ListView(
+        padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+        children: [
+          _buildChipOptions(context),
+          const SizedBox(height: 16.0),
+          _buildEvents(context),
+        ],
+      ),
     );
   }
 
@@ -36,7 +39,7 @@ class _HomeAdaptive extends StatelessWidget {
       runSpacing: 8.0,
       children: [
         _buildChip(context, tr('button.All')),
-        _buildChip(context,tr('button.Public') ),
+        _buildChip(context, tr('button.Public')),
         _buildChip(context, tr('button.Private')),
       ],
     );
@@ -51,9 +54,7 @@ class _HomeAdaptive extends StatelessWidget {
           showCheckmark: false,
           shape: RoundedRectangleBorder(
             side: BorderSide(
-              color: isSelected
-                  ? M3Color.of(context).primary
-                  : const Color(0xFFDADADA),
+              color: isSelected ? M3Color.of(context).primary : const Color(0xFFDADADA),
               width: 1.0,
             ),
             borderRadius: BorderRadius.circular(8.0),
@@ -71,40 +72,56 @@ class _HomeAdaptive extends StatelessWidget {
           backgroundColor: Colors.white,
           selectedColor: M3Color.of(context).primary,
           labelStyle: M3TextTheme.of(context).bodySmall?.copyWith(
-              color: isSelected ? Colors.white : const Color(0xFF404040),
-              fontWeight: FontWeight.bold),
+                color: isSelected ? Colors.white : const Color(0xFF404040),
+                fontWeight: FontWeight.bold,
+              ),
         );
       },
     );
   }
 
-  Widget _buildEvents(BuildContext context, List<EventModel> events) {
-    return Column(
-      children: [
-        ...events.map((event) {
-          return Column(
-            children: [
-              VmTapEffect(
-                onTap: () {
-                  context.pushRoute(EventDetailRoute(id: event.id.toString()));
-                },
-                effects: const [
-                  VmTapEffectType.scaleDown,
-                ],
-                child: EventCard(
-                  title: event.name ?? 'N/A',
-                  time: event.startDate ?? 'N/A',
-                  type: event.type ?? 'N/A',
-                  thumbnailUrl:
-                      event.imageUrl ?? 'https://picsum.photos/200/300',
-                  description: event.description ?? 'N/A',
-                ),
-              ),
-              const SizedBox(height: 8),
-            ],
+  Widget _buildEvents(BuildContext context) {
+    return FutureBuilder(
+      future: EventService.instance.fetchEventsAndSaveToLocalStorage(),
+      builder: (context, snapshot) {
+        if (EventService.instance.events == null) {
+          return const Center(
+            child: CircularProgressIndicator(),
           );
-        })
-      ],
+        } else if (EventService.instance.events!.isEmpty) {
+          return const Center(
+            child: Text('No events found'),
+          );
+        }
+        return Column(
+          children: [
+            ...EventService.instance.events!.map(
+              (event) {
+                return Column(
+                  children: [
+                    VmTapEffect(
+                      onTap: () {
+                        context.pushRoute(EventDetailRoute(id: event.id.toString()));
+                      },
+                      effects: const [
+                        VmTapEffectType.scaleDown,
+                      ],
+                      child: EventCard(
+                        title: event.name ?? 'N/A',
+                        time: event.startDate ?? 'N/A',
+                        type: event.type ?? 'N/A',
+                        thumbnailUrl: event.imageUrl ?? 'https://picsum.photos/200/300',
+                        description: event.description ?? 'N/A',
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                  ],
+                );
+              },
+            )
+          ],
+        );
+      },
     );
   }
 }

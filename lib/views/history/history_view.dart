@@ -1,5 +1,6 @@
 library history;
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:swipeable_page_route/swipeable_page_route.dart';
 import 'package:vodth_mobile/core/base/view_model_provider.dart';

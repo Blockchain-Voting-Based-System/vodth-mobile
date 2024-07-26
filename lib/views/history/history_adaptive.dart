@@ -10,7 +10,7 @@ class _HistoryAdaptive extends StatelessWidget {
     return Scaffold(
       appBar: MorphingAppBar(
         title: Text(
-          'Vote History',
+          tr('title.vote_history'),
           style: M3TextTheme.of(context).titleLarge?.copyWith(
                 color: M3Color.of(context).primary,
                 fontWeight: FontWeight.bold,

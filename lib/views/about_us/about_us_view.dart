@@ -1,5 +1,6 @@
 library about_us;
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:vodth_mobile/core/routes/routes_export.dart';
 import 'package:vodth_mobile/core/base/view_model_provider.dart';
 import 'package:flutter/material.dart';

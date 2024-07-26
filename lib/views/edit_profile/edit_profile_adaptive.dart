@@ -6,10 +6,10 @@ class _EditProfileAdaptive extends StatelessWidget {
   final EditProfileViewModel viewModel;
 
   Widget _buildUsernameField() {
-    return const TextField(
+    return  TextField(
       decoration: InputDecoration(
-        labelText: 'Username',
-        border: OutlineInputBorder(),
+        labelText: tr ('placeholder.username'),
+        border:const OutlineInputBorder(),
       ),
       keyboardType: TextInputType.emailAddress,
     );
@@ -57,8 +57,8 @@ class _EditProfileAdaptive extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: MorphingAppBar(
-        title: Text(
-          'Edit profile',
+        title: Text( 
+          tr('title.Edit_Profile'),  
           style: TextStyle(
             color: M3Color.of(context).primary,
             fontSize: 24,
@@ -97,10 +97,10 @@ class _EditProfileAdaptive extends StatelessWidget {
             onPressed: () {
               // Handle login action
             },
-            child: const Center(
+            child: Center(
               child: Text(
-                'Update',
-                style: TextStyle(color: Colors.white),
+                tr('button.Update'),
+                style: const TextStyle(color: Colors.white),
               ),
             ),
           ),

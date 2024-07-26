@@ -10,9 +10,9 @@ class _SuiInfomationAdaptive extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text(
-          'SUI Wallet',
-          style: TextStyle(
+        title:  Text(
+          tr('title.Sui_Wallet'),
+          style: const TextStyle(
             color: Colors.blue,
             fontSize: 24,
             fontWeight: FontWeight.bold,

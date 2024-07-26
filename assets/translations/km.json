@@ -1,3 +1,61 @@
 {
-  "title.account": "គណនី"
+  "title": {
+    "account": "គណនី",
+    "aboutus": "អំពីយើង",
+    "vote_history": "ប្រវត្តិបោះឆ្នោត",
+    "Account_Address": "អាសយដ្ឋានគណនី",
+    "Account_Information": "ព័ត៌មានគណនី",
+    "Sui_Wallet": "កាបូប​ SUI",
+    "Edit_Profile": "កែសម្រួលប្រូហ្វាល់",
+    "Change_Password": "ផ្លាស់ប្តូរពាក្យសម្ងាត់",
+    "Preferences": "ការកំណត់",
+    "Choose_Languages": "ជ្រើសភាសា",
+    "Notifications": "សារជូនដំណឹង",
+    "Themes": "ប្រធានបទ",
+    "FAQs": "សំណួរញឹកញាប់",
+    "Logout": "ចាកចេញ",
+    "Description": "សេចក្ដីពិពណ៌នា",
+    "Our_Mission": "បេសកកម្មរបស់យើង",
+    "secret_dialog": "កូនសោរសម្ងាត់បោះឆ្នោតជាឯកជន"
+  },
+
+  "button": {
+    "Home": "ទំព័រដើម",
+    "History": "ប្រវត្តិ",
+    "All": "ទាំងអស់",
+    "Public": "សាធារណៈ",
+    "Private": "ឯកជន",
+    "More_Detail": "លម្អិតបន្ថែម",
+    "My_Vote": "ការបោះឆ្នោតរបស់ខ្ញំុ",
+    "Result": "លទ្ធផល",
+    "Vote": "បោះឆ្នោត",
+    "Vote_Ranking": "ចំណាត់ថ្នាក់បោះឆ្នោត",
+    "Total_Votes": "ចំនួនឆ្នោតសរុប",
+     "Cancel": "បោះបង់",
+    "Update": "កែប្រែ"
+  },
+
+  "no": "លេខ",
+  "type": "ប្រភេទ",
+  "date": "កាលបរិច្ឆេទ",
+  "button.apply": "ស្នើ",
+
+
+  "stepper": {
+    "event": "ព្រឹត្តិការណ៏",
+    "candidates": "បេក្ខជន",
+    "results": "លទ្ធផល"
+  },
+
+  "message": {
+    "enter_secret_key": "សូមបញ្ចូលកូនសោរសម្ងាត់សម្រាប់ចូលរួមការបោះឆ្នោត",
+    "No_Candidate": "គ្មានបេក្ខជន",
+    "Vote_successfully": "បោះឆ្នោតដោយជោគជ៏យ",
+    "Vote_unsuccessfully": "កូនសោរសម្ងាត់មិនត្រឹមត្រូវ"
+  },
+
+  "placeholder":{
+    "username": "ឈ្មោះអ្នកប្រើប្រាស់",
+    "secret_key": "កូនសោរសម្ងាត់"
+  }
 }

@@ -1,3 +1,61 @@
 {
-  "title.account": "Account"
+  "title": {
+    "account": "Account",
+    "aboutus": "About Us",
+    "vote_history":"vote History",
+    "Account_Address": "Account Address",
+    "Account_Information": "Account Information",
+    "Sui_Wallet": "SUI Wallet",
+    "Edit_Profile": "Edit Profile",
+    "Change_Password": "Change Password",
+    "Preferences": "Preferences",
+    "Choose_Languages": "Choose Languages",
+    "Notifications": "Notifications",
+    "Themes": "Themes",
+    "FAQs": "FAQs",
+    "Logout": "Logout",
+    "Description": "Description",
+    "Our_Mission": "Our Mission",
+    "secret_dialog": "Private Vote Secret Key"
+  },
+
+  "button": {
+    "Home": "Home",
+    "Account": "Account",
+    "History": "History",
+    "All": "All",
+    "Public": "Public",
+    "Private": "Private",
+    "More_Detail": "More Detail",
+    "My_Vote":"My Vote",
+    "Result": "Result",
+    "Vote" : "Vote",
+    "Vote_Ranking" : "Vote Ranking",
+    "Total_Votes": "Total Votes",
+    "Cancel": "Cancel",
+    "Update": "Update"
+  },
+
+  "no" : "No",
+  "type": "Type",
+  "date": "Date",
+  "button.apply": "Apply",
+
+  "stepper":{
+    "event":"Event",
+    "candidates":"Candidates",
+    "results":"Results"
+  },
+
+  "message":{
+    "enter_secret_key": "Please enter your secret key to join the voting event",
+    "No_Candidate":"No candidate",
+   "Vote_successfully":"Vote successfully",
+   "Vote_unsuccessfully":"Invalid secret key"
+  },
+
+  "placeholder":{
+    "username": "Username",
+    "secret_key": "Secret Key"
+  }
 }

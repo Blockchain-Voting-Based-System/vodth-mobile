@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:vodth_mobile/core/models/vodth/candidate_model.dart';
 import 'package:vodth_mobile/core/theme/m3/m3_color.dart';
@@ -11,24 +12,22 @@ class EventResult extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: _buildBody(context),
     );
   }
 
   Widget _buildBody(BuildContext context) {
     return SingleChildScrollView(
-      padding: const EdgeInsets.all(24.0),
+      padding: const EdgeInsets.all(16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          // _buildPieChart(context),
           const SizedBox(height: 24),
           _buildTotalVotes(context),
           const SizedBox(height: 24),
-          const Text(
-            'Vote Ranking',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          Text(
+            tr('button.Vote_Ranking'),
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 8),
           _buildRankingTable(),
@@ -41,9 +40,9 @@ class EventResult extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const Text(
-          'Total Votes',
-          style: TextStyle(
+        Text(
+          tr('button.Total_Votes'),
+          style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),

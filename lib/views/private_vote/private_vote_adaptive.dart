@@ -72,9 +72,9 @@ class _PrivateVoteAdaptive extends StatelessWidget {
       spacing: 8.0,
       runSpacing: 8.0,
       children: [
-        _buildChip(context, 'All'),
-        _buildChip(context, 'My Vote'),
-        _buildChip(context, 'Results'),
+        _buildChip(context, tr('button.All')),
+        _buildChip(context, tr('button.My_Vote')),
+        _buildChip(context, tr('button.Result')),
       ],
     );
   }

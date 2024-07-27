@@ -30,4 +30,10 @@ class EventService {
       }
     }
   }
+
+  Future<void> clearEvents() async {
+    _events = null;
+
+    await eventStorage.readList();
+  }
 }

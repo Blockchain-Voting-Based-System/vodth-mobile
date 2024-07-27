@@ -59,16 +59,28 @@ class EventDetailViewModel extends BaseViewModel {
   }
 
   Stream<String?> getLiveEventResult() async* {
-    final client = SuiClient(SuiUrls.testnet);
+    try {
+      final client = SuiClient(SuiUrls.testnet);
 
-    _suiEventDetail = await client.getObject(event?.suiEventId ?? '', options: SuiObjectDataOptions(showContent: true));
+      _suiEventDetail = await client.getObject(event?.suiEventId ?? '', options: SuiObjectDataOptions(showContent: true));
+    } catch (e) {
+      if (kDebugMode) {
+        print("Error getting event: $e");
+      }
+    }
   }
 
   Stream<String?> getCandidateVoteCount(String? suiCandidateId) async* {
-    final client = SuiClient(SuiUrls.testnet);
+    try {
+      final client = SuiClient(SuiUrls.testnet);
 
-    final candidate = await client.getObject(suiCandidateId ?? '', options: SuiObjectDataOptions(showContent: true));
+      final response = await client.getObject(suiCandidateId ?? '', options: SuiObjectDataOptions(showContent: true));
 
-    yield candidate.data?.content?.fields?['voted'];
+      yield response.data?.content?.toString();
+    } catch (e) {
+      if (kDebugMode) {
+        print("Error getting candidate vote count: $e");
+      }
+    }
   }
 }

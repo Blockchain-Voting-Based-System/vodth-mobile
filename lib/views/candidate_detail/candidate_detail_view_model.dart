@@ -62,7 +62,7 @@ class CandidateDetailViewModel extends BaseViewModel {
     try {
       tx.moveCall(
         '${signTxService.packageObjectId}::vote::new_ballot',
-        arguments: [tx.pure(candidate?.suiEventId), tx.pure(candidate?.suiCandidateId), tx.pure("vaneath from flutter 1")],
+        arguments: [tx.pure(candidate?.suiEventId), tx.pure(candidate?.suiCandidateId), tx.pure("This is voter hash"), tx.pure(candidate?.name)],
       );
 
       await signTxService.client.signAndExecuteTransactionBlock(
@@ -81,7 +81,7 @@ class CandidateDetailViewModel extends BaseViewModel {
       notifyListeners();
     } catch (e) {
       if (kDebugMode) {
-        print(e);
+        print("Error voting candidate: $e");
       }
 
       // Re-throw the error to handle it in the caller function

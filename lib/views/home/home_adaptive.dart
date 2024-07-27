@@ -35,6 +35,7 @@ class _HomeAdaptive extends StatelessWidget {
   Widget _buildBody(BuildContext context) {
     return RefreshIndicator(
       onRefresh: () => viewModel.clearLocalEventsAndFetch(),
+      onRefresh: () => viewModel.clearLocalEventsAndFetch(),
       child: ListView(
         padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
         children: [
@@ -97,18 +98,23 @@ class _HomeAdaptive extends StatelessWidget {
   }
 
   Widget _buildEvents(BuildContext context) {
-    List<EventModel>? events = viewModel.events;
+    List<EventModel>? events = context.read<EventProvider>().events;
 
     return FutureBuilder(
       future: EventService.instance.fetchEventsAndSaveToLocalStorage(),
       builder: (context, snapshot) {
-        if (events.isEmpty) {
+        if (events == null) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (EventService.instance.events!.isEmpty) {
           return const Center(
             child: Text('No events found'),
           );
         }
         return Column(
           children: [
+            ...events.map(
             ...events.map(
               (event) {
                 return Column(

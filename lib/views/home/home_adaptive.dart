@@ -21,7 +21,7 @@ class _HomeAdaptive extends StatelessWidget {
 
   Widget _buildBody(BuildContext context) {
     return RefreshIndicator(
-      onRefresh: () => EventService.instance.fetchEventsAndSaveToLocalStorage(),
+      onRefresh: () => viewModel.clearLocalEventsAndFetch(),
       child: ListView(
         padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
         children: [
@@ -81,10 +81,12 @@ class _HomeAdaptive extends StatelessWidget {
   }
 
   Widget _buildEvents(BuildContext context) {
+    List<EventModel>? events = context.read<EventProvider>().events;
+
     return FutureBuilder(
       future: EventService.instance.fetchEventsAndSaveToLocalStorage(),
       builder: (context, snapshot) {
-        if (EventService.instance.events == null) {
+        if (events == null) {
           return const Center(
             child: CircularProgressIndicator(),
           );
@@ -95,7 +97,7 @@ class _HomeAdaptive extends StatelessWidget {
         }
         return Column(
           children: [
-            ...EventService.instance.events!.map(
+            ...events.map(
               (event) {
                 return Column(
                   children: [

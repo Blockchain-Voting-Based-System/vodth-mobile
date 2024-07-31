@@ -54,7 +54,9 @@ class _HomeAdaptive extends StatelessWidget {
           showCheckmark: false,
           shape: RoundedRectangleBorder(
             side: BorderSide(
-              color: isSelected ? M3Color.of(context).primary : const Color(0xFFDADADA),
+              color: isSelected
+                  ? M3Color.of(context).primary
+                  : const Color(0xFFDADADA),
               width: 1.0,
             ),
             borderRadius: BorderRadius.circular(8.0),
@@ -103,7 +105,8 @@ class _HomeAdaptive extends StatelessWidget {
                   children: [
                     VmTapEffect(
                       onTap: () {
-                        context.pushRoute(EventDetailRoute(id: event.id.toString()));
+                        context.pushRoute(
+                            EventDetailRoute(id: event.id.toString()));
                       },
                       effects: const [
                         VmTapEffectType.scaleDown,
@@ -112,7 +115,8 @@ class _HomeAdaptive extends StatelessWidget {
                         title: event.name ?? 'N/A',
                         time: event.startDate ?? 'N/A',
                         type: event.type ?? 'N/A',
-                        thumbnailUrl: event.imageUrl ?? 'https://picsum.photos/200/300',
+                        thumbnailUrl:
+                            event.imageUrl ?? 'https://picsum.photos/200/300',
                         description: event.description ?? 'N/A',
                       ),
                     ),

@@ -102,11 +102,11 @@ class _EventDetailAdaptive extends StatelessWidget {
             style: const TextStyle(fontSize: 16),
           ),
           const SizedBox(height: 8),
-          TextButton(
-              onPressed: () {
-                _showEventDetails(context);
-              },
-              child: Text(tr('button.More_Detail'))),
+          // TextButton(
+          //     onPressed: () {
+          //       _showEventDetails(context);
+          //     },
+          //     child: Text(tr('button.More_Detail'))),
           const SizedBox(height: 8),
           const Divider(),
           const SizedBox(height: 8),
@@ -139,7 +139,8 @@ class _EventDetailAdaptive extends StatelessWidget {
                     child: Card(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
-                        side: BorderSide(color: M3Color.of(context).primary, width: 1.0),
+                        side: BorderSide(
+                            color: M3Color.of(context).primary, width: 1.0),
                       ),
                       child: ListTile(
                         leading: Row(
@@ -147,7 +148,9 @@ class _EventDetailAdaptive extends StatelessWidget {
                           children: [
                             CircleAvatar(
                               radius: 32, // Image radius
-                              backgroundImage: NetworkImage(candidate.imageUrl ?? 'https://via.placeholder.com/150'),
+                              backgroundImage: NetworkImage(
+                                  candidate.imageUrl ??
+                                      'https://via.placeholder.com/150'),
                             ),
                           ],
                         ),
@@ -155,7 +158,10 @@ class _EventDetailAdaptive extends StatelessWidget {
                           padding: const EdgeInsets.all(12.0),
                           child: Text(
                             candidate.name ?? 'N/A',
-                            style: const TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w600),
+                            style: const TextStyle(
+                                fontSize: 16,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w600),
                           ),
                         ),
                         trailing: const Icon(Icons.arrow_forward_ios),

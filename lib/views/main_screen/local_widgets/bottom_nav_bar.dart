@@ -16,13 +16,13 @@ class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      elevation: 0.0,
+      elevation: 90.0,
       selectedItemColor: ThemeConstant.brandColor,
       showUnselectedLabels: true,
       type: BottomNavigationBarType.fixed,
       currentIndex: widget.tabsRouter.activeIndex,
       onTap: (value) => widget.tabsRouter.setActiveIndex(value),
-      items:  [
+      items: [
         BottomNavigationBarItem(
           icon: const ImageIcon(
             AssetImage('assets/icons/home_icon.png'),
@@ -39,11 +39,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
           icon: const ImageIcon(
             AssetImage('assets/icons/history_icon.png'),
           ),
-           label: tr('button.History'),
+          label: tr('button.History'),
         ),
         BottomNavigationBarItem(
           icon: const Icon(Icons.person),
-        label: tr('title.account'),
+          label: tr('title.account'),
         ),
       ],
     );

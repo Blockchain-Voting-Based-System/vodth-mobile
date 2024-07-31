@@ -44,12 +44,14 @@ class _CandidateDetailAdaptive extends StatelessWidget {
             child: ListView(
               physics: const AlwaysScrollableScrollPhysics(),
               children: [
-                Column(
-                  children: [
-                    buildCandidateProfileImage(context),
-                    ConfigConstant.sizedBoxH2,
-                    buildCandidateDetail(context),
-                  ],
+                Center(
+                  child: Column(
+                    children: [
+                      buildCandidateProfileImage(context),
+                      ConfigConstant.sizedBoxH2,
+                      buildCandidateDetail(context),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -61,55 +63,57 @@ class _CandidateDetailAdaptive extends StatelessWidget {
   }
 
   Widget buildCandidateProfileImage(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height / 2.25,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        image: DecorationImage(
-          image: NetworkImage(viewModel.candidate?.imageUrl ?? 'https://via.placeholder.com/150'),
-          fit: BoxFit.cover,
+    return Center(
+      child: Container(
+        height: 180,
+        width: 180,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          image: DecorationImage(
+            image: NetworkImage(viewModel.candidate?.imageUrl ??
+                'https://via.placeholder.com/150'),
+            fit: BoxFit.cover,
+          ),
         ),
       ),
     );
   }
 
-  Widget buildCandidateDetail(
-    BuildContext context,
-  ) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            Text(
-              viewModel.candidate != null ? '${viewModel.candidate?.name}' : 'N/A',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-        ConfigConstant.sizedBoxH2,
-        buildInfoSection(context),
-      ],
+  Widget buildCandidateDetail(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                viewModel.candidate != null
+                    ? '${viewModel.candidate?.name}'
+                    : 'N/A',
+                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
+            ],
+          ),
+          Text(
+            // viewModel.candidate != null
+            //     ? '${viewModel.candidate?.name}'
+            //     : 'N/A',
+            'President of CADT',
+            style: Theme.of(context).textTheme.headlineSmall,
+          ),
+          ConfigConstant.sizedBoxH2,
+          buildInfoSection(context),
+        ],
+      ),
     );
   }
 
   Widget buildInfoSection(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          children: [
-            Expanded(
-              child: Text(
-                'President of CADT',
-                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                      fontStyle: FontStyle.italic,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-              ),
-            ),
-          ],
-        ),
-        ConfigConstant.sizedBoxH1,
         Text(
           viewModel.candidate?.bio ?? 'N/A',
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -126,7 +130,8 @@ class _CandidateDetailAdaptive extends StatelessWidget {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return PrivateVoteSecretDialog(controller: controller, viewModel: viewModel);
+        return PrivateVoteSecretDialog(
+            controller: controller, viewModel: viewModel);
       },
     );
   }

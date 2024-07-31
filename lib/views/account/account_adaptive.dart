@@ -25,8 +25,11 @@ class _AccountAdaptive extends StatelessWidget {
     return ListView(
       children: [
         _buildProfile(context),
-        _buildAccountInformation(context),
+        // _buildAccountInformation(context),
+        _buildDivider(),
+        const SizedBox(height: 16),
         _buildPreferences(context),
+        const SizedBox(height: 16),
         _buildAboutSection(context),
         _buildLogout(context),
       ],
@@ -46,11 +49,12 @@ class _AccountAdaptive extends StatelessWidget {
         Container(
           width: 60,
           height: 60,
-          decoration: const BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(10)),
-            image: DecorationImage(
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.blueAccent),
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
+            image: const DecorationImage(
               image: NetworkImage(
-                'https://avatars.githubusercontent.com/u/109834020?v=4',
+                'https://cdn-icons-png.flaticon.com/512/4123/4123757.png',
               ),
             ),
           ),
@@ -66,12 +70,13 @@ class _AccountAdaptive extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
               ),
-              Row(
-                children: [
-                  Text('${tr('title.Account_Address')}:', style: M3TextTheme.of(context).labelMedium),
-                  const VmSuiAddress(),
-                ],
-              ),
+              // Row(
+              //   children: [
+              //     Text('${tr('title.Account_Address')}:',
+              //         style: M3TextTheme.of(context).labelMedium),
+              //     const VmSuiAddress(),
+              //   ],
+              // ),
             ],
           ),
         ),
@@ -91,7 +96,8 @@ class _AccountAdaptive extends StatelessWidget {
         _buildAccountItem(context, tr('title.Edit_Profile'), Icons.person, () {
           context.router.push(const EditProfileRoute());
         }),
-        _buildAccountItem(context, tr('title.Change_Password'), Icons.lock, () {}),
+        _buildAccountItem(
+            context, tr('title.Change_Password'), Icons.lock, () {}),
         const SizedBox(height: 24),
       ],
     );
@@ -102,16 +108,15 @@ class _AccountAdaptive extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _buildSectionTitle(context, tr('title.Preferences')),
-        _buildAccountItem(context, tr('title.Choose_Languages'), Icons.language, () {
+        _buildAccountItem(context, tr('title.Choose_Languages'), Icons.language,
+            () {
           VmLanuagesBottomSheet().show(context);
         }),
-        _buildAccountItem(context, tr('title.Notifications'), Icons.notifications, () {}),
+        // _buildAccountItem(
+        //     context, tr('title.Notifications'), Icons.notifications, () {}),
         _buildAccountItem(context, tr('title.Themes'), Icons.palette, () {
           // Handle Themes tap
         }),
-        const SizedBox(height: 16),
-        _buildDivider(),
-        const SizedBox(height: 16),
       ],
     );
   }
@@ -134,7 +139,8 @@ class _AccountAdaptive extends StatelessWidget {
 
   Widget _buildLogout(BuildContext context) {
     return ListTile(
-      title: Text(tr('title.Logout'), style: TextStyle(color: M3Color.of(context).error)),
+      title: Text(tr('title.Logout'),
+          style: TextStyle(color: M3Color.of(context).error)),
       leading: Icon(Icons.logout, color: M3Color.of(context).error),
       onTap: () {
         context.router.push(const LoginRoute());
@@ -156,11 +162,13 @@ class _AccountAdaptive extends StatelessWidget {
     );
   }
 
-  Widget _buildAccountItem(BuildContext context, String title, IconData icon, VoidCallback onTap) {
+  Widget _buildAccountItem(
+      BuildContext context, String title, IconData icon, VoidCallback onTap) {
     return ListTile(
       title: Text(title),
       leading: Icon(icon, color: M3Color.of(context).primary),
-      trailing: Icon(Icons.arrow_forward_ios, color: M3Color.of(context).primary),
+      trailing:
+          Icon(Icons.arrow_forward_ios, color: M3Color.of(context).primary),
       onTap: onTap,
     );
   }

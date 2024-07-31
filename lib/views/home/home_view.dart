@@ -10,7 +10,6 @@ import 'package:vodth_mobile/core/routes/routes_export.dart';
 import 'package:vodth_mobile/core/services/event_service.dart';
 import 'package:vodth_mobile/core/theme/m3/m3_color.dart';
 import 'package:vodth_mobile/core/theme/m3/m3_text_theme.dart';
-import 'package:vodth_mobile/providers/event_provider.dart';
 import 'package:vodth_mobile/views/home/local_widgets/event_card.dart';
 import 'package:vodth_mobile/views/widgets/vm_tap_effect.dart';
 

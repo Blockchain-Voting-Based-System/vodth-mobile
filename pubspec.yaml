@@ -35,7 +35,6 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   auto_route: ^8.1.3
-  dio: ^5.4.3+1
   provider: ^6.1.2
   json_annotation: ^4.9.0
 
@@ -66,6 +65,9 @@ dependencies:
   google_mlkit_text_recognition: ^0.13.0
   path_provider: ^2.1.3
   http: ^1.2.2
+  camera: ^0.10.4
+  path: ^1.9.0
+  crypto: ^3.0.3
 
 dev_dependencies:
   flutter_test:
@@ -99,7 +101,9 @@ flutter:
     - assets/lotties/
     - assets/translations/
     - assets/flags/
-    - assets/ml_model/
+    - assets/ml_model/vodth_id_validation_model.tflite
+    - assets/ml_model/vodth_national_id_model.tflite
+    - assets/labels/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

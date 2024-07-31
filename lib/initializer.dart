@@ -17,7 +17,7 @@ class Initializer {
       options: DefaultFirebaseOptions.currentPlatform,
     );
 
-    await EventService.instance.loadEventsFromLocalStorage();
+    await EventService.instance.fetchEventsAndSaveToLocalStorage();
 
     // theme
     await M3Color.instance.initialize();

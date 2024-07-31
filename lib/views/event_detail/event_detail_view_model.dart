@@ -16,9 +16,6 @@ class EventDetailViewModel extends BaseViewModel {
   List<CandidateModel>? candidates;
   EventModel? event;
 
-  SuiMoveObject? get suiEventDetail => _suiEventDetail?.data?.content;
-  SuiObjectResponse? _suiEventDetail;
-
   Future<void> load() async {
     await getEventDetail();
     await getCandidates();

@@ -20,7 +20,7 @@ class _HomeAdaptive extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 32.0),
                   child: Image.asset(
                     'assets/images/vodth_logo.png',
-                    height: 52,
+                    height: 40,
                   ),
                 ),
               ],
@@ -34,7 +34,6 @@ class _HomeAdaptive extends StatelessWidget {
 
   Widget _buildBody(BuildContext context) {
     return RefreshIndicator(
-      onRefresh: () => viewModel.clearLocalEventsAndFetch(),
       onRefresh: () => viewModel.clearLocalEventsAndFetch(),
       child: ListView(
         padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
@@ -98,16 +97,12 @@ class _HomeAdaptive extends StatelessWidget {
   }
 
   Widget _buildEvents(BuildContext context) {
-    List<EventModel>? events = context.read<EventProvider>().events;
+    List<EventModel>? events = viewModel.events;
 
     return FutureBuilder(
       future: EventService.instance.fetchEventsAndSaveToLocalStorage(),
       builder: (context, snapshot) {
-        if (events == null) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        } else if (EventService.instance.events!.isEmpty) {
+        if (events.isEmpty) {
           return const Center(
             child: Text('No events found'),
           );
@@ -115,14 +110,12 @@ class _HomeAdaptive extends StatelessWidget {
         return Column(
           children: [
             ...events.map(
-            ...events.map(
               (event) {
                 return Column(
                   children: [
                     VmTapEffect(
                       onTap: () {
-                        context.pushRoute(
-                            EventDetailRoute(id: event.id.toString()));
+                        context.pushRoute(EventDetailRoute(id: event.id.toString()));
                       },
                       effects: const [
                         VmTapEffectType.scaleDown,

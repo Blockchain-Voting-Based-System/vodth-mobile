@@ -8,7 +8,13 @@ class _CandidateDetailAdaptive extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MorphingAppBar(),
+      appBar: MorphingAppBar(
+        title: viewModel.candidate != null
+            ? Text('${viewModel.candidate?.name}')
+            : const Text(
+                'N/A',
+              ),
+      ),
       body: _buildBody(context),
       bottomNavigationBar: VmBottomNavigationWrapper(
         child: VmButton.filled(
@@ -17,13 +23,14 @@ class _CandidateDetailAdaptive extends StatelessWidget {
             if (viewModel.event?.type == 'private') {
               _showSecretKeyDialog(context);
             } else if (viewModel.event?.type == 'public') {
-              MessengerService.of(context).showBlankLoading(
-                future: () async {
-                  await viewModel.voteCandidate();
-                },
-                debugSource: "CandidateDetailViewModel#voteCandidate",
-              );
-              context.router.popForced();
+              // MessengerService.of(context).showBlankLoading(
+              //   future: () async {
+              //     await viewModel.voteCandidate();
+              //   },
+              //   debugSource: "CandidateDetailViewModel#voteCandidate",
+              // );
+              // context.router.popForced();
+              context.router.push(const IdCardOptionsRoute());
             }
           },
         ),

@@ -121,7 +121,8 @@ class _HomeAdaptive extends StatelessWidget {
                   children: [
                     VmTapEffect(
                       onTap: () {
-                        context.pushRoute(EventDetailRoute(id: event.id.toString()));
+                        context.pushRoute(
+                            EventDetailRoute(id: event.id.toString()));
                       },
                       effects: const [
                         VmTapEffectType.scaleDown,

@@ -8,29 +8,26 @@ class _FaqsAdaptive extends StatelessWidget {
   Widget _buildFaqsItem() {
     return Column(
       children: viewModel.faqs.map((faq) {
-        return ExpansionTile(
-          title: Text(
-            faq.question,
-            style: const TextStyle(
-              color: Colors.black,
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  faq.answer,
-                  style: TextStyle(
-                    color: Colors.grey[700],
-                    fontSize: 16,
-                  ),
-                ),
+            Text(
+              faq.question,
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
               ),
             ),
+            const SizedBox(height: 8.0),
+            Text(
+              faq.answer,
+              style: TextStyle(
+                color: Colors.grey[700],
+                fontSize: 16,
+              ),
+            ),
+            const SizedBox(height: 16.0),
           ],
         );
       }).toList(),
@@ -42,6 +39,7 @@ class _FaqsAdaptive extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        elevation: 0,
         title: Text(
           tr('title.FAQs'),
           style: TextStyle(
@@ -52,7 +50,6 @@ class _FaqsAdaptive extends StatelessWidget {
         ),
         centerTitle: false,
         backgroundColor: Colors.white,
-        elevation: 0,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: M3Color.of(context).primary),
           onPressed: () {
@@ -66,11 +63,13 @@ class _FaqsAdaptive extends StatelessWidget {
 
   Widget _buildBody(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(24.0),
-      child: ListView(
-        children: [
-          _buildFaqsItem(),
-        ],
+      padding: const EdgeInsets.all(20.0),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            _buildFaqsItem(),
+          ],
+        ),
       ),
     );
   }

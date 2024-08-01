@@ -3,7 +3,7 @@ import 'package:vodth_mobile/core/base/base_view_model.dart';
 
 class SuiInfomationViewModel extends BaseViewModel {
   String address =
-      '0x2b42771d127c7aee2ef9fefc054d00e87adab986ccaf7c5386aa07df7bce9b0b';
+      '0xd53cb47969f2ac3e9d11d126c2994e6549e7967e2583ab55ea057f0bb760d1cc';
 
   List<SuiObjectResponse>? get ownedObject => _ownedObject?.data;
   PaginatedObjectsResponse? _ownedObject;

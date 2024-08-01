@@ -22,9 +22,11 @@ class HomeViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  String address = '0x2b42771d127c7aee2ef9fefc054d00e87adab986ccaf7c5386aa07df7bce9b0b';
+  String address =
+      '0xd53cb47969f2ac3e9d11d126c2994e6549e7967e2583ab55ea057f0bb760d1cc';
 
-  final storage = FirebaseStorage.instance.refFromURL('gs://vodth-mobile.appspot.com');
+  final storage =
+      FirebaseStorage.instance.refFromURL('gs://vodth-mobile.appspot.com');
 
   List<SuiObjectResponse>? get ownedObject => _ownedObject?.data;
   PaginatedObjectsResponse? _ownedObject;
@@ -38,7 +40,8 @@ class HomeViewModel extends BaseViewModel {
           // .where('type', isEqualTo: 'public')
           .get();
 
-      eventsList = snapshot.docs.map((e) => EventModel.fromFirestore(e)).toList();
+      eventsList =
+          snapshot.docs.map((e) => EventModel.fromFirestore(e)).toList();
     } catch (e) {
       if (kDebugMode) {
         print("Error getting events: $e");

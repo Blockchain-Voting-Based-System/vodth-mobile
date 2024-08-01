@@ -25,13 +25,6 @@ class _AccountAdaptive extends StatelessWidget {
     return ListView(
       children: [
         _buildProfile(context),
-        // _buildAccountInformation(context),
-        _buildDivider(),
-        const SizedBox(height: 16),
-        // _buildAccountInformation(context),
-        _buildDivider(),
-        const SizedBox(height: 16),
-        // _buildAccountInformation(context),
         _buildDivider(),
         const SizedBox(height: 16),
         _buildPreferences(context),
@@ -73,12 +66,6 @@ class _AccountAdaptive extends StatelessWidget {
                 style: M3TextTheme.of(context).titleLarge?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
-              ),
-              Row(
-                children: [
-                  Text('${tr('title.Account_Address')}:', style: M3TextTheme.of(context).labelMedium),
-                  // const VmSuiAddress(),
-                ],
               ),
             ],
           ),

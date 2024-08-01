@@ -28,6 +28,12 @@ class _AccountAdaptive extends StatelessWidget {
         // _buildAccountInformation(context),
         _buildDivider(),
         const SizedBox(height: 16),
+        // _buildAccountInformation(context),
+        _buildDivider(),
+        const SizedBox(height: 16),
+        // _buildAccountInformation(context),
+        _buildDivider(),
+        const SizedBox(height: 16),
         _buildPreferences(context),
         const SizedBox(height: 16),
         _buildAboutSection(context),
@@ -50,12 +56,10 @@ class _AccountAdaptive extends StatelessWidget {
           width: 60,
           height: 60,
           decoration: BoxDecoration(
-            border: Border.all(color: Colors.blueAccent),
-            borderRadius: const BorderRadius.all(Radius.circular(10)),
+            borderRadius: BorderRadius.circular(10),
             image: const DecorationImage(
-              image: NetworkImage(
-                'https://cdn-icons-png.flaticon.com/512/4123/4123757.png',
-              ),
+              image: AssetImage('assets/images/profile.png'),
+              fit: BoxFit.cover,
             ),
           ),
         ),
@@ -65,18 +69,17 @@ class _AccountAdaptive extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'vaneath@gmail.com',
+                viewModel.userEmail ?? 'No email',
                 style: M3TextTheme.of(context).titleLarge?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
               ),
-              // Row(
-              //   children: [
-              //     Text('${tr('title.Account_Address')}:',
-              //         style: M3TextTheme.of(context).labelMedium),
-              //     const VmSuiAddress(),
-              //   ],
-              // ),
+              Row(
+                children: [
+                  Text('${tr('title.Account_Address')}:', style: M3TextTheme.of(context).labelMedium),
+                  // const VmSuiAddress(),
+                ],
+              ),
             ],
           ),
         ),

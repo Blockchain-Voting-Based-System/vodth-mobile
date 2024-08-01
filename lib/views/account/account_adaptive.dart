@@ -50,12 +50,10 @@ class _AccountAdaptive extends StatelessWidget {
           width: 60,
           height: 60,
           decoration: BoxDecoration(
-            border: Border.all(color: Colors.blueAccent),
-            borderRadius: const BorderRadius.all(Radius.circular(10)),
+            borderRadius: BorderRadius.circular(10),
             image: const DecorationImage(
-              image: NetworkImage(
-                'https://cdn-icons-png.flaticon.com/512/4123/4123757.png',
-              ),
+              image: AssetImage('assets/images/profile.png'),
+              fit: BoxFit.cover, // Adjusts the image to cover the container
             ),
           ),
         ),

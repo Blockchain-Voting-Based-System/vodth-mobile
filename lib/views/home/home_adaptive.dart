@@ -8,12 +8,25 @@ class _HomeAdaptive extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MorphingAppBar(
-        title: Image.asset(
-          'assets/images/vodth_logo.png',
-          height: 40,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(80.0),
+        child: AppBar(
+          elevation: 0,
+          flexibleSpace: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 32.0),
+                  child: Image.asset(
+                    'assets/images/vodth_logo.png',
+                    height: 52,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
-        elevation: 0,
       ),
       body: _buildBody(context),
     );

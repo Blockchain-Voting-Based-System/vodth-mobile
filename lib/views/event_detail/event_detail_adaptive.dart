@@ -121,13 +121,13 @@ class _EventDetailAdaptive extends StatelessWidget {
       shrinkWrap: true,
       children: viewModel.candidates != null
           ? [
-              Text(
-                tr('stepper.candidates'),
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w900,
-                ),
-              ),
+              // Text(
+              //   tr('stepper.candidates'),
+              //   style: const TextStyle(
+              //     fontSize: 20,
+              //     fontWeight: FontWeight.w900,
+              //   ),
+              // ),
               ...viewModel.candidates!.map(
                 (candidate) {
                   return GestureDetector(

@@ -53,7 +53,7 @@ class _AccountAdaptive extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             image: const DecorationImage(
               image: AssetImage('assets/images/profile.png'),
-              fit: BoxFit.cover, // Adjusts the image to cover the container
+              fit: BoxFit.cover,
             ),
           ),
         ),
@@ -63,7 +63,7 @@ class _AccountAdaptive extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'vaneath@gmail.com',
+                viewModel.userEmail ?? 'No email',
                 style: M3TextTheme.of(context).titleLarge?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),

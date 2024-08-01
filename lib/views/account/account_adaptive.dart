@@ -28,7 +28,11 @@ class _AccountAdaptive extends StatelessWidget {
         // _buildAccountInformation(context),
         _buildDivider(),
         const SizedBox(height: 16),
+        // _buildAccountInformation(context),
+        _buildDivider(),
+        const SizedBox(height: 16),
         _buildPreferences(context),
+        const SizedBox(height: 16),
         const SizedBox(height: 16),
         _buildAboutSection(context),
         _buildLogout(context),
@@ -75,6 +79,13 @@ class _AccountAdaptive extends StatelessWidget {
               //     const VmSuiAddress(),
               //   ],
               // ),
+              // Row(
+              //   children: [
+              //     Text('${tr('title.Account_Address')}:',
+              //         style: M3TextTheme.of(context).labelMedium),
+              //     const VmSuiAddress(),
+              //   ],
+              // ),
             ],
           ),
         ),
@@ -96,6 +107,8 @@ class _AccountAdaptive extends StatelessWidget {
         }),
         _buildAccountItem(
             context, tr('title.Change_Password'), Icons.lock, () {}),
+        _buildAccountItem(
+            context, tr('title.Change_Password'), Icons.lock, () {}),
         const SizedBox(height: 24),
       ],
     );
@@ -108,8 +121,12 @@ class _AccountAdaptive extends StatelessWidget {
         _buildSectionTitle(context, tr('title.Preferences')),
         _buildAccountItem(context, tr('title.Choose_Languages'), Icons.language,
             () {
+        _buildAccountItem(context, tr('title.Choose_Languages'), Icons.language,
+            () {
           VmLanuagesBottomSheet().show(context);
         }),
+        // _buildAccountItem(
+        //     context, tr('title.Notifications'), Icons.notifications, () {}),
         // _buildAccountItem(
         //     context, tr('title.Notifications'), Icons.notifications, () {}),
         _buildAccountItem(context, tr('title.Themes'), Icons.palette, () {
@@ -139,6 +156,8 @@ class _AccountAdaptive extends StatelessWidget {
     return ListTile(
       title: Text(tr('title.Logout'),
           style: TextStyle(color: M3Color.of(context).error)),
+      title: Text(tr('title.Logout'),
+          style: TextStyle(color: M3Color.of(context).error)),
       leading: Icon(Icons.logout, color: M3Color.of(context).error),
       onTap: () {
         context.router.push(const LoginRoute());
@@ -162,9 +181,13 @@ class _AccountAdaptive extends StatelessWidget {
 
   Widget _buildAccountItem(
       BuildContext context, String title, IconData icon, VoidCallback onTap) {
+  Widget _buildAccountItem(
+      BuildContext context, String title, IconData icon, VoidCallback onTap) {
     return ListTile(
       title: Text(title),
       leading: Icon(icon, color: M3Color.of(context).primary),
+      trailing:
+          Icon(Icons.arrow_forward_ios, color: M3Color.of(context).primary),
       trailing:
           Icon(Icons.arrow_forward_ios, color: M3Color.of(context).primary),
       onTap: onTap,

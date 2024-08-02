@@ -19,6 +19,7 @@ class CandidateModel extends BaseModel {
   final String? sex;
   final String? status;
   final String? bio;
+  final String? voteCount;
   final EventModel? event;
 
   CandidateModel({
@@ -32,6 +33,7 @@ class CandidateModel extends BaseModel {
     this.suiEventId,
     this.eventId,
     this.imageUrl,
+    this.voteCount,
     this.event,
   });
 

@@ -14,12 +14,12 @@ class EventDetailViewModel extends BaseViewModel {
   }
 
   List<CandidateModel>? candidates;
-
   EventModel? event;
 
   Future<void> load() async {
     await getEventDetail();
     await getCandidates();
+    await updateAndSortCandidates();
 
     notifyListeners();
   }
@@ -53,23 +53,37 @@ class EventDetailViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  Map<String, double> candidateVotes = {
-    'Candidate A': 8,
-    'Candidate B': 3,
-    'Candidate C': 4,
-  };
-
-  double get totalVotes {
-    return candidateVotes.values.fold(0, (total, votes) => total + votes);
-  }
-
-  Future eventLiveVoteCount() async {
+  Future<String> eventLiveVoteCount() async {
     final client = SuiClient(SuiUrls.testnet);
 
     SuiObjectResponse suiObjectResponse = await client.getObject(event?.suiEventId ?? '', options: SuiObjectDataOptions(showContent: true));
 
-    print(suiObjectResponse.data?.content?.fields);
+    return suiObjectResponse.data?.content?.fields['voted'];
+  }
+
+  Future<String> candidateLiveVoteCount(CandidateModel? candidate) async {
+    final client = SuiClient(SuiUrls.testnet);
+
+    SuiObjectResponse suiObjectResponse = await client.getObject(candidate?.suiCandidateId ?? '', options: SuiObjectDataOptions(showContent: true));
+
+    candidate?.copyWith(voteCount: suiObjectResponse.data?.content?.fields['voted']);
 
     return suiObjectResponse.data?.content?.fields['voted'];
+  }
+
+  Future<void> updateAndSortCandidates() async {
+    if (candidates == null) return;
+
+    List<CandidateModel> updatedCandidates = [];
+
+    for (CandidateModel candidate in candidates!) {
+      String voteCount = await candidateLiveVoteCount(candidate);
+      updatedCandidates.add(candidate.copyWith(voteCount: voteCount));
+    }
+
+    updatedCandidates.sort((a, b) => int.parse(b.voteCount ?? '0').compareTo(int.parse(a.voteCount ?? '0')));
+
+    candidates = updatedCandidates;
+    notifyListeners();
   }
 }

@@ -27,6 +27,8 @@ abstract class _$CandidateModelCWProxy {
 
   CandidateModel imageUrl(String? imageUrl);
 
+  CandidateModel voteCount(String? voteCount);
+
   CandidateModel event(EventModel? event);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `CandidateModel(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
@@ -46,6 +48,7 @@ abstract class _$CandidateModelCWProxy {
     String? suiEventId,
     String? eventId,
     String? imageUrl,
+    String? voteCount,
     EventModel? event,
   });
 }
@@ -88,6 +91,9 @@ class _$CandidateModelCWProxyImpl implements _$CandidateModelCWProxy {
   CandidateModel imageUrl(String? imageUrl) => this(imageUrl: imageUrl);
 
   @override
+  CandidateModel voteCount(String? voteCount) => this(voteCount: voteCount);
+
+  @override
   CandidateModel event(EventModel? event) => this(event: event);
 
   @override
@@ -109,6 +115,7 @@ class _$CandidateModelCWProxyImpl implements _$CandidateModelCWProxy {
     Object? suiEventId = const $CopyWithPlaceholder(),
     Object? eventId = const $CopyWithPlaceholder(),
     Object? imageUrl = const $CopyWithPlaceholder(),
+    Object? voteCount = const $CopyWithPlaceholder(),
     Object? event = const $CopyWithPlaceholder(),
   }) {
     return CandidateModel(
@@ -152,6 +159,10 @@ class _$CandidateModelCWProxyImpl implements _$CandidateModelCWProxy {
           ? _value.imageUrl
           // ignore: cast_nullable_to_non_nullable
           : imageUrl as String?,
+      voteCount: voteCount == const $CopyWithPlaceholder()
+          ? _value.voteCount
+          // ignore: cast_nullable_to_non_nullable
+          : voteCount as String?,
       event: event == const $CopyWithPlaceholder()
           ? _value.event
           // ignore: cast_nullable_to_non_nullable
@@ -182,6 +193,7 @@ CandidateModel _$CandidateModelFromJson(Map<String, dynamic> json) =>
       suiEventId: json['suiEventId'] as String?,
       eventId: json['eventId'] as String?,
       imageUrl: json['imageUrl'] as String?,
+      voteCount: json['voteCount'] as String?,
       event: json['event'] == null
           ? null
           : EventModel.fromJson(json['event'] as Map<String, dynamic>),
@@ -199,5 +211,6 @@ Map<String, dynamic> _$CandidateModelToJson(CandidateModel instance) =>
       'sex': instance.sex,
       'status': instance.status,
       'bio': instance.bio,
+      'voteCount': instance.voteCount,
       'event': instance.event,
     };

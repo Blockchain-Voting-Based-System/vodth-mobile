@@ -1,21 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:vodth_mobile/core/models/vodth/event_model.dart';
 import 'package:vodth_mobile/core/theme/theme_constant.dart';
 
 class EventCard extends StatelessWidget {
   const EventCard({
     super.key,
-    required this.title,
-    required this.time,
-    required this.type,
-    required this.thumbnailUrl,
-    required this.description,
+    required this.event,
   });
 
-  final String title;
-  final String time;
-  final String type;
-  final String thumbnailUrl;
-  final String description;
+  final EventModel event;
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +49,7 @@ class EventCard extends StatelessWidget {
             ),
             image: DecorationImage(
               fit: BoxFit.cover,
-              image: NetworkImage(thumbnailUrl),
+              image: NetworkImage(event.imageUrl ?? 'https://api.api-ninjas.com/v1/randomimage?category=nature'),
             ),
           ),
         ),
@@ -72,7 +65,7 @@ class EventCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              title,
+              event.name ?? 'No name',
               overflow: TextOverflow.clip,
               maxLines: null, // Add this line
               style: const TextStyle(
@@ -81,7 +74,7 @@ class EventCard extends StatelessWidget {
               ),
             ),
             Text(
-              description,
+              event.description ?? 'No description',
               style: TextStyle(
                 color: Colors.grey[800],
               ),
@@ -92,8 +85,10 @@ class EventCard extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const SizedBox(height: 5),
                 Text(
-                  'Type: $type', overflow: TextOverflow.clip,
+                  'Start Date: ${event.startDate?.split('T').first}',
+                  overflow: TextOverflow.clip,
                   maxLines: null, // Add this line
                   style: const TextStyle(
                     fontSize: 12,
@@ -102,7 +97,7 @@ class EventCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  'Date: ${time.split('T').first}',
+                  'End Date: ${event.endDate?.split('T').first}',
                   overflow: TextOverflow.clip,
                   maxLines: null, // Add this line
                   style: const TextStyle(

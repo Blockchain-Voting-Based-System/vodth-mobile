@@ -11,6 +11,9 @@ class EventService {
   List<EventModel>? get events => _events;
   List<EventModel>? _events;
 
+  List<EventModel>? get activeEvents => _events?.where((element) => element.isActive).toList();
+  List<EventModel>? get historyEvents => _events?.where((element) => !element.isActive).toList();
+
   EventStorage eventStorage = EventStorage();
 
   Future<void> loadEventsFromLocalStorage() async {

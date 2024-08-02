@@ -1,14 +1,16 @@
 import 'package:vodth_mobile/core/base/base_view_model.dart';
+import 'package:vodth_mobile/core/models/vodth/event_model.dart';
+import 'package:vodth_mobile/core/services/event_service.dart';
 
 class HistoryViewModel extends BaseViewModel {
-  String _selectedChip = 'All';
-  String get selectedChip => _selectedChip;
+  List<EventModel>? get events => EventService.instance.historyEvents;
 
-  int get eventCount => _eventCount;
-  int _eventCount = 0;
+  HistoryViewModel() {
+    load();
+  }
 
-  void selectChip(String chip) {
-    _selectedChip = chip;
+  Future<void> load() async {
+    EventService.instance.fetchEventsAndSaveToLocalStorage();
     notifyListeners();
   }
 }

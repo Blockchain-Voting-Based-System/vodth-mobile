@@ -63,7 +63,6 @@ class _HomeAdaptive extends StatelessWidget {
     return Consumer<HomeViewModel>(
       builder: (context, viewModel, child) {
         final bool isSelected = viewModel.selectedChip == label;
-
         return Row(
           children: [
             ChoiceChip(
@@ -80,9 +79,7 @@ class _HomeAdaptive extends StatelessWidget {
               onSelected: (bool selected) {
                 if (selected) {
                   viewModel.selectChip(label);
-                  if (label == 'Public') {
-                    // context.router.push(const IdCardValidationRoute());
-                  }
+                  viewModel.filterEvents(label); // Add this line to filter events
                 }
               },
               backgroundColor: Colors.white,
@@ -92,7 +89,7 @@ class _HomeAdaptive extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
             ),
-            const SizedBox(width: 8)
+            const SizedBox(width: 8),
           ],
         );
       },
@@ -100,16 +97,12 @@ class _HomeAdaptive extends StatelessWidget {
   }
 
   Widget _buildEvents(BuildContext context) {
-    List<EventModel>? events = context.read<EventProvider>().events;
+    List<EventModel>? events = viewModel.events;
 
     return FutureBuilder(
       future: EventService.instance.fetchEventsAndSaveToLocalStorage(),
       builder: (context, snapshot) {
-        if (events == null) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        } else if (EventService.instance.events!.isEmpty) {
+        if (events.isEmpty) {
           return const Center(
             child: Text('No events found'),
           );
@@ -128,11 +121,7 @@ class _HomeAdaptive extends StatelessWidget {
                         VmTapEffectType.scaleDown,
                       ],
                       child: EventCard(
-                        title: event.name ?? 'N/A',
-                        time: event.startDate ?? 'N/A',
-                        type: event.type ?? 'N/A',
-                        thumbnailUrl: event.imageUrl ?? 'https://picsum.photos/200/300',
-                        description: event.description ?? 'N/A',
+                        event: event,
                       ),
                     ),
                     const SizedBox(height: 8),

@@ -17,179 +17,33 @@ class _HistoryAdaptive extends StatelessWidget {
               ),
         ),
       ),
-      body: _buildBody(context),
+      body: RefreshIndicator(
+        child: _buildBody(context),
+        onRefresh: () => viewModel.load(),
+      ),
     );
   }
 
-  // Widget _buildBody(BuildContext context) {
-  //   return ListView(
-  //     padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-  //     children: [
-  //       _buildChipOptions(context),
-  //       ConfigConstant.sizedBoxH2,
-  //       // _buildPrivateVoteEvents(),
-  //     ],
-  //   );
-  // }
-  // Widget _buildBody(BuildContext context) {
-  //   return ListView(
-  //     padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-  //     children: [
-  //       _buildChipOptions(context),
-  //       ConfigConstant.sizedBoxH2,
-  //       // _buildPrivateVoteEvents(),
-  //     ],
-  //   );
-  // }
   Widget _buildBody(BuildContext context) {
-    return ListView(
+    return ListView.builder(
       padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-      children: [
-        // _buildChipOptions(context),
-        const SizedBox(height: 8.0),
-        _buildEvent(
-          context: context,
-          title: 'CSA Voting',
-          description:
-              'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
-          startDate: '1st July 2024',
-          endDate: '31st July 2024',
-          imageUrl: "https://avatars.githubusercontent.com/u/109834020?v=4",
-        ),
-        _buildEvent(
-          context: context,
-          title: 'Presedential Election',
-          description:
-              'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
-          startDate: '1st Feb 2025',
-          endDate: '31st March 2025',
-          imageUrl:
-              "https://media.istockphoto.com/id/1337692300/vector/orator-speaking-from-tribune.jpg?s=612x612&w=0&k=20&c=lC3TceG4QvPN6K3ci76QbV0OWJ2637WV-wbLQJDc3pg=",
-        ),
-        _buildEvent(
-          context: context,
-          title: 'Class Representative Election',
-          description:
-              'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
-          startDate: '1st Aug 2024',
-          endDate: '7th Aug 2024',
-          imageUrl:
-              "https://www.shutterstock.com/image-illustration/political-leader-speaking-media-background-600nw-2074143290.jpg",
-        ),
-
-        // Add more events here
-        for (int i = 0; i < viewModel.eventCount; i++)
-          _buildEvent(
-            context: context,
-            title: 'Event $i',
-            description:
-                'Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry',
-            startDate: '1st Aug 2024',
-            endDate: '7th Aug 2024',
-            imageUrl:
-                "https://www.shutterstock.com/image-illustration/political-leader-speaking-media-background-600nw-2074143290.jpg",
-          ),
-        // _buildChipOptions(context),
-        const SizedBox(height: 8.0),
-        _buildEvent(
-          context: context,
-          title: 'CSA Voting',
-          description:
-              'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
-          startDate: '1st July 2024',
-          endDate: '31st July 2024',
-          imageUrl: "https://avatars.githubusercontent.com/u/109834020?v=4",
-        ),
-        _buildEvent(
-          context: context,
-          title: 'Presedential Election',
-          description:
-              'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
-          startDate: '1st Feb 2025',
-          endDate: '31st March 2025',
-          imageUrl:
-              "https://media.istockphoto.com/id/1337692300/vector/orator-speaking-from-tribune.jpg?s=612x612&w=0&k=20&c=lC3TceG4QvPN6K3ci76QbV0OWJ2637WV-wbLQJDc3pg=",
-        ),
-        _buildEvent(
-          context: context,
-          title: 'Class Representative Election',
-          description:
-              'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
-          startDate: '1st Aug 2024',
-          endDate: '7th Aug 2024',
-          imageUrl:
-              "https://www.shutterstock.com/image-illustration/political-leader-speaking-media-background-600nw-2074143290.jpg",
-        ),
-
-        // Add more events here
-        for (int i = 0; i < viewModel.eventCount; i++)
-          _buildEvent(
-            context: context,
-            title: 'Event $i',
-            description:
-                'Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry',
-            startDate: '1st Aug 2024',
-            endDate: '7th Aug 2024',
-            imageUrl:
-                "https://www.shutterstock.com/image-illustration/political-leader-speaking-media-background-600nw-2074143290.jpg",
-          ),
-      ],
-    );
-  }
-
-  Widget _buildChipOptions(BuildContext context) {
-    return Wrap(
-      spacing: 8.0,
-      runSpacing: 8.0,
-      children: [
-        _buildChip(context, 'All'),
-        _buildChip(context, 'My Vote'),
-        _buildChip(context, 'Results'),
-      ],
-    );
-  }
-
-  Widget _buildChip(BuildContext context, String label) {
-    return Consumer<HistoryViewModel>(
-      builder: (context, viewModel, child) {
-        final bool isSelected = viewModel.selectedChip == label;
-
-        return ChoiceChip(
-          checkmarkColor: Colors.white,
-          shape: RoundedRectangleBorder(
-            side: BorderSide(
-              color: isSelected
-                  ? M3Color.of(context).primary
-                  : const Color(0xFFDADADA),
-              width: 1.0,
-            ),
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          label: Text(label),
-          selected: isSelected,
-          onSelected: (bool selected) {
-            if (selected) {
-              viewModel.selectChip(label);
-            }
-          },
-          backgroundColor: Colors.white,
-          selectedColor: M3Color.of(context).primary,
-          labelStyle: M3TextTheme.of(context).bodySmall?.copyWith(
-              color: isSelected ? Colors.white : const Color(0xFF404040),
-              fontWeight: FontWeight.bold),
-        );
+      itemBuilder: (context, index) {
+        if (viewModel.events == null) {
+          return const Center(
+            child: Text('No events found'),
+          );
+        } else {
+          return _buildEvent(context, viewModel.events![index]);
+        }
       },
+      itemCount: viewModel.events!.length,
     );
   }
 
-  Widget _buildEvent({
-    required BuildContext context,
-    required String title,
-    required String description,
-    required String imageUrl,
-    required String startDate,
-    required String endDate,
-  }) {
+  Widget _buildEvent(
+    BuildContext context,
+    EventModel event,
+  ) {
     return VmTapEffect(
       effects: const [
         VmTapEffectType.scaleDown,
@@ -207,14 +61,14 @@ class _HistoryAdaptive extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildEventImage(context: context, imageUrl: imageUrl),
+              _buildEventImage(context: context, imageUrl: event.imageUrl ?? ''),
               const SizedBox(width: 16.0),
               _buildEventInformation(
                 context: context,
-                title: title,
-                description: description,
-                startDate: startDate,
-                endDate: endDate,
+                title: event.name ?? 'No name',
+                description: event.description ?? 'No description',
+                startDate: event.startDate ?? 'No start date',
+                endDate: event.endDate ?? 'No end date',
               ),
             ],
           ),
@@ -286,8 +140,4 @@ class _HistoryAdaptive extends StatelessWidget {
       ),
     );
   }
-
-  // Widget _buildPrivateVoteEvents() {
-  //   // return EventsList(events: viewModel.events);
-  // }
 }

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:intl/intl.dart'; // Import for date parsing
 import 'package:json_annotation/json_annotation.dart';
 import 'package:vodth_mobile/core/models/base_model.dart';
 import 'package:vodth_mobile/core/models/vodth/candidate_model.dart';
@@ -53,5 +54,20 @@ class EventModel extends BaseModel {
       imageUrl: data['imageUrl'],
       voterSecrets: data['voterSecrets'],
     );
+  }
+
+  bool get isPublic => type == 'public';
+  bool get isPrivate => type == 'private';
+
+  bool get isActive {
+    if (endDate == null) return false;
+
+    try {
+      DateTime end = DateFormat('yyyy-MM-dd').parse(endDate!);
+      DateTime now = DateTime.now();
+      return end.isAfter(now) || (end.year == now.year && end.month == now.month && end.day == now.day);
+    } catch (e) {
+      return false;
+    }
   }
 }

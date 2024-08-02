@@ -63,7 +63,6 @@ class _HomeAdaptive extends StatelessWidget {
               viewModel.selectChip(label);
             }
           },
-          backgroundColor: Colors.white,
           selectedColor: M3Color.of(context).primary,
           labelStyle: M3TextTheme.of(context).bodySmall?.copyWith(color: isSelected ? Colors.white : const Color(0xFF404040), fontWeight: FontWeight.bold),
         );
@@ -74,28 +73,30 @@ class _HomeAdaptive extends StatelessWidget {
   Widget _buildEvents(BuildContext context, List<EventModel> events) {
     return Column(
       children: [
-        ...events.map((event) {
-          return Column(
-            children: [
-              VmTapEffect(
-                onTap: () {
-                  context.pushRoute(EventDetailRoute(id: event.id.toString()));
-                },
-                effects: const [
-                  VmTapEffectType.scaleDown,
-                ],
-                child: EventCard(
-                  title: event.name ?? 'N/A',
-                  time: event.startDate ?? 'N/A',
-                  type: event.type ?? 'N/A',
-                  thumbnailUrl: event.imageUrl ?? 'https://picsum.photos/200/300',
-                  description: event.description ?? 'N/A',
+        ...events.map(
+          (event) {
+            return Column(
+              children: [
+                VmTapEffect(
+                  onTap: () {
+                    context.pushRoute(EventDetailRoute(id: event.id.toString()));
+                  },
+                  effects: const [
+                    VmTapEffectType.scaleDown,
+                  ],
+                  child: EventCard(
+                    title: event.name ?? 'N/A',
+                    time: event.startDate ?? 'N/A',
+                    type: event.type ?? 'N/A',
+                    thumbnailUrl: event.imageUrl ?? 'https://picsum.photos/200/300',
+                    description: event.description ?? 'N/A',
+                  ),
                 ),
-              ),
-              const SizedBox(height: 8),
-            ],
-          );
-        })
+                const SizedBox(height: 8),
+              ],
+            );
+          },
+        )
       ],
     );
   }

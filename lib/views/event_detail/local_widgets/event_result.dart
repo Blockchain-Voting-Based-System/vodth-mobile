@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pie_chart/pie_chart.dart';
 import 'package:vodth_mobile/core/theme/m3/m3_color.dart';
 import 'package:vodth_mobile/views/event_detail/event_detail_view_model.dart';
 
@@ -11,7 +10,6 @@ class EventResult extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: _buildBody(context),
     );
   }
@@ -22,8 +20,6 @@ class EventResult extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          _buildPieChart(context),
-          const SizedBox(height: 24),
           _buildTotalVotes(context),
           const SizedBox(height: 24),
           const Text(
@@ -37,54 +33,50 @@ class EventResult extends StatelessWidget {
     );
   }
 
-  Widget _buildPieChart(context) {
-    return PieChart(
-      dataMap: viewModel.candidateVotes,
-      chartType: ChartType.disc,
-      animationDuration: const Duration(milliseconds: 800),
-      chartLegendSpacing: 48,
-      colorList: const [
-        Colors.blueAccent,
-        Colors.yellowAccent,
-        Colors.greenAccent,
-      ],
-      legendOptions: const LegendOptions(
-        showLegends: false,
-        legendPosition: LegendPosition.right,
-      ),
-      chartValuesOptions: const ChartValuesOptions(
-        showChartValueBackground: false,
-        showChartValues: true,
-        showChartValuesOutside: false,
-        // decimalPlaces: 2,
-        showChartValuesInPercentage: true,
-      ),
-      chartRadius: MediaQuery.of(context).size.width / 2.5,
-    );
-  }
+  // Widget _buildPieChart(context) {
+  //   return PieChart(
+  //     dataMap: viewModel.candidateVotes,
+  //     chartType: ChartType.disc,
+  //     animationDuration: const Duration(milliseconds: 800),
+  //     chartLegendSpacing: 48,
+  //     colorList: const [
+  //       Colors.blueAccent,
+  //       Colors.yellowAccent,
+  //       Colors.greenAccent,
+  //     ],
+  //     legendOptions: const LegendOptions(
+  //       showLegends: false,
+  //       legendPosition: LegendPosition.right,
+  //     ),
+  //     chartValuesOptions: const ChartValuesOptions(
+  //       showChartValueBackground: false,
+  //       showChartValues: true,
+  //       showChartValuesOutside: false,
+  //       // decimalPlaces: 2,
+  //       showChartValuesInPercentage: true,
+  //     ),
+  //     chartRadius: MediaQuery.of(context).size.width / 2.5,
+  //   );
+  // }
 
   Widget _buildTotalVotes(context) {
-    int totalVotes = viewModel.candidateVotes.values.reduce((a, b) => a + b).toInt();
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        const Text(
-          'Total Votes',
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          totalVotes.toString(),
-          style: TextStyle(
-            fontSize: 24,
-            color: M3Color.of(context).primary,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ],
+    return FutureBuilder(
+      future: viewModel.eventLiveVoteCount(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else {
+          return Text(
+            'Total Votes: ${snapshot.data.toString()}',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: M3Color.of(context).primary,
+            ),
+            textAlign: TextAlign.center,
+          );
+        }
+      },
     );
   }
 

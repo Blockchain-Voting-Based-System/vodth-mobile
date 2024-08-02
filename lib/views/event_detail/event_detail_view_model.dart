@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
+import 'package:sui/sui.dart';
 import 'package:vodth_mobile/core/base/base_view_model.dart';
 import 'package:vodth_mobile/core/models/vodth/candidate_model.dart';
 import 'package:vodth_mobile/core/models/vodth/event_model.dart';
@@ -60,5 +61,15 @@ class EventDetailViewModel extends BaseViewModel {
 
   double get totalVotes {
     return candidateVotes.values.fold(0, (total, votes) => total + votes);
+  }
+
+  Future eventLiveVoteCount() async {
+    final client = SuiClient(SuiUrls.testnet);
+
+    SuiObjectResponse suiObjectResponse = await client.getObject(event?.suiEventId ?? '', options: SuiObjectDataOptions(showContent: true));
+
+    print(suiObjectResponse.data?.content?.fields);
+
+    return suiObjectResponse.data?.content?.fields['voted'];
   }
 }

@@ -9,7 +9,6 @@ final routers = [
     initial: true,
     children: [
       AutoRoute(page: HomeRoute.page),
-      AutoRoute(page: PrivateVoteRoute.page),
       AutoRoute(page: HistoryRoute.page),
       AutoRoute(page: AccountRoute.page),
     ],

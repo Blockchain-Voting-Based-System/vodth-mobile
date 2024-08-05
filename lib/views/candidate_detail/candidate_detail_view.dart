@@ -7,7 +7,6 @@ import 'package:vodth_mobile/core/base/view_model_provider.dart';
 import 'package:vodth_mobile/core/routes/app_router.gr.dart';
 import 'package:vodth_mobile/core/routes/routes_export.dart';
 import 'package:vodth_mobile/core/services/messenger_service.dart';
-import 'package:vodth_mobile/themes/theme_constant.dart';
 import 'package:vodth_mobile/views/candidate_detail/local_widgets/private_vote_secret_dialog.dart';
 import 'package:vodth_mobile/views/widgets/vm_bottom.dart';
 import 'package:vodth_mobile/views/widgets/vm_bottom_navigation_wrapper.dart';

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:vodth_mobile/core/base/base_view_model.dart';
 import 'package:vodth_mobile/core/models/vodth/event_model.dart';
 import 'package:vodth_mobile/core/services/event_service.dart';
@@ -32,11 +33,11 @@ class HomeViewModel extends BaseViewModel {
       return;
     }
 
-    if (label == 'All') {
+    if (label == tr('button.All')) {
       events = EventService.instance.activeEvents!;
-    } else if (label == 'Public') {
+    } else if (label == tr('button.Public')) {
       events = EventService.instance.activeEvents!.where((element) => element.isPublic).toList();
-    } else if (label == 'Private') {
+    } else if (label == tr('button.Private')) {
       events = EventService.instance.activeEvents!.where((element) => element.isPrivate).toList();
     }
     notifyListeners();

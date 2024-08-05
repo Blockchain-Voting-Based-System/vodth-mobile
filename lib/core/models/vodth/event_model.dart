@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:intl/intl.dart'; // Import for date parsing
+import 'package:intl/intl.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:vodth_mobile/core/models/base_model.dart';
 import 'package:vodth_mobile/core/models/vodth/candidate_model.dart';

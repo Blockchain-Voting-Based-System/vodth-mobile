@@ -22,4 +22,8 @@ final routers = [
   AutoRoute(page: EventDetailRoute.page, path: '/events/:id'),
   AutoRoute(page: FaqsRoute.page),
   AutoRoute(page: CastingVoteRoute.page),
+  AutoRoute(page: IdCardOcrRoute.page),
+  AutoRoute(page: IdCardOptionsRoute.page),
+  AutoRoute(page: UploadIdRoute.page),
+  AutoRoute(page: CaptureIdRoute.page, fullscreenDialog: true),
 ];

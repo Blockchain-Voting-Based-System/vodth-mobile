@@ -10,7 +10,7 @@ class _HistoryAdaptive extends StatelessWidget {
     return Scaffold(
       appBar: MorphingAppBar(
         title: Text(
-          'Vote History',
+          tr('title.vote_history'),
           style: M3TextTheme.of(context).titleLarge?.copyWith(
                 color: M3Color.of(context).primary,
                 fontWeight: FontWeight.bold,
@@ -49,7 +49,7 @@ class _HistoryAdaptive extends StatelessWidget {
         VmTapEffectType.scaleDown,
       ],
       onTap: () {
-        // context.pushRoute(const EventsRoute());
+        context.pushRoute(HistoryDetailRoute(id: 'GCBrh8zy4XRdtp0j6yFC'));
       },
       child: Card(
         color: Colors.white,
@@ -61,7 +61,8 @@ class _HistoryAdaptive extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildEventImage(context: context, imageUrl: event.imageUrl ?? ''),
+              _buildEventImage(
+                  context: context, imageUrl: event.imageUrl ?? ''),
               const SizedBox(width: 16.0),
               _buildEventInformation(
                 context: context,

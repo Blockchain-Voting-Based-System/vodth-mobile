@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:vodth_mobile/themes/theme_constant.dart';
 
@@ -15,18 +16,18 @@ class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      elevation: 0.0,
+      elevation: 90.0,
       selectedItemColor: ThemeConstant.brandColor,
       showUnselectedLabels: true,
       type: BottomNavigationBarType.fixed,
       currentIndex: widget.tabsRouter.activeIndex,
       onTap: (value) => widget.tabsRouter.setActiveIndex(value),
-      items: const [
+      items: [
         BottomNavigationBarItem(
-          icon: ImageIcon(
+          icon: const ImageIcon(
             AssetImage('assets/icons/home_icon.png'),
           ),
-          label: 'Home',
+          label: tr('button.Home'),
         ),
         // BottomNavigationBarItem(
         //   icon: ImageIcon(
@@ -35,14 +36,14 @@ class _BottomNavBarState extends State<BottomNavBar> {
         //   label: 'Prvate Vote',
         // ),
         BottomNavigationBarItem(
-          icon: ImageIcon(
+          icon: const ImageIcon(
             AssetImage('assets/icons/history_icon.png'),
           ),
-          label: 'History',
+          label: tr('button.History'),
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.person),
-          label: 'Account',
+          icon: const Icon(Icons.person),
+          label: tr('title.account'),
         ),
       ],
     );

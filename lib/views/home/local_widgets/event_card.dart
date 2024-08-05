@@ -49,7 +49,8 @@ class EventCard extends StatelessWidget {
             ),
             image: DecorationImage(
               fit: BoxFit.cover,
-              image: NetworkImage(event.imageUrl ?? 'https://api.api-ninjas.com/v1/randomimage?category=nature'),
+              image: NetworkImage(event.imageUrl ??
+                  'https://api.api-ninjas.com/v1/randomimage?category=nature'),
             ),
           ),
         ),

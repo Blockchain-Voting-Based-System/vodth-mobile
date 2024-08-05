@@ -20,7 +20,7 @@ class _HomeAdaptive extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 32.0),
                   child: Image.asset(
                     'assets/images/vodth_logo.png',
-                    height: 52,
+                    height: 40,
                   ),
                 ),
               ],

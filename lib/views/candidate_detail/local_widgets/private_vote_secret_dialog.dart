@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:vodth_mobile/core/routes/routes_export.dart';
 import 'package:vodth_mobile/core/services/messenger_service.dart';
@@ -20,8 +21,7 @@ class PrivateVoteSecretDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(
-        'Private Vote Secret Key',
+      title: Text(tr("title.secret_dialog"),
         style: M3TextTheme.of(context).titleLarge?.copyWith(
               color: M3Color.of(context).primary,
               fontWeight: FontWeight.bold,
@@ -30,13 +30,13 @@ class PrivateVoteSecretDialog extends StatelessWidget {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          const Text('Please enter your secret key to join the voting event:'),
+           Text(tr('message.enter_secret_key')),
           const SizedBox(height: 8.0),
           TextField(
             controller: controller,
-            decoration: const InputDecoration(
-              hintText: "Secret Key",
-              border: OutlineInputBorder(
+            decoration:  InputDecoration(
+              hintText: tr('placeholder.secret_key') ,
+              border: const OutlineInputBorder(
                 borderSide: BorderSide(color: Color(0xFFDADADA)),
                 borderRadius: BorderRadius.all(Radius.circular(10.0)),
               ),
@@ -46,7 +46,7 @@ class PrivateVoteSecretDialog extends StatelessWidget {
       ),
       actions: <Widget>[
         TextButton(
-          child: const Text('Cancel'),
+          child:  Text(tr('button.Cancel')),
           onPressed: () {
             context.router.popForced();
           },
@@ -59,9 +59,9 @@ class PrivateVoteSecretDialog extends StatelessWidget {
           width: 100,
           padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
           child: TextButton(
-              child: const Text(
-                'Vote',
-                style: TextStyle(color: Colors.white),
+              child:  Text(
+                tr('button.Vote'),
+                style: const TextStyle(color: Colors.white),
               ),
               onPressed: () async {
                 await MessengerService.of(context).showBlankLoading(
@@ -74,13 +74,13 @@ class PrivateVoteSecretDialog extends StatelessWidget {
                   context.router.popForced();
 
                   MessengerService.of(context).showSnackBar(
-                    'Vote successfully',
+                    tr('message.Vote_successfully'),
                     backgroundColor: M3Color.bootstrap(context).success.color,
                     foregroundColor: M3Color.bootstrap(context).success.onColor,
                   );
                 } else {
                   MessengerService.of(context).showSnackBar(
-                    'Invalid secret key',
+                     tr('message.Vote_unsuccessfully'),
                     backgroundColor: M3Color.of(context).error,
                     foregroundColor: M3Color.of(context).onError,
                   );

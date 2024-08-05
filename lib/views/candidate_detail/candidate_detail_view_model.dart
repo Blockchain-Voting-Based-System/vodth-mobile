@@ -94,7 +94,7 @@ class CandidateDetailViewModel extends BaseViewModel {
       notifyListeners();
     } catch (e) {
       if (kDebugMode) {
-        print(e);
+        print("Error voting candidate: $e");
       }
 
       // Re-throw the error to handle it in the caller function

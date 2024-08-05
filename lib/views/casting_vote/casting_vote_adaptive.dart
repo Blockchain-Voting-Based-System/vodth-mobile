@@ -212,7 +212,7 @@ class _CastingVoteAdaptive extends StatelessWidget {
             backgroundColor: Colors.grey.shade300,
             foregroundColor: Colors.black,
           ).copyWith(
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0),
               ),
@@ -230,7 +230,7 @@ class _CastingVoteAdaptive extends StatelessWidget {
             backgroundColor: M3Color.of(context).primary,
             foregroundColor: Colors.white,
           ).copyWith(
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0),
               ),
@@ -256,7 +256,7 @@ class _CastingVoteAdaptive extends StatelessWidget {
             backgroundColor: Colors.grey.shade300,
             foregroundColor: Colors.black,
           ).copyWith(
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0),
               ),
@@ -274,7 +274,7 @@ class _CastingVoteAdaptive extends StatelessWidget {
             backgroundColor: M3Color.of(context).primary,
             foregroundColor: Colors.white,
           ).copyWith(
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0),
               ),

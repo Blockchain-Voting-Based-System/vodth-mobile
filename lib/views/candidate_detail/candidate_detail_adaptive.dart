@@ -39,20 +39,13 @@ class _CandidateDetailAdaptive extends StatelessWidget {
             child: CircularProgressIndicator(),
           );
         } else {
-          return Padding(
-            padding: const EdgeInsets.only(top: 16.0, right: 16.0, left: 16.0),
-            child: ListView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              children: [
-                Column(
-                  children: [
-                    buildCandidateProfileImage(context),
-                    ConfigConstant.sizedBoxH2,
-                    buildCandidateDetail(context),
-                  ],
-                ),
-              ],
-            ),
+          return ListView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            children: [
+              buildCandidateProfileImage(context),
+              ConfigConstant.sizedBoxH2,
+              buildCandidateDetail(context),
+            ],
           );
         }
       },
@@ -64,7 +57,6 @@ class _CandidateDetailAdaptive extends StatelessWidget {
     return Container(
       height: MediaQuery.of(context).size.height / 2.25,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
         image: DecorationImage(
           image: NetworkImage(viewModel.candidate?.imageUrl ?? 'https://via.placeholder.com/150'),
           fit: BoxFit.cover,
@@ -73,51 +65,31 @@ class _CandidateDetailAdaptive extends StatelessWidget {
     );
   }
 
-  Widget buildCandidateDetail(
-    BuildContext context,
-  ) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            Text(
-              viewModel.candidate != null ? '${viewModel.candidate?.name}' : 'N/A',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-        ConfigConstant.sizedBoxH2,
-        buildInfoSection(context),
-      ],
+  Widget buildCandidateDetail(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildTitle(context),
+          ConfigConstant.sizedBoxH2,
+          buildInfoSection(context),
+        ],
+      ),
+    );
+  }
+
+  Text _buildTitle(BuildContext context) {
+    return Text(
+      viewModel.candidate != null ? '${viewModel.candidate?.name}' : 'N/A',
+      style: Theme.of(context).textTheme.headlineMedium,
     );
   }
 
   Widget buildInfoSection(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            Expanded(
-              child: Text(
-                'Presedent of CADT',
-                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                      fontStyle: FontStyle.italic,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-              ),
-            ),
-          ],
-        ),
-        ConfigConstant.sizedBoxH1,
-        Text(
-          viewModel.candidate?.bio ?? 'N/A',
-          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                color: ThemeConstant.brandColor,
-                fontSize: 20,
-              ),
-        ),
-      ],
+    return Text(
+      viewModel.candidate?.bio ?? 'N/A',
+      style: const TextStyle(fontSize: 16),
     );
   }
 

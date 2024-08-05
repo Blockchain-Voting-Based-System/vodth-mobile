@@ -102,7 +102,7 @@ class EventResult extends StatelessWidget {
               candidate?.name ?? '',
               style: const TextStyle(
                 fontSize: 16,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w500,
               ),
             ),
             trailing: FutureBuilder(
@@ -111,11 +111,17 @@ class EventResult extends StatelessWidget {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const CircularProgressIndicator();
                 } else {
-                  return Text(snapshot.data.toString());
+                  return Text(
+                    snapshot.data.toString(),
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: M3Color.of(context).primary,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  );
                 }
               },
             ),
-            onTap: () {},
           ),
         );
       },

@@ -25,9 +25,7 @@ class _AccountAdaptive extends StatelessWidget {
     return ListView(
       children: [
         _buildProfile(context),
-        _buildAccountInformation(context),
         _buildPreferences(context),
-        _buildAboutSection(context),
         _buildLogout(context),
       ],
     );
@@ -79,24 +77,6 @@ class _AccountAdaptive extends StatelessWidget {
     );
   }
 
-  Widget _buildAccountInformation(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const SizedBox(height: 16),
-        _buildSectionTitle(context, 'Account Information'),
-        _buildAccountItem(context, 'SUI Wallet', Icons.wallet, () {
-          context.router.push(const SuiInfomationRoute());
-        }),
-        _buildAccountItem(context, 'Edit Profile', Icons.person, () {
-          context.router.push(const EditProfileRoute());
-        }),
-        _buildAccountItem(context, 'Change Password', Icons.lock, () {}),
-        const SizedBox(height: 24),
-      ],
-    );
-  }
-
   Widget _buildPreferences(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -109,24 +89,7 @@ class _AccountAdaptive extends StatelessWidget {
         _buildAccountItem(context, 'Themes', Icons.palette, () {
           // Handle Themes tap
         }),
-        const SizedBox(height: 16),
         _buildDivider(),
-        const SizedBox(height: 16),
-      ],
-    );
-  }
-
-  Widget _buildAboutSection(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _buildSectionTitle(context, 'About Us'),
-        _buildAccountItem(context, 'About Us', Icons.info, () {
-          context.router.push(const AboutUsRoute());
-        }),
-        _buildAccountItem(context, 'FAQs', Icons.question_mark, () {
-          context.router.push(const FaqsRoute());
-        }),
         const SizedBox(height: 16),
       ],
     );

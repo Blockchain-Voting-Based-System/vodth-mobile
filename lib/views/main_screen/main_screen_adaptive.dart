@@ -10,7 +10,6 @@ class _MainScreenAdaptive extends StatelessWidget {
     return AutoTabsRouter(
       routes: const [
         HomeRoute(),
-        // PrivateVoteRoute(),
         HistoryRoute(),
         AccountRoute(),
       ],

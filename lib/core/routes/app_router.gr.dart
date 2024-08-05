@@ -10,6 +10,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i12;
 import 'package:flutter/material.dart' as _i13;
+import 'package:vodth_mobile/core/models/vodth/candidate_model.dart' as _i14;
 import 'package:vodth_mobile/views/about_us/about_us_view.dart' as _i1;
 import 'package:vodth_mobile/views/account/account_view.dart' as _i2;
 import 'package:vodth_mobile/views/candidate_detail/candidate_detail_view.dart'
@@ -54,9 +55,13 @@ abstract class $AppRouter extends _i12.RootStackRouter {
       );
     },
     CastingVoteRoute.name: (routeData) {
+      final args = routeData.argsAs<CastingVoteRouteArgs>();
       return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i4.CastingVoteView(),
+        child: _i4.CastingVoteView(
+          key: args.key,
+          candidates: args.candidates,
+        ),
       );
     },
     EventDetailRoute.name: (routeData) {
@@ -180,16 +185,40 @@ class CandidateDetailRouteArgs {
 
 /// generated route for
 /// [_i4.CastingVoteView]
-class CastingVoteRoute extends _i12.PageRouteInfo<void> {
-  const CastingVoteRoute({List<_i12.PageRouteInfo>? children})
-      : super(
+class CastingVoteRoute extends _i12.PageRouteInfo<CastingVoteRouteArgs> {
+  CastingVoteRoute({
+    _i13.Key? key,
+    required List<_i14.CandidateModel> candidates,
+    List<_i12.PageRouteInfo>? children,
+  }) : super(
           CastingVoteRoute.name,
+          args: CastingVoteRouteArgs(
+            key: key,
+            candidates: candidates,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'CastingVoteRoute';
 
-  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
+  static const _i12.PageInfo<CastingVoteRouteArgs> page =
+      _i12.PageInfo<CastingVoteRouteArgs>(name);
+}
+
+class CastingVoteRouteArgs {
+  const CastingVoteRouteArgs({
+    this.key,
+    required this.candidates,
+  });
+
+  final _i13.Key? key;
+
+  final List<_i14.CandidateModel> candidates;
+
+  @override
+  String toString() {
+    return 'CastingVoteRouteArgs{key: $key, candidates: $candidates}';
+  }
 }
 
 /// generated route for

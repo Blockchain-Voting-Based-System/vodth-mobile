@@ -12,7 +12,14 @@ class _EventDetailAdaptive extends StatelessWidget {
       child: Scaffold(
         appBar: _buildAppBar(),
         body: _buildBody(context),
-        bottomNavigationBar: _buildStartVotingButton(context),
+        bottomNavigationBar: VmBottomNavigationWrapper(
+          child: VmButton.filled(
+            label: 'Start Voting',
+            onPressed: () async {
+              context.pushRoute(CastingVoteRoute(event: viewModel.event ?? EventModel()));
+            },
+          ),
+        ),
       ),
     );
   }
@@ -66,7 +73,7 @@ class _EventDetailAdaptive extends StatelessWidget {
 
   Padding _buildEventInfo(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -74,11 +81,13 @@ class _EventDetailAdaptive extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                viewModel.event?.name ?? 'N/A',
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w900,
+              Expanded(
+                child: Text(
+                  viewModel.event?.name ?? 'N/A',
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w900,
+                  ),
                 ),
               ),
               GestureDetector(
@@ -189,13 +198,15 @@ class _EventDetailAdaptive extends StatelessWidget {
       child: SizedBox(
         width: double.infinity,
         child: ElevatedButton(
+          onPressed: () {
+            context.pushRoute(
+              CastingVoteRoute(event: viewModel.event ?? EventModel()),
+            );
+          },
           style: ElevatedButton.styleFrom(
             backgroundColor: M3Color.of(context).primary,
             padding: const EdgeInsets.symmetric(vertical: 16.0),
           ),
-          onPressed: () {
-            context.pushRoute(const CastingVoteRoute());
-          },
           child: const Text(
             'Start Voting',
             style: TextStyle(

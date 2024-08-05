@@ -12,19 +12,9 @@ class _CandidateDetailAdaptive extends StatelessWidget {
       body: _buildBody(context),
       bottomNavigationBar: VmBottomNavigationWrapper(
         child: VmButton.filled(
-          label: 'Vote',
+          label: 'Start Voting',
           onPressed: () async {
-            if (viewModel.event?.type == 'private') {
-              _showSecretKeyDialog(context);
-            } else if (viewModel.event?.type == 'public') {
-              MessengerService.of(context).showBlankLoading(
-                future: () async {
-                  await viewModel.voteCandidate();
-                },
-                debugSource: "CandidateDetailViewModel#voteCandidate",
-              );
-              context.router.popForced();
-            }
+            context.pushRoute(CastingVoteRoute(event: viewModel.event ?? EventModel()));
           },
         ),
       ),
@@ -67,12 +57,12 @@ class _CandidateDetailAdaptive extends StatelessWidget {
 
   Widget buildCandidateDetail(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.only(right: 16.0, left: 16.0, bottom: 16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildTitle(context),
-          buildInfoSection(context),
+          _buildInfoSection(context),
         ],
       ),
     );
@@ -82,9 +72,11 @@ class _CandidateDetailAdaptive extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          viewModel.candidate != null ? '${viewModel.candidate?.name}' : 'N/A',
-          style: Theme.of(context).textTheme.headlineMedium,
+        Expanded(
+          child: Text(
+            viewModel.candidate != null ? '${viewModel.candidate?.name}' : 'N/A',
+            style: Theme.of(context).textTheme.headlineMedium,
+          ),
         ),
         GestureDetector(
           onTap: () async {
@@ -107,7 +99,7 @@ class _CandidateDetailAdaptive extends StatelessWidget {
     );
   }
 
-  Widget buildInfoSection(BuildContext context) {
+  Widget _buildInfoSection(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -136,16 +128,6 @@ class _CandidateDetailAdaptive extends StatelessWidget {
           style: const TextStyle(fontSize: 16),
         ),
       ],
-    );
-  }
-
-  void _showSecretKeyDialog(BuildContext context) {
-    final TextEditingController controller = TextEditingController();
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return PrivateVoteSecretDialog(controller: controller, viewModel: viewModel);
-      },
     );
   }
 }

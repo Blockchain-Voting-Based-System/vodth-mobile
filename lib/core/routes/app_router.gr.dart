@@ -10,6 +10,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i11;
 import 'package:flutter/material.dart' as _i12;
+import 'package:vodth_mobile/core/models/vodth/event_model.dart' as _i13;
 import 'package:vodth_mobile/views/account/account_view.dart' as _i1;
 import 'package:vodth_mobile/views/candidate_detail/candidate_detail_view.dart'
     as _i2;
@@ -47,9 +48,13 @@ abstract class $AppRouter extends _i11.RootStackRouter {
       );
     },
     CastingVoteRoute.name: (routeData) {
+      final args = routeData.argsAs<CastingVoteRouteArgs>();
       return _i11.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i3.CastingVoteView(),
+        child: _i3.CastingVoteView(
+          key: args.key,
+          event: args.event,
+        ),
       );
     },
     EventDetailRoute.name: (routeData) {
@@ -159,16 +164,40 @@ class CandidateDetailRouteArgs {
 
 /// generated route for
 /// [_i3.CastingVoteView]
-class CastingVoteRoute extends _i11.PageRouteInfo<void> {
-  const CastingVoteRoute({List<_i11.PageRouteInfo>? children})
-      : super(
+class CastingVoteRoute extends _i11.PageRouteInfo<CastingVoteRouteArgs> {
+  CastingVoteRoute({
+    _i12.Key? key,
+    required _i13.EventModel event,
+    List<_i11.PageRouteInfo>? children,
+  }) : super(
           CastingVoteRoute.name,
+          args: CastingVoteRouteArgs(
+            key: key,
+            event: event,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'CastingVoteRoute';
 
-  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
+  static const _i11.PageInfo<CastingVoteRouteArgs> page =
+      _i11.PageInfo<CastingVoteRouteArgs>(name);
+}
+
+class CastingVoteRouteArgs {
+  const CastingVoteRouteArgs({
+    this.key,
+    required this.event,
+  });
+
+  final _i12.Key? key;
+
+  final _i13.EventModel event;
+
+  @override
+  String toString() {
+    return 'CastingVoteRouteArgs{key: $key, event: $event}';
+  }
 }
 
 /// generated route for

@@ -12,6 +12,7 @@ class _EventDetailAdaptive extends StatelessWidget {
       child: Scaffold(
         appBar: _buildAppBar(),
         body: _buildBody(context),
+        bottomNavigationBar: _buildStartVotingButton(context),
       ),
     );
   }
@@ -177,6 +178,31 @@ class _EventDetailAdaptive extends StatelessWidget {
             ),
           ),
           trailing: const Icon(Icons.arrow_forward_ios),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildStartVotingButton(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(24.0),
+      child: SizedBox(
+        width: double.infinity,
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: M3Color.of(context).primary,
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+          ),
+          onPressed: () {
+            context.pushRoute(const CastingVoteRoute());
+          },
+          child: const Text(
+            'Start Voting',
+            style: TextStyle(
+              fontSize: 16,
+              color: Colors.white,
+            ),
+          ),
         ),
       ),
     );

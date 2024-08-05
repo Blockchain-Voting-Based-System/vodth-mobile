@@ -70,12 +70,34 @@ class _EventDetailAdaptive extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 8),
-          Text(
-            viewModel.event?.name ?? 'N/A',
-            style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w900,
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                viewModel.event?.name ?? 'N/A',
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+              GestureDetector(
+                onTap: () async {
+                  Uri uri = Uri.parse('https://testnet.suivision.xyz/object/${viewModel.event?.suiEventId}');
+                  await launchUrl(
+                    uri,
+                    mode: LaunchMode.inAppWebView,
+                  );
+                },
+                child: Text(
+                  'Live Sui Chain',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: M3Color.of(context).primary,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 16),
           Text(

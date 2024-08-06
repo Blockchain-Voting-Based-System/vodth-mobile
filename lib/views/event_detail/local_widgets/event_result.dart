@@ -39,7 +39,7 @@ class EventResult extends StatelessWidget {
       future: viewModel.eventLiveVoteCount(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator.adaptive());
         } else {
           return Column(
             children: [
@@ -79,7 +79,8 @@ class EventResult extends StatelessWidget {
             side: BorderSide(color: M3Color.of(context).primary, width: 1.0),
           ),
           child: ListTile(
-            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             leading: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -94,7 +95,8 @@ class EventResult extends StatelessWidget {
                 const SizedBox(width: 16),
                 CircleAvatar(
                   radius: 32, // Image radius
-                  backgroundImage: NetworkImage(candidate?.imageUrl ?? 'https://api.api-ninjas.com/v1/randomuser'),
+                  backgroundImage: NetworkImage(candidate?.imageUrl ??
+                      'https://api.api-ninjas.com/v1/randomuser'),
                 ),
               ],
             ),
@@ -109,7 +111,7 @@ class EventResult extends StatelessWidget {
               future: viewModel.candidateLiveVoteCount(candidate),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const CircularProgressIndicator();
+                  return const CircularProgressIndicator.adaptive();
                 } else {
                   return Text(
                     snapshot.data.toString(),

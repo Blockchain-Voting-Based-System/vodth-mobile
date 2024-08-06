@@ -8,29 +8,36 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i11;
-import 'package:flutter/material.dart' as _i12;
-import 'package:vodth_mobile/views/account/account_view.dart' as _i1;
+import 'package:auto_route/auto_route.dart' as _i12;
+import 'package:flutter/material.dart' as _i13;
+import 'package:vodth_mobile/views/about_us/about_us_view.dart' as _i1;
+import 'package:vodth_mobile/views/account/account_view.dart' as _i2;
 import 'package:vodth_mobile/views/candidate_detail/candidate_detail_view.dart'
-    as _i2;
-import 'package:vodth_mobile/views/casting_vote/casting_vote_view.dart' as _i3;
-import 'package:vodth_mobile/views/event_detail/event_detail_view.dart' as _i4;
-import 'package:vodth_mobile/views/faqs/faqs_view.dart' as _i5;
-import 'package:vodth_mobile/views/history/history_view.dart' as _i6;
-import 'package:vodth_mobile/views/home/home_view.dart' as _i7;
-import 'package:vodth_mobile/views/login/login_view.dart' as _i8;
-import 'package:vodth_mobile/views/main_screen/main_screen_view.dart' as _i9;
-import 'package:vodth_mobile/views/register/register_view.dart' as _i10;
+    as _i3;
+import 'package:vodth_mobile/views/casting_vote/casting_vote_view.dart' as _i4;
+import 'package:vodth_mobile/views/event_detail/event_detail_view.dart' as _i5;
+import 'package:vodth_mobile/views/faqs/faqs_view.dart' as _i6;
+import 'package:vodth_mobile/views/history/history_view.dart' as _i7;
+import 'package:vodth_mobile/views/home/home_view.dart' as _i8;
+import 'package:vodth_mobile/views/login/login_view.dart' as _i9;
+import 'package:vodth_mobile/views/main_screen/main_screen_view.dart' as _i10;
+import 'package:vodth_mobile/views/register/register_view.dart' as _i11;
 
-abstract class $AppRouter extends _i11.RootStackRouter {
+abstract class $AppRouter extends _i12.RootStackRouter {
   $AppRouter({super.navigatorKey});
 
   @override
-  final Map<String, _i11.PageFactory> pagesMap = {
-    AccountRoute.name: (routeData) {
-      return _i11.AutoRoutePage<dynamic>(
+  final Map<String, _i12.PageFactory> pagesMap = {
+    AboutUsRoute.name: (routeData) {
+      return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i1.AccountView(),
+        child: const _i1.AboutUsView(),
+      );
+    },
+    AccountRoute.name: (routeData) {
+      return _i12.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i2.AccountView(),
       );
     },
     CandidateDetailRoute.name: (routeData) {
@@ -38,75 +45,89 @@ abstract class $AppRouter extends _i11.RootStackRouter {
       final args = routeData.argsAs<CandidateDetailRouteArgs>(
           orElse: () =>
               CandidateDetailRouteArgs(id: pathParams.optString('id')));
-      return _i11.AutoRoutePage<dynamic>(
+      return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i2.CandidateDetailView(
+        child: _i3.CandidateDetailView(
           key: args.key,
           id: args.id,
         ),
       );
     },
     CastingVoteRoute.name: (routeData) {
-      return _i11.AutoRoutePage<dynamic>(
+      return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i3.CastingVoteView(),
+        child: const _i4.CastingVoteView(),
       );
     },
     EventDetailRoute.name: (routeData) {
       final pathParams = routeData.inheritedPathParams;
       final args = routeData.argsAs<EventDetailRouteArgs>(
           orElse: () => EventDetailRouteArgs(id: pathParams.optString('id')));
-      return _i11.AutoRoutePage<dynamic>(
+      return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i4.EventDetailView(
+        child: _i5.EventDetailView(
           key: args.key,
           id: args.id,
         ),
       );
     },
     FaqsRoute.name: (routeData) {
-      return _i11.AutoRoutePage<dynamic>(
+      return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i5.FaqsView(),
+        child: const _i6.FaqsView(),
       );
     },
     HistoryRoute.name: (routeData) {
-      return _i11.AutoRoutePage<dynamic>(
+      return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i6.HistoryView(),
+        child: const _i7.HistoryView(),
       );
     },
     HomeRoute.name: (routeData) {
-      return _i11.AutoRoutePage<dynamic>(
+      return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i7.HomeView(),
+        child: const _i8.HomeView(),
       );
     },
     LoginRoute.name: (routeData) {
-      return _i11.AutoRoutePage<dynamic>(
+      return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i8.LoginView(),
+        child: const _i9.LoginView(),
       );
     },
     MainScreenRoute.name: (routeData) {
-      return _i11.AutoRoutePage<dynamic>(
+      return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i9.MainScreenView(),
+        child: const _i10.MainScreenView(),
       );
     },
     RegisterRoute.name: (routeData) {
-      return _i11.AutoRoutePage<dynamic>(
+      return _i12.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i10.RegisterView(),
+        child: const _i11.RegisterView(),
       );
     },
   };
 }
 
 /// generated route for
-/// [_i1.AccountView]
-class AccountRoute extends _i11.PageRouteInfo<void> {
-  const AccountRoute({List<_i11.PageRouteInfo>? children})
+/// [_i1.AboutUsView]
+class AboutUsRoute extends _i12.PageRouteInfo<void> {
+  const AboutUsRoute({List<_i12.PageRouteInfo>? children})
+      : super(
+          AboutUsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AboutUsRoute';
+
+  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i2.AccountView]
+class AccountRoute extends _i12.PageRouteInfo<void> {
+  const AccountRoute({List<_i12.PageRouteInfo>? children})
       : super(
           AccountRoute.name,
           initialChildren: children,
@@ -114,17 +135,17 @@ class AccountRoute extends _i11.PageRouteInfo<void> {
 
   static const String name = 'AccountRoute';
 
-  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
+  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i2.CandidateDetailView]
+/// [_i3.CandidateDetailView]
 class CandidateDetailRoute
-    extends _i11.PageRouteInfo<CandidateDetailRouteArgs> {
+    extends _i12.PageRouteInfo<CandidateDetailRouteArgs> {
   CandidateDetailRoute({
-    _i12.Key? key,
+    _i13.Key? key,
     required String? id,
-    List<_i11.PageRouteInfo>? children,
+    List<_i12.PageRouteInfo>? children,
   }) : super(
           CandidateDetailRoute.name,
           args: CandidateDetailRouteArgs(
@@ -137,8 +158,8 @@ class CandidateDetailRoute
 
   static const String name = 'CandidateDetailRoute';
 
-  static const _i11.PageInfo<CandidateDetailRouteArgs> page =
-      _i11.PageInfo<CandidateDetailRouteArgs>(name);
+  static const _i12.PageInfo<CandidateDetailRouteArgs> page =
+      _i12.PageInfo<CandidateDetailRouteArgs>(name);
 }
 
 class CandidateDetailRouteArgs {
@@ -147,7 +168,7 @@ class CandidateDetailRouteArgs {
     required this.id,
   });
 
-  final _i12.Key? key;
+  final _i13.Key? key;
 
   final String? id;
 
@@ -158,9 +179,9 @@ class CandidateDetailRouteArgs {
 }
 
 /// generated route for
-/// [_i3.CastingVoteView]
-class CastingVoteRoute extends _i11.PageRouteInfo<void> {
-  const CastingVoteRoute({List<_i11.PageRouteInfo>? children})
+/// [_i4.CastingVoteView]
+class CastingVoteRoute extends _i12.PageRouteInfo<void> {
+  const CastingVoteRoute({List<_i12.PageRouteInfo>? children})
       : super(
           CastingVoteRoute.name,
           initialChildren: children,
@@ -168,16 +189,16 @@ class CastingVoteRoute extends _i11.PageRouteInfo<void> {
 
   static const String name = 'CastingVoteRoute';
 
-  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
+  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i4.EventDetailView]
-class EventDetailRoute extends _i11.PageRouteInfo<EventDetailRouteArgs> {
+/// [_i5.EventDetailView]
+class EventDetailRoute extends _i12.PageRouteInfo<EventDetailRouteArgs> {
   EventDetailRoute({
-    _i12.Key? key,
+    _i13.Key? key,
     required String? id,
-    List<_i11.PageRouteInfo>? children,
+    List<_i12.PageRouteInfo>? children,
   }) : super(
           EventDetailRoute.name,
           args: EventDetailRouteArgs(
@@ -190,8 +211,8 @@ class EventDetailRoute extends _i11.PageRouteInfo<EventDetailRouteArgs> {
 
   static const String name = 'EventDetailRoute';
 
-  static const _i11.PageInfo<EventDetailRouteArgs> page =
-      _i11.PageInfo<EventDetailRouteArgs>(name);
+  static const _i12.PageInfo<EventDetailRouteArgs> page =
+      _i12.PageInfo<EventDetailRouteArgs>(name);
 }
 
 class EventDetailRouteArgs {
@@ -200,7 +221,7 @@ class EventDetailRouteArgs {
     required this.id,
   });
 
-  final _i12.Key? key;
+  final _i13.Key? key;
 
   final String? id;
 
@@ -211,9 +232,9 @@ class EventDetailRouteArgs {
 }
 
 /// generated route for
-/// [_i5.FaqsView]
-class FaqsRoute extends _i11.PageRouteInfo<void> {
-  const FaqsRoute({List<_i11.PageRouteInfo>? children})
+/// [_i6.FaqsView]
+class FaqsRoute extends _i12.PageRouteInfo<void> {
+  const FaqsRoute({List<_i12.PageRouteInfo>? children})
       : super(
           FaqsRoute.name,
           initialChildren: children,
@@ -221,13 +242,13 @@ class FaqsRoute extends _i11.PageRouteInfo<void> {
 
   static const String name = 'FaqsRoute';
 
-  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
+  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i6.HistoryView]
-class HistoryRoute extends _i11.PageRouteInfo<void> {
-  const HistoryRoute({List<_i11.PageRouteInfo>? children})
+/// [_i7.HistoryView]
+class HistoryRoute extends _i12.PageRouteInfo<void> {
+  const HistoryRoute({List<_i12.PageRouteInfo>? children})
       : super(
           HistoryRoute.name,
           initialChildren: children,
@@ -235,13 +256,13 @@ class HistoryRoute extends _i11.PageRouteInfo<void> {
 
   static const String name = 'HistoryRoute';
 
-  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
+  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i7.HomeView]
-class HomeRoute extends _i11.PageRouteInfo<void> {
-  const HomeRoute({List<_i11.PageRouteInfo>? children})
+/// [_i8.HomeView]
+class HomeRoute extends _i12.PageRouteInfo<void> {
+  const HomeRoute({List<_i12.PageRouteInfo>? children})
       : super(
           HomeRoute.name,
           initialChildren: children,
@@ -249,13 +270,13 @@ class HomeRoute extends _i11.PageRouteInfo<void> {
 
   static const String name = 'HomeRoute';
 
-  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
+  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i8.LoginView]
-class LoginRoute extends _i11.PageRouteInfo<void> {
-  const LoginRoute({List<_i11.PageRouteInfo>? children})
+/// [_i9.LoginView]
+class LoginRoute extends _i12.PageRouteInfo<void> {
+  const LoginRoute({List<_i12.PageRouteInfo>? children})
       : super(
           LoginRoute.name,
           initialChildren: children,
@@ -263,13 +284,13 @@ class LoginRoute extends _i11.PageRouteInfo<void> {
 
   static const String name = 'LoginRoute';
 
-  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
+  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i9.MainScreenView]
-class MainScreenRoute extends _i11.PageRouteInfo<void> {
-  const MainScreenRoute({List<_i11.PageRouteInfo>? children})
+/// [_i10.MainScreenView]
+class MainScreenRoute extends _i12.PageRouteInfo<void> {
+  const MainScreenRoute({List<_i12.PageRouteInfo>? children})
       : super(
           MainScreenRoute.name,
           initialChildren: children,
@@ -277,13 +298,13 @@ class MainScreenRoute extends _i11.PageRouteInfo<void> {
 
   static const String name = 'MainScreenRoute';
 
-  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
+  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i10.RegisterView]
-class RegisterRoute extends _i11.PageRouteInfo<void> {
-  const RegisterRoute({List<_i11.PageRouteInfo>? children})
+/// [_i11.RegisterView]
+class RegisterRoute extends _i12.PageRouteInfo<void> {
+  const RegisterRoute({List<_i12.PageRouteInfo>? children})
       : super(
           RegisterRoute.name,
           initialChildren: children,
@@ -291,5 +312,5 @@ class RegisterRoute extends _i11.PageRouteInfo<void> {
 
   static const String name = 'RegisterRoute';
 
-  static const _i11.PageInfo<void> page = _i11.PageInfo<void>(name);
+  static const _i12.PageInfo<void> page = _i12.PageInfo<void>(name);
 }

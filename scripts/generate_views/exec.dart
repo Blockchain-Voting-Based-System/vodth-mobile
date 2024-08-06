@@ -37,7 +37,8 @@ void main() async {
     // 'sui_infomation' : 'sui_infomation',
     // 'events/event_detail': 'event_detail',
     // 'candidates/candidate_detail': 'candidate_detail',
-    'casting_vote': 'casting_vote',
+    // 'casting_vote': 'casting_vote',
+    'about_us' : 'about_us',
   };
 
   for (final view in views.entries) {

@@ -25,5 +25,5 @@ final routers = [
    AutoRoute(page: EventDetailRoute.page, path: '/events/:id', guards: [authGuard]),
   AutoRoute(page: FaqsRoute.page),
   AutoRoute(page: CastingVoteRoute.page),
-  AutoRoute(page: AboutUsRoute.page)
+  AutoRoute(page: CaptureIdRoute.page),
 ];

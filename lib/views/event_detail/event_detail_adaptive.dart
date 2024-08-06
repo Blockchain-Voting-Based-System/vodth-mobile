@@ -12,13 +12,14 @@ class _EventDetailAdaptive extends StatelessWidget {
       child: Scaffold(
         appBar: _buildAppBar(),
         body: _buildBody(context),
-        // bottomNavigationBar: _buildStartVotingButton(context),
+        bottomNavigationBar: viewModel.event?.isPublic == true ? _buildStartVotingButton(context) : null,
       ),
     );
   }
 
   AppBar _buildAppBar() {
     return AppBar(
+      title: const Text('Event Detail'),
       bottom: const TabBar(
         tabs: [
           Tab(text: 'Event'),
@@ -185,28 +186,33 @@ class _EventDetailAdaptive extends StatelessWidget {
     );
   }
 
-  // Widget _buildStartVotingButton(BuildContext context) {
-  //   return Padding(
-  //     padding: const EdgeInsets.all(24.0),
-  //     child: SizedBox(
-  //       width: double.infinity,
-  //       child: ElevatedButton(
-  //         style: ElevatedButton.styleFrom(
-  //           backgroundColor: M3Color.of(context).primary,
-  //           padding: const EdgeInsets.symmetric(vertical: 16.0),
-  //         ),
-  //         onPressed: () {
-  //           context.pushRoute(const CastingVoteRoute());
-  //         },
-  //         child: const Text(
-  //           'Start Voting',
-  //           style: TextStyle(
-  //             fontSize: 16,
-  //             color: Colors.white,
-  //           ),
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
+  Widget _buildStartVotingButton(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 32.0, horizontal: 16),
+      child: SizedBox(
+        width: double.infinity,
+        child: ElevatedButton(
+          onPressed: () {
+            context.pushRoute(
+              CastingVoteRoute(
+                candidates: viewModel.candidates ?? [],
+                event: viewModel.event!,
+              ),
+            );
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: M3Color.of(context).primary,
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+          ),
+          child: const Text(
+            'Start Voting',
+            style: TextStyle(
+              fontSize: 16,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }

@@ -37,7 +37,6 @@ class PrivateVoteSecretDialog extends StatelessWidget {
             decoration: const InputDecoration(
               hintText: "Secret Key",
               border: OutlineInputBorder(
-                borderSide: BorderSide(color: Color(0xFFDADADA)),
                 borderRadius: BorderRadius.all(Radius.circular(10.0)),
               ),
             ),

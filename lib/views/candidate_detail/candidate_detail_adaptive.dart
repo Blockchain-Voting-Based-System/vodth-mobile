@@ -82,9 +82,11 @@ class _CandidateDetailAdaptive extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          viewModel.candidate != null ? '${viewModel.candidate?.name}' : 'N/A',
-          style: Theme.of(context).textTheme.headlineMedium,
+        Expanded(
+          child: Text(
+            viewModel.candidate != null ? '${viewModel.candidate?.name}' : 'N/A',
+            style: Theme.of(context).textTheme.headlineMedium,
+          ),
         ),
         GestureDetector(
           onTap: () async {

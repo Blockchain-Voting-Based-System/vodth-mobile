@@ -12,7 +12,7 @@ class _EventDetailAdaptive extends StatelessWidget {
       child: Scaffold(
         appBar: _buildAppBar(),
         body: _buildBody(context),
-        bottomNavigationBar: _buildStartVotingButton(context),
+        // bottomNavigationBar: _buildStartVotingButton(context),
       ),
     );
   }
@@ -74,11 +74,13 @@ class _EventDetailAdaptive extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                viewModel.event?.name ?? 'N/A',
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w900,
+              Expanded(
+                child: Text(
+                  viewModel.event?.name ?? 'N/A',
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w900,
+                  ),
                 ),
               ),
               GestureDetector(
@@ -183,28 +185,28 @@ class _EventDetailAdaptive extends StatelessWidget {
     );
   }
 
-  Widget _buildStartVotingButton(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(24.0),
-      child: SizedBox(
-        width: double.infinity,
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: M3Color.of(context).primary,
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-          ),
-          onPressed: () {
-            context.pushRoute(const CastingVoteRoute());
-          },
-          child: const Text(
-            'Start Voting',
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.white,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
+  // Widget _buildStartVotingButton(BuildContext context) {
+  //   return Padding(
+  //     padding: const EdgeInsets.all(24.0),
+  //     child: SizedBox(
+  //       width: double.infinity,
+  //       child: ElevatedButton(
+  //         style: ElevatedButton.styleFrom(
+  //           backgroundColor: M3Color.of(context).primary,
+  //           padding: const EdgeInsets.symmetric(vertical: 16.0),
+  //         ),
+  //         onPressed: () {
+  //           context.pushRoute(const CastingVoteRoute());
+  //         },
+  //         child: const Text(
+  //           'Start Voting',
+  //           style: TextStyle(
+  //             fontSize: 16,
+  //             color: Colors.white,
+  //           ),
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 }

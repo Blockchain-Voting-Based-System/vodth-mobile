@@ -22,7 +22,7 @@ class _HistoryAdaptive extends StatelessWidget {
       body: userProvider.isLoggedIn
           ? RefreshIndicator(
               child: _buildBody(context),
-              onRefresh: () => viewModel.load(),
+              onRefresh: () => viewModel.load(context),
             )
           : _buildNoAccount(context),
     );
@@ -50,18 +50,23 @@ class _HistoryAdaptive extends StatelessWidget {
   }
 
   Widget _buildBody(BuildContext context) {
-    return ListView.builder(
-      padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-      itemBuilder: (context, index) {
-        if (viewModel.events == null) {
-          return const Center(
-            child: Text('No events found'),
-          );
-        } else {
-          return _buildEvent(context, viewModel.events![index]);
-        }
+    return FutureBuilder(
+      future: viewModel.load(context),
+      builder: (context, snapshot) {
+        return ListView.builder(
+          padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+          itemBuilder: (context, index) {
+            if (viewModel.events == null) {
+              return const Center(
+                child: Text('No events found'),
+              );
+            } else {
+              return _buildEvent(context, viewModel.events![index]);
+            }
+          },
+          itemCount: viewModel.events!.length,
+        );
       },
-      itemCount: viewModel.events!.length,
     );
   }
 
@@ -86,7 +91,8 @@ class _HistoryAdaptive extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildEventImage(context: context, imageUrl: event.imageUrl ?? ''),
+              _buildEventImage(
+                  context: context, imageUrl: event.imageUrl ?? ''),
               const SizedBox(width: 16.0),
               _buildEventInformation(
                 context: context,

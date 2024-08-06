@@ -1,62 +1,65 @@
 {
-  "alert_sheet.choose_languague.title": "ជ្រើសភាសា",
+  "alert_sheet": {
+    "choose_languague": "ជ្រើសភាសា",
+    "choose_theme": "ជ្រើសប្រភេទបង្ហាញ"
+  },
+  "sign_in": "ចូល",
   "title": {
     "account": "គណនី",
     "aboutus": "អំពីយើង",
-    "vote_history": "ប្រវត្តិបោះឆ្នោត",
+    "vote_history": "ប្រវត្តិការបោះឆ្នោត",
     "Account_Address": "អាសយដ្ឋានគណនី",
     "Account_Information": "ព័ត៌មានគណនី",
-    "Sui_Wallet": "កាបូប​ SUI",
-    "Edit_Profile": "កែសម្រួលប្រូហ្វាល់",
-    "Change_Password": "ផ្លាស់ប្តូរពាក្យសម្ងាត់",
-    "Preferences": "ការកំណត់",
+    "Sui_Wallet": "កាបូប SUI",
+    "Edit_Profile": "កែប្រែប្រវត្តិរូប",
+    "Change_Password": "ប្តូរលេខសម្ងាត់",
+    "Preferences": "ជម្រើស",
     "Choose_Languages": "ជ្រើសភាសា",
-    "Notifications": "សារជូនដំណឹង",
-    "Themes": "ប្រធានបទ",
+    "Notifications": "ការជូនដំណឹង",
+    "Themes": "ប្រភេទបង្ហាញ",
     "FAQs": "សំណួរញឹកញាប់",
     "Logout": "ចាកចេញ",
-    "Description": "សេចក្ដីពិពណ៌នា",
+    "Description": "ការពិពណ៌នា",
     "Our_Mission": "បេសកកម្មរបស់យើង",
-    "secret_dialog": "កូនសោរសម្ងាត់បោះឆ្នោតជាឯកជន"
+    "secret_dialog": "កូនសោសម្ងាត់បោះឆ្នោតឯកជន"
   },
-
   "button": {
     "Home": "ទំព័រដើម",
+    "Account": "គណនី",
     "History": "ប្រវត្តិ",
     "All": "ទាំងអស់",
     "Public": "សាធារណៈ",
     "Private": "ឯកជន",
-    "More_Detail": "លម្អិតបន្ថែម",
-    "My_Vote": "ការបោះឆ្នោតរបស់ខ្ញំុ",
+    "More_Detail": "ព័ត៌មានបន្ថែម",
+    "My_Vote": "ការបោះឆ្នោតរបស់ខ្ញុំ",
     "Result": "លទ្ធផល",
     "Vote": "បោះឆ្នោត",
-    "Vote_Ranking": "ចំណាត់ថ្នាក់បោះឆ្នោត",
-    "Total_Votes": "ចំនួនឆ្នោតសរុប",
-     "Cancel": "បោះបង់",
-    "Update": "កែប្រែ"
+    "Vote_Ranking": "ជួរតារាងបោះឆ្នោត",
+    "Total_Votes": "ចំនួនការបោះឆ្នោតទាំងអស់",
+    "Cancel": "បោះបង់",
+    "Update": "ធ្វើបច្ចុប្បន្នភាព"
   },
-
-  "no": "លេខ",
+  "no": "ទេ",
   "type": "ប្រភេទ",
-  "date": "កាលបរិច្ឆេទ",
-  "button.apply": "ស្នើ",
-
-
+  "date": "កាលបរិច្ឆេត",
+  "button.apply": "អនុវត្ត",
   "stepper": {
-    "event": "ព្រឹត្តិការណ៏",
-    "candidates": "បេក្ខជន",
+    "event": "ព្រឹត្តិការណ៍",
+    "candidates": "អ្នកប៉ុនប៉ង",
     "results": "លទ្ធផល"
   },
-
   "message": {
-    "enter_secret_key": "សូមបញ្ចូលកូនសោរសម្ងាត់សម្រាប់ចូលរួមការបោះឆ្នោត",
-    "No_Candidate": "គ្មានបេក្ខជន",
-    "Vote_successfully": "បោះឆ្នោតដោយជោគជ៏យ",
-    "Vote_unsuccessfully": "កូនសោរសម្ងាត់មិនត្រឹមត្រូវ"
+    "enter_secret_key": "សូមបញ្ចូលកូនសោសម្ងាត់របស់អ្នកដើម្បីចូលរួមក្នុងព្រឹត្តិការណ៍បោះឆ្នោត",
+    "No_Candidate": "គ្មានអ្នកប៉ុនប៉ង",
+    "Vote_successfully": "បោះឆ្នោតជោគជ័យ",
+    "Vote_unsuccessfully": "កូនសោសម្ងាត់មិនត្រឹមត្រូវ"
   },
-
-  "placeholder":{
-    "username": "ឈ្មោះអ្នកប្រើប្រាស់",
-    "secret_key": "កូនសោរសម្ងាត់"
+  "placeholder": {
+    "username": "ឈ្មោះអ្នកប្រើ",
+    "secret_key": "កូនសោសម្ងាត់"
+  },
+  "theme": {
+    "light": "ពន្លឺ",
+    "dark": "ងងឹត"
   }
 }

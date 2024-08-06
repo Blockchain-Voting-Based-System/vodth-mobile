@@ -9,6 +9,8 @@ import 'package:vodth_mobile/core/routes/app_router.gr.dart';
 import 'package:vodth_mobile/core/routes/routes_export.dart';
 import 'package:vodth_mobile/core/theme/m3/m3_color.dart';
 import 'package:vodth_mobile/views/event_detail/local_widgets/event_result.dart';
+import 'package:vodth_mobile/views/widgets/vm_bottom.dart';
+import 'package:vodth_mobile/views/widgets/vm_bottom_navigation_wrapper.dart';
 
 import 'event_detail_view_model.dart';
 

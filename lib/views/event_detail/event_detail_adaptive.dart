@@ -187,31 +187,17 @@ class _EventDetailAdaptive extends StatelessWidget {
   }
 
   Widget _buildStartVotingButton(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 32.0, horizontal: 16),
-      child: SizedBox(
-        width: double.infinity,
-        child: ElevatedButton(
-          onPressed: () {
-            context.pushRoute(
-              CastingVoteRoute(
-                candidates: viewModel.candidates ?? [],
-                event: viewModel.event!,
-              ),
-            );
-          },
-          style: ElevatedButton.styleFrom(
-            backgroundColor: M3Color.of(context).primary,
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-          ),
-          child: const Text(
-            'Start Voting',
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.white,
+    return VmBottomNavigationWrapper.singleAction(
+      VmButton.filled(
+        label: 'Start Voting',
+        onPressed: () {
+          context.pushRoute(
+            CastingVoteRoute(
+              candidates: viewModel.candidates ?? [],
+              event: viewModel.event!,
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }

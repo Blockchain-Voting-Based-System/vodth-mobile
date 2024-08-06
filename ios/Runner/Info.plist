@@ -27,7 +27,7 @@
 		<key>CFBundleVersion</key>
 		<string>$(FLUTTER_BUILD_NUMBER)</string>
 		<key>LSRequiresIPhoneOS</key>
-		<true />
+		<true/>
 		<key>LSApplicationQueriesSchemes</key>
 		<array>
 			<string>sms</string>
@@ -51,8 +51,10 @@
 			<string>UIInterfaceOrientationLandscapeRight</string>
 		</array>
 		<key>CADisableMinimumFrameDurationOnPhone</key>
-		<true />
+		<true/>
 		<key>UIApplicationSupportsIndirectInputEvents</key>
-		<true />
+		<true/>
+		<key>UIStatusBarHidden</key>
+		<false/>
 	</dict>
 </plist>

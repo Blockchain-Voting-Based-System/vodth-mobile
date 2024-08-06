@@ -3,7 +3,6 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vodth_mobile/core/routes/app_router.dart';
-import 'package:vodth_mobile/core/theme/theme_config.dart';
 import 'package:vodth_mobile/providers/theme_provider.dart';
 
 class MyApp extends StatelessWidget {
@@ -36,8 +35,7 @@ class MyApp extends StatelessWidget {
         ...AutoRouterDelegate.defaultNavigatorObserversBuilder(),
         AutoRouteObserver(),
       ],
-      placeholder: (context) =>
-          const Center(child: CircularProgressIndicator.adaptive()),
+      placeholder: (context) => const Center(child: CircularProgressIndicator.adaptive()),
       deepLinkBuilder: null,
     );
   }

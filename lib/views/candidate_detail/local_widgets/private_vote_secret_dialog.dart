@@ -65,7 +65,7 @@ class PrivateVoteSecretDialog extends StatelessWidget {
               onPressed: () async {
                 await MessengerService.of(context).showBlankLoading(
                   future: () async {
-                    await viewModel.validateAndRemoveSecret(controller.text);
+                    await viewModel.validateAndRemoveSecret(context, controller.text);
                   },
                   debugSource: "CandidateDetailViewModel#voteCandidate",
                 );

@@ -23,7 +23,7 @@ class HistoryView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelProvider<HistoryViewModel>(
-      create: (context) => HistoryViewModel(),
+      create: (context) => HistoryViewModel(context),
       builder: (context, viewModel, child) {
         return _HistoryAdaptive(viewModel);
       },

@@ -1,11 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sui/sui.dart';
 import 'package:vodth_mobile/core/base/base_view_model.dart';
 import 'package:vodth_mobile/core/models/vodth/candidate_model.dart';
 import 'package:vodth_mobile/core/models/vodth/event_model.dart';
 import 'package:vodth_mobile/core/routes/app_router.gr.dart';
 import 'package:vodth_mobile/core/services/sign_transaction_service.dart';
+import 'package:vodth_mobile/providers/user_provider.dart';
 
 class CandidateDetailViewModel extends BaseViewModel {
   final CandidateDetailRouteArgs params;
@@ -32,7 +35,11 @@ class CandidateDetailViewModel extends BaseViewModel {
     }
 
     try {
-      DocumentSnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore.instance.collection('events').doc(candidate!.eventId).get();
+      DocumentSnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore
+          .instance
+          .collection('events')
+          .doc(candidate!.eventId)
+          .get();
       event = EventModel.fromFirestore(snapshot);
       notifyListeners();
     } catch (e) {
@@ -44,7 +51,11 @@ class CandidateDetailViewModel extends BaseViewModel {
 
   Future<void> getCandidateDetail() async {
     try {
-      DocumentSnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore.instance.collection('candidates').doc(params.id).get();
+      DocumentSnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore
+          .instance
+          .collection('candidates')
+          .doc(params.id)
+          .get();
       candidate = CandidateModel.fromFirestore(snapshot);
       notifyListeners();
     } catch (e) {
@@ -94,13 +105,25 @@ class CandidateDetailViewModel extends BaseViewModel {
     }
   }
 
-  Future<void> validateAndRemoveSecret(String secret) async {
-    final eventDocRef = FirebaseFirestore.instance.collection('events').doc(candidate?.eventId);
+  Future<void> validateAndRemoveSecret(
+      BuildContext context, String secret) async {
+    final eventDocRef =
+        FirebaseFirestore.instance.collection('events').doc(candidate?.eventId);
+    final userId = Provider.of<UserProvider>(context, listen: false).user?.id;
+
+    if (userId == null) {
+      validSecret = false;
+      notifyListeners();
+      return;
+    }
 
     try {
-      await FirebaseFirestore.instance.runTransaction<void>((transaction) async {
-        DocumentSnapshot<Map<String, dynamic>> eventSnapshot = await transaction.get(eventDocRef);
-        List<dynamic> voterSecrets = eventSnapshot.data()?['voterSecrets'] ?? [];
+      await FirebaseFirestore.instance
+          .runTransaction<void>((transaction) async {
+        DocumentSnapshot<Map<String, dynamic>> eventSnapshot =
+            await transaction.get(eventDocRef);
+        List<dynamic> voterSecrets =
+            eventSnapshot.data()?['voterSecrets'] ?? [];
 
         if (voterSecrets.isEmpty || !voterSecrets.contains(secret)) {
           validSecret = false;
@@ -115,6 +138,18 @@ class CandidateDetailViewModel extends BaseViewModel {
 
           // Update the document
           transaction.update(eventDocRef, {'voterSecrets': voterSecrets});
+
+          // Add the voting record to the votes subcollection
+          final voteData = {
+            'userId': userId,
+            'eventId': candidate?.eventId,
+            'voteTime': FieldValue.serverTimestamp(),
+          };
+          
+          transaction.set(
+            eventDocRef.collection('votes').doc(),
+            voteData,
+          );
 
           validSecret = true;
         } catch (e) {

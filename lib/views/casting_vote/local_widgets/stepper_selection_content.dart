@@ -30,7 +30,7 @@ class StepperSelectionContent extends StatelessWidget {
           inputWidget: CandidatesList(viewModel: viewModel),
         ),
         const SizedBox(
-          height: 400,
+          height: 300,
         ),
         actionPreviousNext(
           context,

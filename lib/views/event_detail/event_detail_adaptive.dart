@@ -19,6 +19,7 @@ class _EventDetailAdaptive extends StatelessWidget {
 
   AppBar _buildAppBar() {
     return AppBar(
+      title: const Text('Event Detail'),
       bottom: const TabBar(
         tabs: [
           Tab(text: 'Event'),
@@ -187,13 +188,16 @@ class _EventDetailAdaptive extends StatelessWidget {
 
   Widget _buildStartVotingButton(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(24.0),
+      padding: const EdgeInsets.symmetric(vertical: 32.0, horizontal: 16),
       child: SizedBox(
         width: double.infinity,
         child: ElevatedButton(
           onPressed: () {
             context.pushRoute(
-              CastingVoteRoute(candidates: viewModel.candidates ?? []),
+              CastingVoteRoute(
+                candidates: viewModel.candidates ?? [],
+                event: viewModel.event!,
+              ),
             );
           },
           style: ElevatedButton.styleFrom(

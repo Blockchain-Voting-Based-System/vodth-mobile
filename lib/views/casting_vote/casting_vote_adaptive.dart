@@ -48,15 +48,26 @@ class _CastingVoteAdaptive extends StatelessWidget {
         onStepContinue: viewModel.nextStep,
         onStepCancel: viewModel.previousStep,
         steps: [
-          buildStep(
-            context,
-            title: 'Identity',
-            content: StepperIdentityContent(viewModel: viewModel),
-            isActive: viewModel.currentStep >= 0,
-            state: viewModel.currentStep == 0
-                ? StepState.editing
-                : StepState.complete,
-          ),
+          if (viewModel.event?.type == 'public')
+            buildStep(
+              context,
+              title: 'Identity',
+              content: StepperPublicIdentityContent(viewModel: viewModel),
+              isActive: viewModel.currentStep >= 0,
+              state: viewModel.currentStep == 0
+                  ? StepState.editing
+                  : StepState.complete,
+            )
+          else
+            buildStep(
+              context,
+              title: 'Identity',
+              content: StepperPrivateIdentityContent(viewModel: viewModel),
+              isActive: viewModel.currentStep >= 0,
+              state: viewModel.currentStep == 0
+                  ? StepState.editing
+                  : StepState.complete,
+            ),
           buildStep(
             context,
             title: 'Selection',

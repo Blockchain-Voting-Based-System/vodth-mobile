@@ -1,13 +1,11 @@
-import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:vodth_mobile/constant/config_constant.dart';
-import 'package:vodth_mobile/core/extensions/locale_extension.dart';
+import 'package:vodth_mobile/providers/theme_provider.dart';
 import 'package:vodth_mobile/views/widgets/bottom_sheets/vm_bottom_sheet.dart';
 import 'package:vodth_mobile/views/widgets/util_widgets/vm_single_state_widget.dart';
 import 'package:vodth_mobile/views/widgets/vm_bottom.dart';
 import 'package:vodth_mobile/views/widgets/vm_bottom_navigation_wrapper.dart';
-import 'package:vodth_mobile/providers/theme_provider.dart';
 
 class VmThemeBottomSheet extends VmBottomSheet {
   @override
@@ -45,10 +43,8 @@ class VmThemeBottomSheet extends VmBottomSheet {
     );
   }
 
-  Widget buildActionButton(
-      BuildContext context, ValueNotifier<ThemeMode> notifier) {
-    ThemeProvider themeProvider =
-        Provider.of<ThemeProvider>(context, listen: false);
+  Widget buildActionButton(BuildContext context, ValueNotifier<ThemeMode> notifier) {
+    ThemeProvider themeProvider = Provider.of<ThemeProvider>(context, listen: false);
     return VmBottomNavigationWrapper.singleAction(
       VmButton.filled(
         label: tr('button.apply'),
@@ -57,14 +53,12 @@ class VmThemeBottomSheet extends VmBottomSheet {
             : () {
                 themeProvider.setThemeMode(notifier.value);
                 Navigator.of(context).pop();
-
               },
       ),
     );
   }
 
-  Widget _buildThemeTile(
-      ValueNotifier<ThemeMode> notifier, ThemeMode themeMode, String title) {
+  Widget _buildThemeTile(ValueNotifier<ThemeMode> notifier, ThemeMode themeMode, String title) {
     return buildThemeTile(
       themeMode,
       notifier.value,
@@ -80,8 +74,7 @@ class VmThemeBottomSheet extends VmBottomSheet {
     void Function() onTap,
   ) {
     return ListTile(
-      leading: Icon(
-          themeMode == ThemeMode.light ? Icons.wb_sunny : Icons.nights_stay),
+      leading: Icon(themeMode == ThemeMode.light ? Icons.wb_sunny : Icons.nights_stay),
       title: Text(title),
       onTap: () => onTap(),
       trailing: Radio<ThemeMode>(

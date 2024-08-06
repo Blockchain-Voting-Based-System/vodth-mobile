@@ -10,24 +10,27 @@ class _CandidateDetailAdaptive extends StatelessWidget {
     return Scaffold(
       appBar: MorphingAppBar(),
       body: _buildBody(context),
-      bottomNavigationBar: VmBottomNavigationWrapper(
-        child: VmButton.filled(
-          label: 'Vote',
-          onPressed: () async {
-            if (viewModel.event?.type == 'private') {
-              _showSecretKeyDialog(context);
-            } else if (viewModel.event?.type == 'public') {
-              MessengerService.of(context).showBlankLoading(
-                future: () async {
-                  await viewModel.voteCandidate();
-                },
-                debugSource: "CandidateDetailViewModel#voteCandidate",
-              );
-              context.router.popForced();
-            }
-          },
-        ),
-      ),
+      bottomNavigationBar: viewModel.event?.isPrivate == true
+          ? VmBottomNavigationWrapper(
+              child: VmButton.filled(
+                  label: 'Vote',
+                  // onPressed: () async {
+                  //   if (viewModel.event?.type == 'private') {
+                  //     _showSecretKeyDialog(context);
+                  //   }
+                  //   else if (viewModel.event?.type == 'public') {
+                  //     MessengerService.of(context).showBlankLoading(
+                  //       future: () async {
+                  //         await viewModel.voteCandidate();
+                  //       },
+                  //       debugSource: "CandidateDetailViewModel#voteCandidate",
+                  //     );
+                  //     context.router.popForced();
+                  //   }
+                  // },
+                  onPressed: () => _showSecretKeyDialog(context)),
+            )
+          : null,
     );
   }
 

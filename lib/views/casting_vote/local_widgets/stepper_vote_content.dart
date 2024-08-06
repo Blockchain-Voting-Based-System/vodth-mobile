@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:swipeable_button_view/swipeable_button_view.dart';
 import 'package:vodth_mobile/core/theme/m3/m3_color.dart';
-import 'package:vodth_mobile/views/casting_vote/local_widgets/title_section.dart';
 import 'package:vodth_mobile/views/casting_vote/casting_vote_view_model.dart';
+import 'package:vodth_mobile/views/casting_vote/local_widgets/title_section.dart';
 
 class StepperVoteContent extends StatelessWidget {
   const StepperVoteContent({super.key});
@@ -23,8 +23,8 @@ class StepperVoteContent extends StatelessWidget {
           height: 70,
         ),
         Container(
-          width: 450,
-          height: 450,
+          width: 400,
+          height: 400,
           decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/gifs/voting.gif'),
@@ -33,7 +33,7 @@ class StepperVoteContent extends StatelessWidget {
           ),
         ),
         const SizedBox(
-          height: 80,
+          height: 50,
         ),
         swipeButton(context, viewModel),
       ],
@@ -50,12 +50,9 @@ class StepperVoteContent extends StatelessWidget {
       activeColor: M3Color.of(context).primary,
       isFinished: viewModel.isFinished,
       onWaitingProcess: () {
-        Future.delayed(const Duration(seconds: 2), () {
-          viewModel.setIsFinished(true);
-        });
+        viewModel.voteCandidate();
       },
       onFinish: () {
-        print('finish');
         viewModel.resetIsFinished();
       },
     );

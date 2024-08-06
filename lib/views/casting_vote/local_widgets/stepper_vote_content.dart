@@ -52,7 +52,7 @@ class StepperVoteContent extends StatelessWidget {
       activeColor: M3Color.of(context).primary,
       isFinished: viewModel.isFinished,
       onWaitingProcess: () {
-        viewModel.voteCandidate();
+        viewModel.voteCandidate(context);
       },
       onFinish: () {
         viewModel.resetIsFinished();

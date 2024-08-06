@@ -6,6 +6,7 @@ import 'package:sui/sui.dart';
 import 'package:vodth_mobile/core/base/base_view_model.dart';
 import 'package:vodth_mobile/core/models/vodth/candidate_model.dart';
 import 'package:vodth_mobile/core/models/vodth/event_model.dart';
+import 'package:vodth_mobile/core/models/vodth/user_model.dart';
 import 'package:vodth_mobile/core/routes/app_router.gr.dart';
 import 'package:vodth_mobile/core/services/sign_transaction_service.dart';
 import 'package:vodth_mobile/providers/user_provider.dart';
@@ -65,8 +66,9 @@ class CandidateDetailViewModel extends BaseViewModel {
     }
   }
 
-  Future<void> voteCandidate() async {
+  Future<void> voteCandidate(BuildContext context) async {
     SignTransactionService signTxService = SignTransactionService();
+    UserModel? user = context.read<UserProvider>().user;
 
     final tx = TransactionBlock();
 
@@ -76,7 +78,7 @@ class CandidateDetailViewModel extends BaseViewModel {
         arguments: [
           tx.pure(candidate?.suiEventId),
           tx.pure(candidate?.suiCandidateId),
-          tx.pureString('vaneath flutter hash'),
+          tx.pureString(user?.id ?? ''),
           tx.pureString(candidate?.name ?? ''),
         ],
       );
@@ -131,7 +133,8 @@ class CandidateDetailViewModel extends BaseViewModel {
         }
 
         try {
-          await voteCandidate(); // Attempt to vote
+          // ignore: use_build_context_synchronously
+          await voteCandidate(context); // Attempt to vote
 
           // Remove the secret only if the vote is successful
           voterSecrets.remove(secret);
@@ -145,7 +148,7 @@ class CandidateDetailViewModel extends BaseViewModel {
             'eventId': candidate?.eventId,
             'voteTime': FieldValue.serverTimestamp(),
           };
-          
+
           transaction.set(
             eventDocRef.collection('votes').doc(),
             voteData,

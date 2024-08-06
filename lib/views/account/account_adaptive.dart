@@ -77,7 +77,7 @@ class _AccountAdaptive extends StatelessWidget {
               Consumer<UserProvider>(
                 builder: (context, userProvider, child) {
                   return Text(
-                    userProvider.userEmail ?? "No Account",
+                    userProvider.user?.id ?? "No Account",
                     style: M3TextTheme.of(context).titleLarge?.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
@@ -96,8 +96,7 @@ class _AccountAdaptive extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _buildSectionTitle(context, tr('title.Preferences')),
-        _buildAccountItem(context, tr('title.Choose_Languages'), Icons.language,
-            () {
+        _buildAccountItem(context, tr('title.Choose_Languages'), Icons.language, () {
           VmLanuagesBottomSheet().show(context);
         }),
         _buildAccountItem(context, tr('title.Themes'), Icons.palette, () {
@@ -171,13 +170,11 @@ class _AccountAdaptive extends StatelessWidget {
     );
   }
 
-  Widget _buildAccountItem(
-      BuildContext context, String title, IconData icon, VoidCallback onTap) {
+  Widget _buildAccountItem(BuildContext context, String title, IconData icon, VoidCallback onTap) {
     return ListTile(
       title: Text(title),
       leading: Icon(icon, color: M3Color.of(context).primary),
-      trailing:
-          Icon(Icons.arrow_forward_ios, color: M3Color.of(context).primary),
+      trailing: Icon(Icons.arrow_forward_ios, color: M3Color.of(context).primary),
       onTap: onTap,
     );
   }

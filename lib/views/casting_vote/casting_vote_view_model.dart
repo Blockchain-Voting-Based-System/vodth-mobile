@@ -1,9 +1,16 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sui/sui.dart';
 import 'package:vodth_mobile/core/base/base_view_model.dart';
 import 'package:vodth_mobile/core/models/vodth/candidate_model.dart';
 import 'package:vodth_mobile/core/models/vodth/event_model.dart';
+import 'package:vodth_mobile/core/models/vodth/user_model.dart';
+import 'package:vodth_mobile/core/services/messenger_service.dart';
 import 'package:vodth_mobile/core/services/sign_transaction_service.dart';
+import 'package:vodth_mobile/core/theme/m3/m3_color.dart';
+import 'package:vodth_mobile/providers/user_provider.dart';
 
 class CastingVoteViewModel extends BaseViewModel {
   CastingVoteViewModel({
@@ -58,18 +65,38 @@ class CastingVoteViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  Future<void> voteCandidate() async {
-    SignTransactionService signTxService = SignTransactionService();
+  Future<void> checkEligibleVoter(String userId, BuildContext context) async {
+    final votesCollection = FirebaseFirestore.instance.collection('events').doc(event?.id).collection('votes');
 
+    QuerySnapshot<Map<String, dynamic>> querySnapshot = await votesCollection.where('userId', isEqualTo: userId).get();
+
+    if (querySnapshot.docs.isNotEmpty) {
+      MessengerService.of(context).showSnackBar(
+        'User has already voted for this event.',
+        backgroundColor: M3Color.of(context).error,
+        foregroundColor: M3Color.of(context).onError,
+      );
+      throw Exception('User has already voted for this event.');
+    }
+  }
+
+  Future<void> voteCandidate(BuildContext context) async {
+    final votesCollection = FirebaseFirestore.instance.collection('events').doc(event?.id).collection('votes');
+    SignTransactionService signTxService = SignTransactionService();
+    UserModel? user = context.read<UserProvider>().user;
     final tx = TransactionBlock();
 
     try {
+      // Check if the user is eligible to vote
+      await checkEligibleVoter(user?.id ?? '', context);
+
+      // Proceed with the voting process if the user is eligible
       tx.moveCall(
         '${signTxService.packageObjectId}::vote::new_ballot',
         arguments: [
           tx.pure(selectedCandidate?.suiEventId),
           tx.pure(selectedCandidate?.suiCandidateId),
-          tx.pureString('vaneath flutter hash'),
+          tx.pureString(user?.id ?? ''),
           tx.pureString(selectedCandidate?.name ?? ''),
         ],
       );
@@ -86,16 +113,22 @@ class CastingVoteViewModel extends BaseViewModel {
         requestType: ExecuteTransaction.WaitForLocalExecution,
       );
 
+      await votesCollection.add({
+        'eventId': selectedCandidate?.suiEventId,
+        'userId': user?.id,
+        'voteTime': Timestamp.now(),
+      });
+
       isFinished = true;
+
       // Notify listeners only if the vote is successful
       notifyListeners();
     } catch (e) {
       if (kDebugMode) {
         print(e);
       }
-
-      // Re-throw the error to handle it in the caller function
-      rethrow;
+      isFinished = true;
+      notifyListeners();
     }
   }
 }

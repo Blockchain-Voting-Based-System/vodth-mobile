@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
+
 import 'package:crypto/crypto.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:vodth_mobile/core/base/base_view_model.dart';
@@ -10,8 +11,7 @@ import 'package:vodth_mobile/core/services/national_id_ocr_service.dart';
 
 class UploadIdViewModel extends BaseViewModel {
   final String cardType;
-  final IdCardClassifierService _idCardClassifierService =
-      IdCardClassifierService();
+  final IdCardClassifierService _idCardClassifierService = IdCardClassifierService();
   final StudentCardOcrService _studentCardOcrService = StudentCardOcrService();
   final NationalIdOcrService nationalIdOcrService = NationalIdOcrService();
 
@@ -55,8 +55,7 @@ class UploadIdViewModel extends BaseViewModel {
       } else if (cardType == 'national_id') {
         print('National ID');
         File imageFile = File(file.path!);
-        Map<String, String> ocrResults =
-            await nationalIdOcrService.predict(imageFile);
+        Map<String, String> ocrResults = await nationalIdOcrService.predict(imageFile);
         print('OCR Results: $ocrResults');
       }
 
@@ -76,12 +75,12 @@ class UploadIdViewModel extends BaseViewModel {
 
     if (isValid) {
       isInvalid = false;
-      _extractedText =
-          await _studentCardOcrService.extractTextFromImage(imageData);
+      // _extractedText =
+      //     await _studentCardOcrService.extractTextFromImage(imageData);
 
-      final hashedExtractedText = hashString(_extractedText);
+      // final hashedExtractedText = hashString(_extractedText);
 
-      print(hashedExtractedText);
+      // print(hashedExtractedText);
     } else {
       isInvalid = true;
     }

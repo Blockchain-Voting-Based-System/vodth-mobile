@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:swipeable_button_view/swipeable_button_view.dart';
+import 'package:vodth_mobile/core/routes/app_router.gr.dart';
+import 'package:vodth_mobile/core/routes/routes_export.dart';
 import 'package:vodth_mobile/core/theme/m3/m3_color.dart';
 import 'package:vodth_mobile/views/casting_vote/casting_vote_view_model.dart';
 import 'package:vodth_mobile/views/casting_vote/local_widgets/title_section.dart';
@@ -54,6 +56,11 @@ class StepperVoteContent extends StatelessWidget {
       },
       onFinish: () {
         viewModel.resetIsFinished();
+
+        context.router.pushAndPopUntil(
+          const HomeRoute(),
+          predicate: (_) => false,
+        );
       },
     );
   }

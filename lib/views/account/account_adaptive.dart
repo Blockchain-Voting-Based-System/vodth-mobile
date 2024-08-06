@@ -1,3 +1,16 @@
+// import 'package:flutter/material.dart';
+// import 'package:provider/provider.dart';
+// import 'package:vodth_mobile/core/models/user_model.dart';
+// import 'package:vodth_mobile/core/providers/user_provider.dart';
+// import 'package:vodth_mobile/core/routes/app_router.gr.dart';
+// import 'package:vodth_mobile/core/theme/m3_color.dart';
+// import 'package:vodth_mobile/core/theme/m3_text_theme.dart';
+// import 'package:auto_route/auto_route.dart';
+// import 'package:vodth_mobile/features/account/view_model/account_view_model.dart';
+// import 'package:vodth_mobile/features/languages/bottom_sheet/vm_languages_bottom_sheet.dart';
+// import 'package:vodth_mobile/features/theme/bottom_sheet/vm_theme_bottom_sheet.dart';
+// import 'package:easy_localization/easy_localization.dart';
+
 part of 'account_view.dart';
 
 class _AccountAdaptive extends StatelessWidget {
@@ -30,7 +43,7 @@ class _AccountAdaptive extends StatelessWidget {
         _buildPreferences(context),
         const SizedBox(height: 16),
         _buildAboutSection(context),
-        _buildLogout(context),
+        _buildAuthAction(context),
       ],
     );
   }
@@ -61,11 +74,15 @@ class _AccountAdaptive extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                viewModel.userEmail ?? 'No email',
-                style: M3TextTheme.of(context).titleLarge?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+              Consumer<UserProvider>(
+                builder: (context, userProvider, child) {
+                  return Text(
+                    userProvider.userEmail ?? "No Account",
+                    style: M3TextTheme.of(context).titleLarge?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                  );
+                },
               ),
             ],
           ),
@@ -83,8 +100,6 @@ class _AccountAdaptive extends StatelessWidget {
             () {
           VmLanuagesBottomSheet().show(context);
         }),
-        // _buildAccountItem(
-        //     context, tr('title.Notifications'), Icons.notifications, () {}),
         _buildAccountItem(context, tr('title.Themes'), Icons.palette, () {
           VmThemeBottomSheet().show(context);
         }),
@@ -108,13 +123,36 @@ class _AccountAdaptive extends StatelessWidget {
     );
   }
 
-  Widget _buildLogout(BuildContext context) {
-    return ListTile(
-      title: Text(tr('title.Logout'),
-          style: TextStyle(color: M3Color.of(context).error)),
-      leading: Icon(Icons.logout, color: M3Color.of(context).error),
-      onTap: () {
-        context.router.push(const LoginRoute());
+  Widget _buildAuthAction(BuildContext context) {
+    return Consumer<UserProvider>(
+      builder: (context, userProvider, child) {
+        if (userProvider.userEmail == null) {
+          return Center(
+            child: TextButton(
+              onPressed: () {
+                context.router.push(const LoginRoute());
+              },
+              child: Text(
+                tr('sign_in'),
+                style: TextStyle(
+                  fontSize: 16,
+                  color: M3Color.of(context).primary,
+                ),
+              ),
+            ),
+          );
+        } else {
+          return ListTile(
+            title: Text(
+              tr('title.Logout'),
+              style: TextStyle(color: M3Color.of(context).error),
+            ),
+            leading: Icon(Icons.logout, color: M3Color.of(context).error),
+            onTap: () async {
+              await viewModel.signOut(context);
+            },
+          );
+        }
       },
     );
   }

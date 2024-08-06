@@ -21,8 +21,6 @@ class ThemeProvider extends BaseViewModel {
     _themeMode = themeMode;
     ThemeModeStorage.instance.writeEnum(themeMode);
     notifyListeners();
-
-    print('dom $themeMode');
   }
 
   bool isDarkMode() {

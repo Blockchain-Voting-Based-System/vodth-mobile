@@ -9,13 +9,7 @@ part of 'user_model.dart';
 abstract class _$UserModelCWProxy {
   UserModel id(String? id);
 
-  UserModel firstName(String? firstName);
-
-  UserModel lastName(String? lastName);
-
   UserModel email(String? email);
-
-  UserModel vote(VoteModel? vote);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `UserModel(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -25,10 +19,7 @@ abstract class _$UserModelCWProxy {
   /// ````
   UserModel call({
     String? id,
-    String? firstName,
-    String? lastName,
     String? email,
-    VoteModel? vote,
   });
 }
 
@@ -42,16 +33,7 @@ class _$UserModelCWProxyImpl implements _$UserModelCWProxy {
   UserModel id(String? id) => this(id: id);
 
   @override
-  UserModel firstName(String? firstName) => this(firstName: firstName);
-
-  @override
-  UserModel lastName(String? lastName) => this(lastName: lastName);
-
-  @override
   UserModel email(String? email) => this(email: email);
-
-  @override
-  UserModel vote(VoteModel? vote) => this(vote: vote);
 
   @override
 
@@ -63,32 +45,17 @@ class _$UserModelCWProxyImpl implements _$UserModelCWProxy {
   /// ````
   UserModel call({
     Object? id = const $CopyWithPlaceholder(),
-    Object? firstName = const $CopyWithPlaceholder(),
-    Object? lastName = const $CopyWithPlaceholder(),
     Object? email = const $CopyWithPlaceholder(),
-    Object? vote = const $CopyWithPlaceholder(),
   }) {
     return UserModel(
       id: id == const $CopyWithPlaceholder()
           ? _value.id
           // ignore: cast_nullable_to_non_nullable
           : id as String?,
-      firstName: firstName == const $CopyWithPlaceholder()
-          ? _value.firstName
-          // ignore: cast_nullable_to_non_nullable
-          : firstName as String?,
-      lastName: lastName == const $CopyWithPlaceholder()
-          ? _value.lastName
-          // ignore: cast_nullable_to_non_nullable
-          : lastName as String?,
       email: email == const $CopyWithPlaceholder()
           ? _value.email
           // ignore: cast_nullable_to_non_nullable
           : email as String?,
-      vote: vote == const $CopyWithPlaceholder()
-          ? _value.vote
-          // ignore: cast_nullable_to_non_nullable
-          : vote as VoteModel?,
     );
   }
 }
@@ -105,18 +72,10 @@ extension $UserModelCopyWith on UserModel {
 
 UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
       id: json['id'] as String?,
-      firstName: json['firstName'] as String?,
-      lastName: json['lastName'] as String?,
       email: json['email'] as String?,
-      vote: json['vote'] == null
-          ? null
-          : VoteModel.fromJson(json['vote'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'id': instance.id,
-      'firstName': instance.firstName,
-      'lastName': instance.lastName,
       'email': instance.email,
-      'vote': instance.vote,
     };

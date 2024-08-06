@@ -98,7 +98,7 @@ class _AccountAdaptive extends StatelessWidget {
       children: [
         _buildSectionTitle(context, tr('title.aboutus')),
         _buildAccountItem(context, tr('title.aboutus'), Icons.info, () {
-          // context.router.push(const AboutUsRoute());
+          context.router.push(const AboutUsRoute());
         }),
         _buildAccountItem(context, tr('title.FAQs'), Icons.question_mark, () {
           context.router.push(const FaqsRoute());

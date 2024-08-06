@@ -7,8 +7,7 @@ import 'package:vodth_mobile/core/routes/app_router.gr.dart';
 class RegisterViewModel extends BaseViewModel {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Future<void> register(
-      BuildContext context, String email, String password) async {
+  Future<void> register(BuildContext context, String email, String password) async {
     try {
       // Register with FirebaseAuth
       UserCredential userCredential = await _auth.createUserWithEmailAndPassword(

@@ -1,5 +1,8 @@
 {
-  "alert_sheet.choose_languague.title": "Choose Language",
+  "alert_sheet" : {
+    "choose_languague": "Choose Language",
+    "choose_theme": "Choose Theme" 
+  },
   "title": {
     "account": "Account",
     "aboutus": "About Us",
@@ -58,5 +61,10 @@
   "placeholder":{
     "username": "Username",
     "secret_key": "Secret Key"
+  },
+
+  "theme" : {
+    "light": "Light",
+    "dark": "Dark"
   }
 }

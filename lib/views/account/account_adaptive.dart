@@ -86,7 +86,7 @@ class _AccountAdaptive extends StatelessWidget {
         // _buildAccountItem(
         //     context, tr('title.Notifications'), Icons.notifications, () {}),
         _buildAccountItem(context, tr('title.Themes'), Icons.palette, () {
-          // Handle Themes tap
+          VmThemeBottomSheet().show(context);
         }),
       ],
     );

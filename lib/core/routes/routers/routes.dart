@@ -2,6 +2,9 @@ library routes;
 
 import 'package:auto_route/auto_route.dart';
 import 'package:vodth_mobile/core/routes/app_router.gr.dart';
+import 'package:vodth_mobile/core/routes/auth_guard.dart';
+
+final authGuard = AuthGuard();
 
 final routers = [
   AutoRoute(
@@ -19,7 +22,7 @@ final routers = [
   AutoRoute(page: CandidateDetailRoute.page, path: '/candidates/:id'),
   AutoRoute(page: LoginRoute.page),
   AutoRoute(page: RegisterRoute.page),
-  AutoRoute(page: EventDetailRoute.page, path: '/events/:id'),
+   AutoRoute(page: EventDetailRoute.page, path: '/events/:id', guards: [authGuard]),
   AutoRoute(page: FaqsRoute.page),
   AutoRoute(page: CastingVoteRoute.page),
   AutoRoute(page: CaptureIdRoute.page),

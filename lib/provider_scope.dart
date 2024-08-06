@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vodth_mobile/providers/event_provider.dart';
 import 'package:vodth_mobile/providers/theme_provider.dart';
+import 'package:vodth_mobile/providers/user_provider.dart';
 
 // global providers
 class ProviderScope extends StatelessWidget {
@@ -22,6 +23,9 @@ class ProviderScope extends StatelessWidget {
         ListenableProvider<ThemeProvider>(
           create: (context) => ThemeProvider(),
         ),
+        ListenableProvider<UserProvider>(
+          create: (context) => UserProvider(),
+        )
       ],
       child: child,
     );

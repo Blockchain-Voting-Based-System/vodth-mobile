@@ -7,6 +7,8 @@ class _HistoryAdaptive extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+
     return Scaffold(
       appBar: MorphingAppBar(
         title: Text(
@@ -17,9 +19,32 @@ class _HistoryAdaptive extends StatelessWidget {
               ),
         ),
       ),
-      body: RefreshIndicator(
-        child: _buildBody(context),
-        onRefresh: () => viewModel.load(),
+      body: userProvider.isLoggedIn
+          ? RefreshIndicator(
+              child: _buildBody(context),
+              onRefresh: () => viewModel.load(),
+            )
+          : _buildNoAccount(context),
+    );
+  }
+
+  Widget _buildNoAccount(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text(
+            'No account. You need to sign in.',
+            style: TextStyle(fontSize: 18),
+          ),
+          const SizedBox(height: 16),
+          ElevatedButton(
+            onPressed: () {
+              context.router.push(const LoginRoute());
+            },
+            child: const Text('Sign In'),
+          ),
+        ],
       ),
     );
   }
@@ -77,7 +102,7 @@ class _HistoryAdaptive extends StatelessWidget {
     );
   }
 
-  _buildEventImage({
+  Widget _buildEventImage({
     required BuildContext context,
     required String imageUrl,
   }) {

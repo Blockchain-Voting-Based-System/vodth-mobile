@@ -86,6 +86,7 @@ class CastingVoteViewModel extends BaseViewModel {
         requestType: ExecuteTransaction.WaitForLocalExecution,
       );
 
+      isFinished = true;
       // Notify listeners only if the vote is successful
       notifyListeners();
     } catch (e) {

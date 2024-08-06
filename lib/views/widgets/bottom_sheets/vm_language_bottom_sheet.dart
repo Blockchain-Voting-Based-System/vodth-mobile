@@ -9,7 +9,7 @@ import 'package:vodth_mobile/views/widgets/vm_bottom_navigation_wrapper.dart';
 
 class VmLanuagesBottomSheet extends VmBottomSheet {
   @override
-  String? get title => tr('alert_sheet.choose_languague.title');
+  String? get title => tr('alert_sheet.choose_languague');
 
   @override
   bool get includePlatformBottomPadding => false;

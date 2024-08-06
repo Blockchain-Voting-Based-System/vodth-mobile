@@ -1,68 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:sui/builder/transaction_block.dart';
-import 'package:sui/types/transactions.dart';
 import 'package:vodth_mobile/core/models/vodth/candidate_model.dart';
-import 'package:vodth_mobile/core/services/sign_transaction_service.dart';
 
 class CandidateService {
-  Future<void> voteCandidate({
-    required BuildContext context,
-    required CandidateModel candidate,
-  }) async {
-    SignTransactionService signTxService = SignTransactionService();
-
-    final tx = TransactionBlock();
-
+  Future<List<CandidateModel>?> getCandidates({required String eventId}) async {
     try {
-      tx.moveCall(
-        '${signTxService.packageObjectId}::vote::new_ballot',
-        arguments: [tx.pure(candidate.suiEventId), tx.pure(candidate.suiCandidateId), tx.pure("vaneath from flutter 1")],
-      );
+      QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore.instance.collection('candidates').where('eventId', isEqualTo: eventId).get();
+      List<CandidateModel>? candidates = snapshot.docs.map((e) => CandidateModel.fromFirestore(e)).toList();
 
-      await signTxService.client.signAndExecuteTransactionBlock(
-        signTxService.account,
-        tx,
-        responseOptions: SuiTransactionBlockResponseOptions(
-          showEffects: true,
-          showBalanceChanges: true,
-          showInput: true,
-          showObjectChanges: true,
-        ),
-        requestType: ExecuteTransaction.WaitForLocalExecution,
-      );
+      return candidates;
     } catch (e) {
       if (kDebugMode) {
-        print(e);
+        print("Error getting events: $e");
       }
     }
-  }
 
-  Future<bool> validateAndRemoveSecret({required CandidateModel candidate, required String secret}) async {
-    final eventDocRef = FirebaseFirestore.instance.collection('events').doc(candidate.eventId);
-
-    return FirebaseFirestore.instance.runTransaction<bool>((transaction) async {
-      DocumentSnapshot<Map<String, dynamic>> eventSnapshot = await transaction.get(eventDocRef);
-
-      if (!eventSnapshot.exists) {
-        return false;
-      }
-
-      List<dynamic> voterSecrets = eventSnapshot.data()?['voterSecrets'] ?? [];
-
-      if (!voterSecrets.contains(secret)) {
-        return false;
-      }
-
-      // Remove the secret
-      voterSecrets.remove(secret);
-
-      // Update the document
-      transaction.update(eventDocRef, {'voterSecrets': voterSecrets});
-      return true;
-    }).catchError((error) {
-      return false;
-    });
+    return null;
   }
 }

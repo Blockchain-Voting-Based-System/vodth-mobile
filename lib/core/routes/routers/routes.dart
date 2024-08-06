@@ -22,7 +22,7 @@ final routers = [
   AutoRoute(page: CandidateDetailRoute.page, path: '/candidates/:id'),
   AutoRoute(page: LoginRoute.page),
   AutoRoute(page: RegisterRoute.page),
-   AutoRoute(page: EventDetailRoute.page, path: '/events/:id', guards: [authGuard]),
+  AutoRoute(page: EventDetailRoute.page, path: '/events/:id', guards: [authGuard]),
   AutoRoute(page: FaqsRoute.page),
   AutoRoute(page: CastingVoteRoute.page),
   AutoRoute(page: CaptureIdRoute.page),

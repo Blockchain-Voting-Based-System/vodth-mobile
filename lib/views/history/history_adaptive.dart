@@ -79,7 +79,7 @@ class _HistoryAdaptive extends StatelessWidget {
         VmTapEffectType.scaleDown,
       ],
       onTap: () {
-        // context.pushRoute(const EventsRoute());
+        context.pushRoute(HistoryDetailRoute(id: event.id.toString()));
       },
       child: Card(
         color: Colors.white,
@@ -150,23 +150,23 @@ class _HistoryAdaptive extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
           const SizedBox(height: 8.0),
-          RichText(
-            text: TextSpan(
-              text: 'Voted: ',
-              style: M3TextTheme.of(context).bodySmall?.copyWith(
-                    color: const Color(0xFF404040),
-                  ),
-              children: <TextSpan>[
-                TextSpan(
-                  text: 'Candidate A',
-                  style: M3TextTheme.of(context).bodySmall?.copyWith(
-                        color: const Color(0xFF404040),
-                        fontWeight: FontWeight.w500,
-                      ),
-                ),
-              ],
-            ),
-          ),
+          // RichText(
+          //   text: TextSpan(
+          //     text: 'Voted: ',
+          //     style: M3TextTheme.of(context).bodySmall?.copyWith(
+          //           color: const Color(0xFF404040),
+          //         ),
+          //     children: <TextSpan>[
+          //       TextSpan(
+          //         text: 'Candidate A',
+          //         style: M3TextTheme.of(context).bodySmall?.copyWith(
+          //               color: const Color(0xFF404040),
+          //               fontWeight: FontWeight.w500,
+          //             ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
         ],
       ),
     );
